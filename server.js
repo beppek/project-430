@@ -41,7 +41,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //Static content
-app.use(express.static(path.join(__dirname, "")));
+app.use(express.static(path.join(__dirname, "client")));
 
 //Routes
 app.use("/", require("./routes/home.js"));
