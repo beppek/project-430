@@ -1,0 +1,45 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "Application providing photo challenges weekly",
+  "main": "app.js",
+  "scripts": {
+    "start": "app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1dv430/bk222bh-project.git"
+  },
+  "keywords": [
+    "NodeJS",
+    "Angular2",
+    "Express",
+    "Photography",
+    "Challenge"
+  ],
+  "author": "beppek",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/1dv430/bk222bh-project/issues"
+  },
+  "homepage": "https://github.com/1dv430/bk222bh-project#readme",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "connect-redis": "^3.0.2",
+    "csurf": "^1.8.3",
+    "express": "^4.13.4",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.13.0",
+    "mongoose": "^4.4.11",
+    "angular2": "2.0.0-beta.14",
+    "es6-shim": "^0.35.0",
+    "reflect-metadata": "0.1.2",
+    "rxjs": "5.0.0-beta.2",
+    "zone.js": "0.6.6"
+  },
+  "devDependencies": {
+    "concurrently": "^2.0.0",
+    "nodemon": "^1.9.1"
+  }
+}

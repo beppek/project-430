@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {{>head}}
+    </head>
+    <body>
+        <div class="site-wrapper">
+            <!--{{>navbar}}-->
+            <!--{{#if flash}}-->
+            <!--<div class="alert alert-dismissible alert-{{flash.type}}">-->
+                <!--<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>-->
+                <!--<p><strong>{{flash.intro}}</strong> {{{flash.message}}}</p>-->
+            <!--</div>-->
+            <!--{{/if}}-->
+            <div class="main-content">
+                {{{ body }}}
+            </div>
+        </div>
+        {{!-- TODO: Get jQuery and bootstrap files inside project --}}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    </body>
+</html>
