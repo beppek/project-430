@@ -13,9 +13,9 @@ var router = require("express").Router();
  * Home Page
  *
  * */
-router.route("/")
+router.route("*")
     .get(function(req, res) {
-        res.render("pages/home");
+        res.sendfile("pages/index.html");
     });
 
 module.exports = router;

@@ -3,3 +3,5 @@ node_modules
 .editorconfig
 .jscsrc
 .jshintrc
+bundle.js
+*.log

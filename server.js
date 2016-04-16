@@ -5,8 +5,8 @@
  * @author BeppeK
  * @version 0.0.1
  *
- * */
 
+ * */
 "use strict";
 
 //SETUP -------------------------------
@@ -30,15 +30,32 @@ var port            = process.env.PORT || 8000;
 //CONFIG -------------------------------
 
 //View engine
-app.engine("hbs", exphbs({
-    defaultLayout: "default",
-    extname: "hbs"
-}));
-app.set("view engine", ".hbs");
+// app.engine("hbs", exphbs({
+//     defaultLayout: "default",
+//     extname: "hbs"
+// }));
+// app.set("view engine", ".hbs");
 
 //body parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+//session
+app.use(session({
+    name: "sniplykicksass",
+    secret: "say purpose turn blanket",
+    store: sessionStore,
+    saveUninitialized: true,
+    resave: false,
+    cookie: { secure: true }
+}));
+
+//Flash message, delete after display
+app.use(function(req, res, next){
+    res.locals.flash = req.session.flash;
+    delete req.session.flash;
+    next();
+});
 
 //Static content
 app.use(express.static(path.join(__dirname, "client")));

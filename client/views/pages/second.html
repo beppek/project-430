@@ -1,0 +1,24 @@
+<h1>Hello {{ name }}! You are on the second page!</h1>
+
+<div>
+    <label>Your name:</label>
+    <input type="text" ng-model="name">
+</div>
+
+<div ng-show="name.length < 5">
+
+    You have less than 5 characters!
+
+</div>
+<div ng-show="name.length > 5">
+
+    You have more than 5 characters!
+
+</div>
+
+<hr>
+
+<h3>Rules</h3>
+<ul>
+    <li ng-repeat="rule in rules">{{rule.rulename}}</li>
+</ul>

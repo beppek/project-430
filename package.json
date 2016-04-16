@@ -4,8 +4,9 @@
   "description": "Application providing photo challenges weekly",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "cd client/ && npm run build && cd .. && npm run serve",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -13,7 +14,7 @@
   },
   "keywords": [
     "NodeJS",
-    "Angular2",
+    "AngularJS",
     "Express",
     "Photography",
     "Challenge"
