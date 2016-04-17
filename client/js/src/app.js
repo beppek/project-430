@@ -4,13 +4,9 @@
 
 "use strict";
 
-var $ = require("jquery");
-var ng = require("angular");
-var ngRoute = require("angular-route");
+var slideZapp = require("../../app/app.module.js");
 
-var myApp = ng.module("myApp", [ngRoute]);
-
-myApp.config(function($routeProvider) {
+slideZapp.config(function($routeProvider) {
 
     $routeProvider
 
@@ -25,7 +21,7 @@ myApp.config(function($routeProvider) {
 
 });
 
-myApp.service("nameService", function() {
+slideZapp.service("nameService", function() {
 
     this.name = "";
 
@@ -37,7 +33,7 @@ myApp.service("nameService", function() {
 
 });
 
-myApp.controller("mainController", ["$scope", "$log", "nameService", function($scope, $log, nameService) {
+slideZapp.controller("mainController", ["$scope", "$log", "nameService", function($scope, $log, nameService) {
 
     $scope.name = nameService.name;
 
@@ -53,7 +49,7 @@ myApp.controller("mainController", ["$scope", "$log", "nameService", function($s
 
 }]);
 
-myApp.controller("secondController", ["$scope", "$log", "nameService", function($scope, $log, nameService) {
+slideZapp.controller("secondController", ["$scope", "$log", "nameService", function($scope, $log, nameService) {
 
     $scope.name = nameService.name;
 

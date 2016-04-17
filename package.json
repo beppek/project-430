@@ -4,8 +4,9 @@
   "description": "Application providing photo challenges weekly",
   "main": "server.js",
   "scripts": {
-    "start": "cd client/ && npm run build && cd .. && npm run serve",
+    "start": "npm run build && npm run serve",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "browserify client/js/src/app.js -o client/assets/js/bundle.js ",
     "serve": "nodemon server.js"
   },
   "repository": {
@@ -32,7 +33,11 @@
     "express": "^4.13.4",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.13.0",
-    "mongoose": "^4.4.11"
+    "mongoose": "^4.4.11",
+    "angular": "^1.5.3",
+    "angular-route": "^1.5.3",
+    "browserify": "^13.0.0",
+    "jquery": "^2.2.3"
   },
   "devDependencies": {
   }
