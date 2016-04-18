@@ -39,5 +39,7 @@
     "jquery": "^2.2.3",
     "mongoose": "^4.4.11"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "chai": "^3.5.0"
+  }
 }

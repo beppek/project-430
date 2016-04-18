@@ -17,7 +17,7 @@ var fs              = require("fs");
 var http            = require("http");
 
 var express         = require("express");
-var exphbs          = require("express-handlebars");
+// var exphbs          = require("express-handlebars");
 var bodyParser      = require("body-parser");
 var session         = require("express-session");
 var csurf           = require("csurf");
@@ -29,6 +29,8 @@ var port            = process.env.PORT || 8000;
 
 //CONFIG -------------------------------
 
+//TODO: Keeping this here until I know how to handle errors.
+//TODO: Use Angular to show error pages?
 //View engine
 // app.engine("hbs", exphbs({
 //     defaultLayout: "default",
@@ -40,6 +42,8 @@ var port            = process.env.PORT || 8000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//TODO: Environment variables for session name and secret
+//TODO: Don't forget to secure Redis
 //session
 app.use(session({
     name: "sniplykicksass",
@@ -63,6 +67,7 @@ app.use(express.static(path.join(__dirname, "client")));
 //Routes
 app.use("/", require("./routes/home.js"));
 
+//TODO: Actually display some sort of error pages
 // 400 handler.
 app.use(function(err, req, res, next) {
 

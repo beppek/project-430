@@ -9,6 +9,7 @@
 
 "use strict";
 
+//TODO: Delete variable and only require?
 // LOAD SETUP MODULE
 var slideZapp = require("../../app/app.module.js");
 
@@ -22,6 +23,7 @@ require("../../app/shared/services/nameService");
 // HOME
 require("../../app/components/home/homeController");
 
+//TODO: Delete this controller
 /**
  * Just a test controller
  * */

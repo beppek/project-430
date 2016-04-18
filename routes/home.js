@@ -15,7 +15,7 @@ var router = require("express").Router();
  * */
 router.route("*")
     .get(function(req, res) {
-        res.sendfile("/index.html");
+        res.sendFile("index.html", {root: "/client/"});
     });
 
 module.exports = router;
