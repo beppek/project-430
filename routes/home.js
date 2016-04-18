@@ -1,5 +1,5 @@
 /**
- * Home routes for the less interactive pages
+ * Router for the application
  * @author BeppeK
  */
 
@@ -10,12 +10,12 @@ var router = require("express").Router();
 
 /**
  *
- * Home Page
+ * Serve up the starting page of the application
  *
  * */
 router.route("*")
     .get(function(req, res) {
-        res.sendfile("pages/index.html");
+        res.sendfile("/index.html");
     });
 
 module.exports = router;

@@ -1,12 +1,21 @@
 /**
- * Created by Beppe on 17/04/2016.
+ *
+ * SETUP
+ * This file sets up the app
+ *
+ * @author: beppek
+ *
  */
 
 "use strict";
 
+// LOAD ANGULAR AND DEPENDENCIES
 var ng = require("angular");
 var ngRoute = require("angular-route");
 
-module.exports = ng.module("slideZapp", [
+// CREATE APP
+var slideZapp = ng.module("slideZapp", [
     ngRoute
 ]);
+
+module.exports = slideZapp;
