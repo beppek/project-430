@@ -22,8 +22,10 @@ var bodyParser      = require("body-parser");
 var session         = require("express-session");
 var csurf           = require("csurf");
 var RedisStore      = require("connect-redis")(session);
-var sessionStore    = new RedisStore();
+// var sass            = require("node-sass");
+// var sassMiddleware  = require("node-sass-middleware");
 
+var sessionStore    = new RedisStore();
 var app             = express();
 var port            = process.env.PORT || 8000;
 
@@ -60,6 +62,16 @@ app.use(function(req, res, next){
     delete req.session.flash;
     next();
 });
+
+// //SASS
+// app.use(
+//     sassMiddleware({
+//         src: __dirname + "/client/src/sass",
+//         dest: __dirname + "/client/assets/css",
+//         debug: true,
+//         prefix: "assets/css"
+//     })
+// );
 
 //Static content
 app.use(express.static(path.join(__dirname, "client")));
@@ -115,3 +127,6 @@ app.listen(port, function() {
     console.log("Press ctrl+c to terminate");
 
 });
+
+// EXPORT FOR TESTING
+module.exports = app;

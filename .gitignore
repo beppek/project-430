@@ -5,3 +5,4 @@ node_modules
 .jshintrc
 bundle.js
 *.log
+mocha.opts

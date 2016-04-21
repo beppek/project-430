@@ -4,10 +4,12 @@
   "description": "Application providing photo challenges weekly",
   "main": "server.js",
   "scripts": {
+    "watch-css": "nodemon -e scss -x \"npm run build-css\"",
+    "build-css": "node-sass --include-path scss client/src/sass/style.scss client/assets/css/style.css",
     "start": "npm run build && npm run serve",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha tests --recursive",
     "build": "browserify client/src/js/app.js -o client/assets/js/bundle.js ",
-    "serve": "nodemon server.js"
+    "serve": "nodemon --watch client server.js"
   },
   "repository": {
     "type": "git",
@@ -40,6 +42,9 @@
     "mongoose": "^4.4.11"
   },
   "devDependencies": {
-    "chai": "^3.5.0"
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5",
+    "node-sass": "^3.5.1",
+    "supertest": "^1.2.0"
   }
 }
