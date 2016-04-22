@@ -20,9 +20,20 @@ module.exports = angular.module("slideZapp").config(function($routeProvider) {
             templateUrl: "app/components/home/homeView.html",
             controller: "homeController"
         })
-        .when("/second", {
-            templateUrl: "views/pages/second.html",
-            controller: "secondController"
+        .when("/leaderboard", {
+            templateUrl: "app/components/leaderboard/leaderboardView.html",
+            controller: "leaderboardController"
         })
+        .when("/dashboard", {
+            templateUrl: "app/components/dashboard/dashboardView.html",
+            controller: "dashboardController"
+        })
+        .when("/challenges", {
+            templateUrl: "app/components/challenges/challengesView.html",
+            controller: "challengesController"
+        })
+        .otherwise({
+            redirectTo: "/"
+        });
 
 });

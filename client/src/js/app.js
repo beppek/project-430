@@ -19,9 +19,18 @@ require("../../app/app.routes.js");
 // LOAD SHARED
 require("../../app/shared/services/nameService");
 
-// LOAD COMPONENTS
+// LOAD CONTROLLERS
 // HOME
 require("../../app/components/home/homeController");
+
+// LEADERBOARD
+require("../../app/components/leaderboard/leaderboardController");
+
+// DASHBOARD
+require("../../app/components/dashboard/dashboardController");
+
+// CHALLENGES
+require("../../app/components/challenges/challengesController");
 
 //TODO: Delete this controller
 /**
