@@ -11,11 +11,12 @@
 
 // LOAD ANGULAR AND DEPENDENCIES
 var ng = require("angular");
-var ngRoute = require("angular-route");
+// var ngRoute = require("angular-route");
+var uiRouter = require("angular-ui-router");
 
 // CREATE APP
 var slideZapp = ng.module("slideZapp", [
-    ngRoute
+    uiRouter
 ]);
 
 module.exports = slideZapp;

@@ -34,12 +34,12 @@ router.route("/leaderboard")
 
 /**
  *
- * Redirect to dashboard with hashbang
+ * Redirect to upload with hashbang
  *
  * */
-router.route("/dashboard")
+router.route("/upload")
     .get(function(req, res) {
-        res.redirect("/#/dashboard");
+        res.redirect("/#/upload");
     });
 
 /**

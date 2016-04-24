@@ -5,7 +5,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>SlideZapp</title>
-        <link rel="stylesheet" href="libs/css/foundation.min.css">
+        <link rel="stylesheet" href="libs/fonts/icons/foundation-icons.css">
+        <link rel="stylesheet" href="libs/css/foundation.css">
         <link rel="stylesheet" href="assets/css/style.css">
     </head>
 </head>
@@ -13,24 +14,23 @@
     <div class="site-wrapper">
 
         <!--Sign In modal-->
-        <div class="reveal" id="signinModal" data-reveal data-animation-in="slide-in-down" data-animation-out="slide-out-up">
+        <div class="medium reveal" id="signinModal" data-reveal data-animation-in="slide-in-down" data-animation-out="slide-out-up">
 
-            <form action="">
+            <form action="" class="signin-form" novalidate>
                 <div class="row">
                     <div class="medium-12 columns">
-                        <h3>Sign in</h3>
+                        <h3><i class="fi-torso"></i> Sign in</h3>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="medium-6 columns">
-                        <label>Username
-                            <input type="text" placeholder="Username">
-                        </label>
+                    <div class="medium-12 columns">
+                        <input type="text" placeholder="Username" required="" autofocus="">
                     </div>
-                    <div class="medium-6 columns">
-                        <label>Password
-                            <input type="password" placeholder="Password">
-                        </label>
+
+                </div>
+                <div class="row">
+                    <div class="medium-12 columns">
+                        <input type="password" placeholder="Password" required="">
                     </div>
                 </div>
                 <div class="row">
@@ -40,7 +40,7 @@
                 </div>
                 <div class="row">
                     <div class="medium-12 columns">
-                        <p>Not yet a member? <a>Sign up now</a> to start improving your photography!</p>
+                        <p>Not yet a member? <a ui-sref="signup" data-close aria-label="Close modal">Sign up now</a> to start improving your photography - it is absolutely free!</p>
                     </div>
                 </div>
             </form>
@@ -50,37 +50,30 @@
             </button>
         </div>
 
-        <div class="off-canvas-wrapper content-wrapper">
-            <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+        <!-- Menu -->
+        <div class="menu-wrapper menu-closed" id="menu">
+            <!-- Close button -->
+            <!--<button class="close-button close-menu-btn" aria-label="Close menu" type="button" data-close>-->
+                <!--<span aria-hidden="true">&times;</span>-->
+            <!--</button>-->
+            <ul class="vertical menu">
+                <li><a ui-sref="home" ui-sref-active="active">Home</a></li>
+                <li><a ui-sref="upload" ui-sref-active="active"><i class="fi-upload"></i> Upload</a></li>
+                <li><a ui-sref="challenges" ui-sref-active="active">Challenges</a></li>
+                <li><a ui-sref="leaderboard" ui-sref-active="active">Leaderboard</a></li>
+            </ul>
+        </div>
 
-                <div class="menu-buttons">
-                    <button type="button" class="secondary hollow button menu-btn" data-open="signinModal">Sign In</button>
-                    <button type="button" class="secondary hollow button menu-btn" data-toggle="offCanvas">Menu</button>
-                </div>
+        <div class="content-wrapper">
 
-                <div class="off-canvas position-right" id="offCanvas" data-off-canvas data-position="right">
+            <div class="menu-buttons">
+                <button type="button" class="secondary hollow button menu-btn" data-open="signinModal"><i class="fi-torso"></i> Sign In</button>
+                <button type="button" class="secondary button menu-btn" id="menu-button"><i class="fi-list"></i></button>
+            </div>
 
-                    <!-- Close button -->
-                    <button class="close-button close-menu-btn" aria-label="Close menu" type="button" data-close>
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-
-                    <!-- Menu -->
-                    <div class="menu-wrapper">
-                        <ul class="vertical menu">
-                            <li><a href="#/">Home</a></li>
-                            <li><a href="#/dashboard">Dashboard</a></li>
-                            <li><a href="#/challenges">Challenges</a></li>
-                            <li><a href="#/leaderboard">Leaderboard</a></li>
-                        </ul>
-                    </div>
-
-                </div>
-
-                <div class="off-canvas-content main-content" data-off-canvas-content>
-                    <!-- Page content -->
-                    <div ng-view></div>
-                </div>
+            <div class="main-content">
+                <!-- Page content -->
+                <div ui-view></div>
             </div>
         </div>
 
@@ -88,7 +81,7 @@
         <script src="libs/js/vendor/jquery.js"></script>
         <script src="libs/js/vendor/foundation.js"></script>
         <script src="assets/js/bundle.js"></script>
-        <script>$(document).foundation();</script>
+        <!--<script>$(document).foundation();</script>-->
     </div>
 </body>
 </html>

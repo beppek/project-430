@@ -45,11 +45,11 @@ describe("GET /leaderboard", function() {
 
 });
 
-describe("GET /dashboard", function() {
+describe("GET /upload", function() {
 
     it("respond with 302", function(done) {
         request(app)
-            .get("/dashboard")
+            .get("/upload")
             .expect(302, done);
     });
 

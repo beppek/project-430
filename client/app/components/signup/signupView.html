@@ -1,0 +1,44 @@
+<div ng-controller="signupCtrl">
+    <div class="row signup">
+        <div class="medium-12 columns">
+            <!--Register modal-->
+            <div id="registerModal">
+
+                <form action="" name="signup" class="signin-form" novalidate>
+                    <div class="row align-center">
+                        <div class="medium-6 columns">
+                            <h3><i class="fi-torso"></i> Sign up</h3>
+                        </div>
+                    </div>
+                    <div class="row align-center">
+                        <div class="medium-6 columns">
+                            <input name="email" ng-model="email" type="email" placeholder="Email" required autofocus="">
+                            <p class="help-block" ng-show="signup.email.$dirty && signup.email.$invalid">Please enter valid email address</p>
+                        </div>
+
+                    </div>
+                    <div class="row align-center">
+                        <div class="medium-6 columns">
+                            <input name="password" ng-model="password" type="password" placeholder="Password" required>
+                        </div>
+                    </div>
+                    <div class="row align-center">
+                        <div class="medium-6 columns">
+                            <input name="password_confirm" ng-model="password_confirm" type="password" placeholder="Confirm password" validate-equals="password">
+                        </div>
+                    </div>
+                    <div class="row align-center">
+                        <div class="medium-6 columns">
+                            <p class="help-block" ng-show="signup.password_confirm.$dirty && signup.password_confirm.$invalid">Passwords must match</p>
+                        </div>
+                    </div>
+                    <div class="row align-center">
+                        <div class="medium-6 columns">
+                            <button ng-disabled="signup.$invalid" type="submit" class="secondary hollow button">Sign up</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

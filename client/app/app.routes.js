@@ -12,28 +12,55 @@
 /**
  * Exports the routes
  * */
-module.exports = angular.module("slideZapp").config(function($routeProvider) {
+module.exports = angular.module("slideZapp").config(function($urlRouterProvider, $stateProvider) {
 
-    $routeProvider
-
-        .when("/", {
+    $urlRouterProvider.otherwise("/");
+    
+    $stateProvider
+        .state("home", {
+            url: "/",
             templateUrl: "app/components/home/homeView.html",
             controller: "homeController"
         })
-        .when("/leaderboard", {
+        .state("leaderboard", {
+            url: "/leaderboard",
             templateUrl: "app/components/leaderboard/leaderboardView.html",
             controller: "leaderboardController"
         })
-        .when("/dashboard", {
+        .state("upload", {
+            url: "/upload",
             templateUrl: "app/components/dashboard/dashboardView.html",
             controller: "dashboardController"
         })
-        .when("/challenges", {
+        .state("challenges", {
+            url: "/challenges",
             templateUrl: "app/components/challenges/challengesView.html",
             controller: "challengesController"
         })
-        .otherwise({
-            redirectTo: "/"
+        .state("signup", {
+            url: "/signup",
+            templateUrl: "app/components/signup/signupView.html",
+            controller: "signupCtrl"
         });
+
+        // .when("/", {
+        //     templateUrl: "app/components/home/homeView.html",
+        //     controller: "homeController"
+        // })
+        // .when("/leaderboard", {
+        //     templateUrl: "app/components/leaderboard/leaderboardView.html",
+        //     controller: "leaderboardController"
+        // })
+        // .when("/upload", {
+        //     templateUrl: "app/components/dashboard/dashboardView.html",
+        //     controller: "dashboardController"
+        // })
+        // .when("/challenges", {
+        //     templateUrl: "app/components/challenges/challengesView.html",
+        //     controller: "challengesController"
+        // })
+        // .otherwise({
+        //     redirectTo: "/"
+        // });
 
 });
