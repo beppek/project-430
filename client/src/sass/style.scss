@@ -1,5 +1,77 @@
-$badass: #bada55;
-body {
+//SCSS Variables
+$mainBG: #1b1b1b;
+$menuBG: #2C2C2C;
+$textColor: #f0f0f0;
+$menuHover: lighten($menuBG, 25%);
+
+.testColor {
+    color: #2f5212;
+}
+
+//Begin styles
+
+//General
+body, html {
+    height: 100%;
     margin: 0;
-    background-color: $badass;
+    background-color: $mainBG;
+}
+
+label {
+    color: $textColor;
+}
+
+//Site wrapper
+.site-wrapper {
+}
+
+//Menu Styles
+.menu-wrapper {
+    padding-top: 50px;
+    background-color: $menuBG;
+    height: 100vh;
+}
+.menu a {
+    color: $textColor;
+    &:hover {
+        background-color: $menuHover;
+    }
+}
+.menu-buttons {
+    z-index: 3;
+    top: 10px;
+    right: 20px;
+    position: absolute;
+}
+.close-menu-btn {
+    padding: 5px 15px;
+    color: $textColor;
+}
+
+//Sign in modal
+#signinModal {
+    background-color: $menuBG;
+    color: $textColor;
+}
+
+//Content Wrapper
+.content-wrapper {
+    height: 100vh;
+    color: $textColor;
+    background-color: $mainBG;
+}
+
+//Main content
+.main-content {
+    padding-top: 50px;
+    background-color: $mainBG;
+    height: 100vh;
+}
+
+//Foundation built in classes override
+.off-canvas-content {
+    box-shadow: none;
+}
+.js-off-canvas-exit {
+    background-color: transparent;
 }

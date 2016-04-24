@@ -2,8 +2,8 @@
  * Created by Beppe on 19/04/2016.
  */
 
-var request = require("supertest");
-var app = require("../../server");
+var request     = require("supertest");
+var app         = require("../../server");
 
 describe("GET /", function() {
 

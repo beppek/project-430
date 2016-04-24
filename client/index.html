@@ -7,20 +7,88 @@
         <title>SlideZapp</title>
         <link rel="stylesheet" href="libs/css/foundation.min.css">
         <link rel="stylesheet" href="assets/css/style.css">
-        <script src="/assets/js/bundle.js"></script>
     </head>
 </head>
 <body>
-<div class="site-wrapper">
-    <div class="main-content">
-        <ul>
-            <li><a href="#/">Home</a></li>
-            <li><a href="#/leaderboard">Leaderboard</a></li>
-            <li><a href="#/dashboard">Dashboard</a></li>
-            <li><a href="#/challenges">Challenges</a></li>
-        </ul>
-        <div ng-view></div>
+    <div class="site-wrapper">
+
+        <!--Sign In modal-->
+        <div class="reveal" id="signinModal" data-reveal data-animation-in="slide-in-down" data-animation-out="slide-out-up">
+
+            <form action="">
+                <div class="row">
+                    <div class="medium-12 columns">
+                        <h3>Sign in</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="medium-6 columns">
+                        <label>Username
+                            <input type="text" placeholder="Username">
+                        </label>
+                    </div>
+                    <div class="medium-6 columns">
+                        <label>Password
+                            <input type="password" placeholder="Password">
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="medium-12 columns">
+                        <button type="submit" class="secondary hollow button">Sign in</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="medium-12 columns">
+                        <p>Not yet a member? <a>Sign up now</a> to start improving your photography!</p>
+                    </div>
+                </div>
+            </form>
+
+            <button class="close-button close-menu-btn" data-close aria-label="Close modal" type="button">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <div class="off-canvas-wrapper content-wrapper">
+            <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+
+                <div class="menu-buttons">
+                    <button type="button" class="secondary hollow button menu-btn" data-open="signinModal">Sign In</button>
+                    <button type="button" class="secondary hollow button menu-btn" data-toggle="offCanvas">Menu</button>
+                </div>
+
+                <div class="off-canvas position-right" id="offCanvas" data-off-canvas data-position="right">
+
+                    <!-- Close button -->
+                    <button class="close-button close-menu-btn" aria-label="Close menu" type="button" data-close>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                    <!-- Menu -->
+                    <div class="menu-wrapper">
+                        <ul class="vertical menu">
+                            <li><a href="#/">Home</a></li>
+                            <li><a href="#/dashboard">Dashboard</a></li>
+                            <li><a href="#/challenges">Challenges</a></li>
+                            <li><a href="#/leaderboard">Leaderboard</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div class="off-canvas-content main-content" data-off-canvas-content>
+                    <!-- Page content -->
+                    <div ng-view></div>
+                </div>
+            </div>
+        </div>
+
+        <!--Load in Scripts-->
+        <script src="libs/js/vendor/jquery.js"></script>
+        <script src="libs/js/vendor/foundation.js"></script>
+        <script src="assets/js/bundle.js"></script>
+        <script>$(document).foundation();</script>
     </div>
-</div>
 </body>
 </html>

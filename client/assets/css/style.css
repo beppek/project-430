@@ -1,6 +1,50 @@
-body {
-  margin: 0;
-  background-color: #bada55; }
-
-h1 {
+.testColor {
   color: #2f5212; }
+
+body, html {
+  height: 100%;
+  margin: 0;
+  background-color: #1b1b1b; }
+
+label {
+  color: #f0f0f0; }
+
+.menu-wrapper {
+  padding-top: 50px;
+  background-color: #2C2C2C;
+  height: 100vh; }
+
+.menu a {
+  color: #f0f0f0; }
+  .menu a:hover {
+    background-color: #6c6c6c; }
+
+.menu-buttons {
+  z-index: 3;
+  top: 10px;
+  right: 20px;
+  position: absolute; }
+
+.close-menu-btn {
+  padding: 5px 15px;
+  color: #f0f0f0; }
+
+#signinModal {
+  background-color: #2C2C2C;
+  color: #f0f0f0; }
+
+.content-wrapper {
+  height: 100vh;
+  color: #f0f0f0;
+  background-color: #1b1b1b; }
+
+.main-content {
+  padding-top: 50px;
+  background-color: #1b1b1b;
+  height: 100vh; }
+
+.off-canvas-content {
+  box-shadow: none; }
+
+.js-off-canvas-exit {
+  background-color: transparent; }
