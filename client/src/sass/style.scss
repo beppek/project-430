@@ -1,5 +1,5 @@
 //SCSS Variables
-$mainBG: #1b1b1b;
+$mainBG: #2c2c2c;
 $menuBG: #233d4f;
 $textColor: #f0f0f0;
 $menuHover: lighten($menuBG, 25%);
@@ -106,7 +106,7 @@ label {
 
 //Main content
 .main-content {
-    padding-top: 50px;
+    padding-top: 60px;
     background-color: $mainBG;
     height: 100vh;
 }

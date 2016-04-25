@@ -15,7 +15,7 @@
 module.exports = angular.module("slideZapp").config(function($urlRouterProvider, $stateProvider) {
 
     $urlRouterProvider.otherwise("/");
-    
+
     $stateProvider
         .state("home", {
             url: "/",
@@ -41,6 +41,10 @@ module.exports = angular.module("slideZapp").config(function($urlRouterProvider,
             url: "/signup",
             templateUrl: "app/components/signup/signupView.html",
             controller: "signupCtrl"
+        })
+        .state("about", {
+            url: "/about",
+            templateUrl: "app/components/about/aboutView.html"
         });
 
         // .when("/", {

@@ -7,6 +7,7 @@
         <title>SlideZapp</title>
         <link rel="stylesheet" href="libs/fonts/icons/foundation-icons.css">
         <link rel="stylesheet" href="libs/css/foundation.css">
+        <link rel="stylesheet" href="libs/css/animate.css">
         <link rel="stylesheet" href="assets/css/style.css">
     </head>
 </head>
@@ -57,10 +58,12 @@
                 <!--<span aria-hidden="true">&times;</span>-->
             <!--</button>-->
             <ul class="vertical menu">
-                <li><a ui-sref="home" ui-sref-active="active">Home</a></li>
-                <li><a ui-sref="upload" ui-sref-active="active"><i class="fi-upload"></i> Upload</a></li>
-                <li><a ui-sref="challenges" ui-sref-active="active">Challenges</a></li>
-                <li><a ui-sref="leaderboard" ui-sref-active="active">Leaderboard</a></li>
+                <li><a ui-sref="home" ui-sref-active="active"><i class="fi-home"></i>Home</a></li>
+                <li><a ui-sref="upload" ui-sref-active="active"><i class="fi-upload"></i>Upload</a></li>
+                <li><a ui-sref="challenges" ui-sref-active="active"><i class="fi-camera"></i>Challenges</a></li>
+                <li><a ui-sref="leaderboard" ui-sref-active="active"><i class="fi-results-demographics"></i>Leaderboard</a></li>
+                <li><a ui-sref="signup" ui-sref-active="active"><i class="fi-torso"></i>Signup</a></li>
+                <li><a ui-sref="about" ui-sref-active="active"><i class="fi-info"></i>About</a></li>
             </ul>
         </div>
 
@@ -74,6 +77,15 @@
             <div class="main-content">
                 <!-- Page content -->
                 <div ui-view></div>
+                <!--Alert service-->
+                <!--<div class="{{callout.type}} callout main-callout animated" ng-class="{'flipInY': callout.show, 'flipOutY': !callout.show, 'callout-hidden'}" data-closable>-->
+                    <!--<h5>This is Important!</h5>-->
+                    <!--<p>But when you're done reading it, click the close button in the corner to dismiss this alert.</p>-->
+                    <!--<p>I'm using the default <code>data-closable</code> parameters, and simply fade out.</p>-->
+                    <!--<button class="close-button" aria-label="Dismiss alert" type="button" data-close>-->
+                        <!--<span aria-hidden="true">&times;</span>-->
+                    <!--</button>-->
+                <!--</div>-->
             </div>
         </div>
 

@@ -10,13 +10,12 @@
 "use strict";
 
 // LOAD SETUP MODULE
-var slideZapp = require("../../app/app.module.js");
+require("../../app/app.module.js");
 
 // LOAD ROUTES
 require("../../app/app.routes.js");
 
 // LOAD SHARED
-
 //Services
 require("../../app/shared/services/nameService");
 
@@ -24,10 +23,9 @@ require("../../app/shared/services/nameService");
 require("../../app/shared/directives/validateEquals");
 
 //Controllers
-require("../../app/shared/controllers/signinCtrl");
+// require("../../app/shared/controllers/signinCtrl");
 
 // LOAD COMPONENTS
-
 // Home
 require("../../app/components/home/homeController");
 
@@ -43,12 +41,13 @@ require("../../app/components/challenges/challengesController");
 // Signup
 require("../../app/components/signup/signupCtrl");
 
-// Load own JS modules
+// LOAD OWN JS MODULES
 var toggleNav = require("./toggleNav");
 
 // Add listeners
 $(document).ready(function() {
 
+    //Initialize foundation
     $(document).foundation();
 
     var nav = $("#menu");
@@ -62,19 +61,16 @@ $(document).ready(function() {
         } else {
             toggleNav.close();
         }
-
     });
 
     //Close menu when clicked outside
     $(".main-content").click(function(event) {
 
-        event.preventDefault();
         if (!$(nav).is(event.target)) {
             if (!$(nav).hasClass("menu-closed")) {
                 toggleNav.close();
             }
         }
-
-    })
+    });
 
 });

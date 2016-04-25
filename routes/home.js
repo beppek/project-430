@@ -52,4 +52,24 @@ router.route("/challenges")
         res.redirect("/#/challenges");
     });
 
+/**
+ *
+ * Redirect to signup with hashbang
+ *
+ * */
+router.route("/signup")
+    .get(function(req, res) {
+        res.redirect("/#/signup");
+    });
+
+/**
+ *
+ * Redirect to about with hashbang
+ *
+ * */
+router.route("/about")
+    .get(function(req, res) {
+        res.redirect("/#/about");
+    });
+
 module.exports = router;
