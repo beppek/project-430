@@ -12,7 +12,7 @@
     </head>
 </head>
 <body>
-    <div class="site-wrapper">
+    <div class="site-wrapper" ng-cloak>
 
         <!--Sign In modal-->
         <div class="medium reveal" id="signinModal" data-reveal data-animation-in="slide-in-down" data-animation-out="slide-out-up">
@@ -53,10 +53,6 @@
 
         <!-- Menu -->
         <div class="menu-wrapper menu-closed" id="menu">
-            <!-- Close button -->
-            <!--<button class="close-button close-menu-btn" aria-label="Close menu" type="button" data-close>-->
-                <!--<span aria-hidden="true">&times;</span>-->
-            <!--</button>-->
             <ul class="vertical menu">
                 <li><a ui-sref="home" ui-sref-active="active"><i class="fi-home"></i>Home</a></li>
                 <li><a ui-sref="upload" ui-sref-active="active"><i class="fi-upload"></i>Upload</a></li>
@@ -70,7 +66,7 @@
         <div class="content-wrapper">
 
             <div class="menu-buttons">
-                <button type="button" class="secondary hollow button menu-btn" data-open="signinModal"><i class="fi-torso"></i> Sign In</button>
+                <button type="button" class="secondary hollow button menu-btn" data-open="signinModal"><i class="fi-torso"></i> Sign In/Up</button>
                 <button type="button" class="secondary button menu-btn" id="menu-button"><i class="fi-list"></i></button>
             </div>
 
@@ -78,14 +74,10 @@
                 <!-- Page content -->
                 <div ui-view></div>
                 <!--Alert service-->
-                <!--<div class="{{callout.type}} callout main-callout animated" ng-class="{'flipInY': callout.show, 'flipOutY': !callout.show, 'callout-hidden'}" data-closable>-->
-                    <!--<h5>This is Important!</h5>-->
-                    <!--<p>But when you're done reading it, click the close button in the corner to dismiss this alert.</p>-->
-                    <!--<p>I'm using the default <code>data-closable</code> parameters, and simply fade out.</p>-->
-                    <!--<button class="close-button" aria-label="Dismiss alert" type="button" data-close>-->
-                        <!--<span aria-hidden="true">&times;</span>-->
-                    <!--</button>-->
-                <!--</div>-->
+                <div class="{{callout.type}} callout-box small callout main-callout animated" ng-class="{'flipInY': callout.show, 'flipOutY': !callout.show, 'callout-hidden': !callout.hasBeenShown}">
+                    <h5>{{callout.title}}</h5>
+                    <p>{{callout.message}}</p>
+                </div>
             </div>
         </div>
 

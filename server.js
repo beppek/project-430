@@ -17,19 +17,20 @@ var fs              = require("fs");
 var http            = require("http");
 
 var express         = require("express");
-// var exphbs          = require("express-handlebars");
 var bodyParser      = require("body-parser");
 var session         = require("express-session");
+var mongoose        = require("./server/config/mongoose");
 var csurf           = require("csurf");
 var RedisStore      = require("connect-redis")(session);
-// var sass            = require("node-sass");
-// var sassMiddleware  = require("node-sass-middleware");
 
 var sessionStore    = new RedisStore();
 var app             = express();
 var port            = process.env.PORT || 8000;
 
 //CONFIG -------------------------------
+
+//Connect to database
+mongoose.mongoDB();
 
 //TODO: Keeping this here until I know how to handle errors.
 //TODO: Use Angular to show error pages?
@@ -57,27 +58,28 @@ app.use(session({
 }));
 
 //Flash message, delete after display
-app.use(function(req, res, next){
+app.use(function(req, res, next) {
     res.locals.flash = req.session.flash;
     delete req.session.flash;
     next();
 });
 
-// //SASS
-// app.use(
-//     sassMiddleware({
-//         src: __dirname + "/client/src/sass",
-//         dest: __dirname + "/client/assets/css",
-//         debug: true,
-//         prefix: "assets/css"
-//     })
-// );
+app.use(function(req, res, next) {
+
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
+    next();
+
+});
 
 //Static content
+//TODO: Use enginx in production
 app.use(express.static(path.join(__dirname, "client")));
 
 //Routes
-app.use("/", require("./routes/home.js"));
+app.use("/", require("./server/routes/home.js"));
 
 //TODO: Actually display some sort of error pages
 // 400 handler.

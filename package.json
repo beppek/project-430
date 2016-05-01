@@ -33,6 +33,7 @@
     "angular": "^1.5.3",
     "angular-route": "^1.5.3",
     "angular-ui-router": "^0.2.18",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.0",
     "browserify": "^13.0.0",
     "connect-redis": "^3.0.2",

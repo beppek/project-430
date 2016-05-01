@@ -12,18 +12,19 @@
 // LOAD SETUP MODULE
 require("../../app/app.module.js");
 
-// LOAD ROUTES
-require("../../app/app.routes.js");
-
 // LOAD SHARED
 //Services
 require("../../app/shared/services/nameService");
+require("../../app/shared/services/callout");
+
+// LOAD ROUTES
+require("../../app/app.routes.js");
 
 //Directives
 require("../../app/shared/directives/validateEquals");
 
 //Controllers
-// require("../../app/shared/controllers/signinCtrl");
+require("../../app/shared/controllers/signinCtrl");
 
 // LOAD COMPONENTS
 // Home

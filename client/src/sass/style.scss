@@ -5,6 +5,14 @@ $textColor: #f0f0f0;
 $menuHover: lighten($menuBG, 25%);
 $active: lighten($menuBG, 15%);
 
+$tinyres: 320px;
+$mobileres: 480px;
+$phabletres: 760px;
+$smallres: 960px;
+$mediumres: 1200px;
+$largeres: 1920px;
+$xlres: 2400px;
+
 //mixins
 @mixin vertical-align {
     position: relative;
@@ -116,6 +124,24 @@ label {
     //@include vertical-align();
 }
 
+//Callout box
+.callout-box {
+    position: absolute;
+    left: 15px;
+    top: 10px;
+    @media screen and (max-width: $smallres) and (min-width: $phabletres) {
+        max-width: 300px;
+    }
+    @media screen and (max-width: $phabletres) {
+        max-width: 200px;
+    }
+
+}
+
+.callout-hidden {
+    visibility: hidden;
+}
+
 //Foundation built in classes override
 .off-canvas-content {
     box-shadow: none;
@@ -123,4 +149,3 @@ label {
 .js-off-canvas-exit {
     background-color: transparent;
 }
-
