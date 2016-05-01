@@ -12,7 +12,7 @@
 /**
  * Exports the routes
  * */
-module.exports = angular.module("slideZapp").config(function($urlRouterProvider, $stateProvider) {
+module.exports = angular.module("slideZapp").config(function($urlRouterProvider, $stateProvider, $httpProvider) {
 
     $urlRouterProvider.otherwise("/");
 
@@ -29,7 +29,7 @@ module.exports = angular.module("slideZapp").config(function($urlRouterProvider,
         })
         .state("upload", {
             url: "/upload",
-            templateUrl: "app/components/dashboard/dashboardView.html",
+            templateUrl: "app/components/dash/dashView.html",
             controller: "dashboardController"
         })
         .state("challenges", {
@@ -51,5 +51,8 @@ module.exports = angular.module("slideZapp").config(function($urlRouterProvider,
             controller: "signoutCtrl"
         });
 
+    $httpProvider.interceptors.push("authInterceptor");
 
-});
+})
+
+.constant("API_URL", "http://localhost:8000/");

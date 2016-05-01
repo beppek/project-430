@@ -77,7 +77,16 @@
             <div class="main-content">
 
                 <!-- Page content -->
-                <div ui-view></div>
+                <div class="row">
+                    <div class="columns">
+
+                        <div class="ui-view-container">
+                            <div ui-view></div>
+                        </div>
+
+                    </div>
+
+                </div>
 
                 <!--Alert service-->
                 <div ng-include="'views/partials/callout.html'"></div>

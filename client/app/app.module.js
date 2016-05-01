@@ -13,10 +13,12 @@
 var ng = require("angular");
 // var ngRoute = require("angular-route");
 var uiRouter = require("angular-ui-router");
+var ngAnimate = require("angular-animate");
 
 // CREATE APP
 var slideZapp = ng.module("slideZapp", [
-    uiRouter
+    uiRouter,
+    ngAnimate
 ]);
 
 module.exports = slideZapp;

@@ -16,7 +16,10 @@ require("../../app/app.module.js");
 //Services
 require("../../app/shared/services/nameService");
 require("../../app/shared/services/callout");
+
+//Factories
 require("../../app/shared/services/authToken");
+require("../../app/shared/services/authInterceptor");
 
 // LOAD ROUTES
 require("../../app/app.routes.js");
@@ -37,7 +40,7 @@ require("../../app/components/home/homeController");
 require("../../app/components/leaderboard/leaderboardController");
 
 // Upload
-require("../../app/components/dashboard/dashboardController");
+require("../../app/components/dash/dashCtrl");
 
 // Challenges
 require("../../app/components/challenges/challengesController");

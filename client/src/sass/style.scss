@@ -13,6 +13,8 @@ $mediumres: 1200px;
 $largeres: 1920px;
 $xlres: 2400px;
 
+$paddingTop: 60px;
+
 //mixins
 @mixin vertical-align {
     position: relative;
@@ -45,12 +47,13 @@ label {
 
 //Menu Styles
 .menu-wrapper {
-    padding-top: 60px;
+    padding-top: $paddingTop;
     background-color: $menuBG;
     height: 100vh;
     width: 250px;
     position: fixed;
     top: 0;
+    z-index: 3;
 }
 .menu-closed {
     right: -250px;
@@ -114,9 +117,9 @@ label {
 
 //Main content
 .main-content {
-    padding-top: 60px;
+    padding-top: $paddingTop;
     background-color: $mainBG;
-    height: 100vh;
+    min-height: calc(100vh - #{$paddingTop});
 }
 
 //Signup
@@ -137,9 +140,46 @@ label {
     }
 
 }
-
 .callout-hidden {
     visibility: hidden;
+}
+
+//Animate UI
+.ui-view-container {
+    position: relative;
+    z-index: 0;
+}
+[ui-view] {
+    min-height: calc(100vh - #{$paddingTop});
+}
+[ui-view].ng-enter,
+[ui-view].ng-leave {
+    -webkit-transition: all .25s ease-in-out;
+    -moz-transition: all .25s ease-in-out;
+    -o-transition: all .25s ease-in-out;
+    transition: all .25s ease-in-out;
+
+}
+[ui-view].ng-leave {
+    opacity: 1;
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+[ui-leave].ng-leave-active {
+    opacity: 0;
+}
+[ui-view].ng-enter {
+    opacity: 0;
+    -webkit-transform: scale3d(0.96, 0.96, 0.96);
+    -moz-transform: scale3d(0.96, 0.96, 0.96);
+    transform: scale3d(0.96, 0.96, 0.96);
+}
+[ui-view].ng-enter-active {
+    opacity: 1;
+    -webkit-transform: scale3d(1,1,1);
+    -moz-transform: scale3d(1,1,1);
+    transform: scale3d(1,1,1);
 }
 
 //Foundation built in classes override

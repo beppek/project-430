@@ -14,7 +14,7 @@ module.exports = angular.module("slideZapp").controller("signupCtrl", ["$scope",
         };
         $http.post(url, user)
             .success(function(res) {
-                callout("success", "Sweet!", "You're now registered!");
+                callout("success", "Sweet!", "You're now registered with email: " + res.user.email);
                 authToken.setToken(res.token);
             })
             .error(function(err) {
