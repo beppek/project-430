@@ -7,7 +7,9 @@
 
 //Requires
 var router = require("express").Router();
+
 var User = require("../models/User");
+var jwt = require("../services/jwt");
 
 /**
  *
@@ -72,11 +74,21 @@ router.route("/signup")
             password: user.password
         });
 
+        var payload = {
+            iss: req.hostname,
+            sub: user._id
+        };
+
+        var token = jwt.encode(payload, "shhh...")
+
         newUser.save(function(err) {
             if (err) {
                 console.log(err);
             } else {
-                res.status(200).json(newUser);
+                res.status(200).send({
+                    user: newUser.toJSON(),
+                    token: token
+                });
             }
         })
 

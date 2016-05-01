@@ -16,6 +16,7 @@ require("../../app/app.module.js");
 //Services
 require("../../app/shared/services/nameService");
 require("../../app/shared/services/callout");
+require("../../app/shared/services/authToken");
 
 // LOAD ROUTES
 require("../../app/app.routes.js");
@@ -25,6 +26,8 @@ require("../../app/shared/directives/validateEquals");
 
 //Controllers
 require("../../app/shared/controllers/signinCtrl");
+require("../../app/shared/controllers/menuCtrl");
+require("../../app/shared/controllers/signoutCtrl");
 
 // LOAD COMPONENTS
 // Home

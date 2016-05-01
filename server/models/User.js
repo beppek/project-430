@@ -12,8 +12,8 @@ var bcrypt   = require("bcrypt-nodejs");
 var UserSchema = new mongoose.Schema({
     email: {
         type: String,
-        required: true,
-        unique: [true, "`{PATH}` ({VALUE}) is already in use."]
+        required: true
+        // unique: [true, "`{PATH}` ({VALUE}) is already in use."]
     },
     password: {
         type: String,
@@ -74,6 +74,12 @@ UserSchema.methods.comparePassword = function(password, callback) {
 
 };
 
-var User = mongoose.model("User", UserSchema);
+UserSchema.methods.toJSON = function() {
+    var user = this.toObject();
+    delete user.password;
+    console.log(user);
+    return user;
 
-module.exports = User;
+};
+
+module.exports = mongoose.model("User", UserSchema);

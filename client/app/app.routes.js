@@ -45,26 +45,11 @@ module.exports = angular.module("slideZapp").config(function($urlRouterProvider,
         .state("about", {
             url: "/about",
             templateUrl: "app/components/about/aboutView.html"
+        })
+        .state("signout", {
+            url: "/signout",
+            controller: "signoutCtrl"
         });
 
-        // .when("/", {
-        //     templateUrl: "app/components/home/homeView.html",
-        //     controller: "homeController"
-        // })
-        // .when("/leaderboard", {
-        //     templateUrl: "app/components/leaderboard/leaderboardView.html",
-        //     controller: "leaderboardController"
-        // })
-        // .when("/upload", {
-        //     templateUrl: "app/components/dashboard/dashboardView.html",
-        //     controller: "dashboardController"
-        // })
-        // .when("/challenges", {
-        //     templateUrl: "app/components/challenges/challengesView.html",
-        //     controller: "challengesController"
-        // })
-        // .otherwise({
-        //     redirectTo: "/"
-        // });
 
 });

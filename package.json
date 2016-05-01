@@ -37,6 +37,7 @@
     "body-parser": "^1.15.0",
     "browserify": "^13.0.0",
     "connect-redis": "^3.0.2",
+    "crypto": "0.0.3",
     "csurf": "^1.8.3",
     "express": "^4.13.4",
     "express-handlebars": "^3.0.0",
