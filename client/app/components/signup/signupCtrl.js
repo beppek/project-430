@@ -18,8 +18,7 @@ module.exports = angular.module("slideZapp").controller("signupCtrl", ["$scope",
                 authToken.setToken(res.token);
             })
             .error(function(err) {
-                console.log("bad");
-                callout("warning", "Oops!", "Could not register!");
+                callout("warning", "Oops!", "Could not register!", err.message);
             })
     }
 }]);

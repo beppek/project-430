@@ -9,7 +9,7 @@
 var router = require("express").Router();
 
 var User = require("../models/User");
-var jwt = require("../services/jwt");
+var jwt = require("jwt-simple");
 
 /**
  *
@@ -37,7 +37,7 @@ router.route("/leaderboard")
 
 /**
  *
- * Redirect to upload with hashbang
+ * Restrict access to upload page
  *
  * */
 router.route("/upload")
@@ -47,17 +47,17 @@ router.route("/upload")
             res.status(401).send({
                 message: "You are not authorized"
             });
-        }
+        } else {
 
-        console.log(req.headers.authorization);
+            var token = req.headers.authorization.split(" ")[1];
+            var payload = jwt.decode(token, "shhh...");
 
-        var token = req.headers.authorization.split(" ")[1];
-        var payload = jwt.decode(token, "shhh...");
+            if (!payload.sub) {
+                res.status(401).send({
+                    message: "Authentication failed"
+                });
+            }
 
-        if (!payload.sub) {
-            res.status(401).send({
-                message: "Authentication failed"
-            });
         }
 
     });
@@ -91,21 +91,11 @@ router.route("/signup")
             password: user.password
         });
 
-        var payload = {
-            iss: req.hostname,
-            sub: newUser.id
-        };
-
-        var token = jwt.encode(payload, "shhh...");
-
         newUser.save(function(err) {
             if (err) {
                 console.log(err);
             } else {
-                res.status(200).send({
-                    user: newUser.toJSON(),
-                    token: token
-                });
+                createSendToken(newUser, res);
             }
         })
 
@@ -123,34 +113,59 @@ router.route("/about")
 
 /**
  *
- * Delete user
- * OBS! DEV ONLY
+ * Handle the sign in functionality
  *
  * */
-router.route("/user/delete/:email")
-    .get(function(req, res) {
-        res.redirect("/#/user/delete/:email")
-    })
+router.route("/signin")
     .post(function(req, res) {
 
-        //Remove user
-        User.remove({email: req.params.email}, function(err) {
+        req.user = req.body;
+        var searchUser = {
+            email: req.user.email
+        };
+
+        User.findOne(searchUser, function(err, user) {
             if (err) {
                 throw err;
             }
 
-            //Create flash message
-            // req.session.flash = {
-            //     type: "success",
-            //     intro: "User deleted!",
-            //     message: req.session.username + ", you've successfully deleted the user."
-            // };
+            if (!user) {
+                return res.status(401).send({message: "Wrong email/password!"});
+            }
 
-            //Redirect to home
-            res.redirect(303, "/#/users");
+            user.comparePasswords(req.user.password, function(err, isMatch) {
+                if (err) {
+                    throw err;
+                }
+
+                if (!isMatch) {
+                    return res.status(401).send({message: "Wrong email/password!"});
+                }
+
+                createSendToken(user, res);
+
+            });
 
         })
-
     });
+
+/**
+ *
+ * This function creates a token
+ *
+ * */
+function createSendToken(user, res) {
+    var payload = {
+        sub: user.id
+    };
+
+    var token = jwt.encode(payload, "shhh...");
+
+    res.status(200).send({
+        user: user.toJSON(),
+        token: token
+    });
+}
+
 
 module.exports = router;

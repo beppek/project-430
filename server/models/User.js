@@ -12,8 +12,8 @@ var bcrypt   = require("bcrypt-nodejs");
 var UserSchema = new mongoose.Schema({
     email: {
         type: String,
-        required: true
-        // unique: [true, "`{PATH}` ({VALUE}) is already in use."]
+        required: true,
+        unique: [true, "`{PATH}` ({VALUE}) is already in use."]
     },
     password: {
         type: String,
@@ -60,7 +60,7 @@ UserSchema.pre("save", function(next) {
  * @param {string} password - password to be hashed
  * @param {function} callback - callback function
  * */
-UserSchema.methods.comparePassword = function(password, callback) {
+UserSchema.methods.comparePasswords = function(password, callback) {
 
     bcrypt.compare(password, this.password, function(err, validated) {
 
@@ -74,10 +74,15 @@ UserSchema.methods.comparePassword = function(password, callback) {
 
 };
 
+/**
+ *
+ * This function returs the user as a JSON string without the password
+ *
+ * */
 UserSchema.methods.toJSON = function() {
+
     var user = this.toObject();
     delete user.password;
-    console.log(user);
     return user;
 
 };
