@@ -44,6 +44,7 @@ module.exports = angular.module("slideZapp").config(function($urlRouterProvider,
         })
         .state("signin", {
             url: "/signin",
+            templateUrl: "app/components/signin/signinView.html",
             controller: "signinCtrl"
         })
         .state("about", {

@@ -1,17 +1,17 @@
-<div ng-controller="signupCtrl">
-    <!--<div class="row signup">-->
+<div ng-controller="signinCtrl">
+
     <div class="medium-12 columns">
 
-        <form ng-submit="submit()" name="signup" class="signin-form" novalidate>
+        <form ng-submit="submit()" name="signin" class="signin-form" novalidate>
             <div class="row align-center">
                 <div class="medium-6 columns">
-                    <h3><i class="fi-torso"></i> Sign up</h3>
+                    <h3><i class="fi-torso"></i>Sign In</h3>
                 </div>
             </div>
             <div class="row align-center">
                 <div class="medium-6 columns">
                     <input name="email" ng-model="email" type="email" placeholder="Email" required>
-                    <p class="help-block" ng-show="signup.email.$dirty && signup.email.$invalid">Please enter valid email address</p>
+                    <p class="help-block" ng-show="signin.email.$dirty && signin.email.$invalid">Please enter valid email address</p>
                 </div>
 
             </div>
@@ -22,21 +22,14 @@
             </div>
             <div class="row align-center">
                 <div class="medium-6 columns">
-                    <input name="password_confirm" ng-model="password_confirm" type="password" placeholder="Confirm password" validate-equals="password">
+                    <button ng-disabled="signin.$invalid" type="submit" class="secondary hollow button" data-close>Sign in</button>
                 </div>
             </div>
             <div class="row align-center">
                 <div class="medium-6 columns">
-                    <p class="help-block" ng-show="signup.password_confirm.$dirty && signup.password_confirm.$invalid">Passwords must match</p>
-                </div>
-            </div>
-            <div class="row align-center">
-                <div class="medium-6 columns">
-                    <button ng-disabled="signup.$invalid" type="submit" class="secondary hollow button">Sign up</button>
+                    <p>Not yet a member? <a ui-sref="signup" data-close aria-label="Close modal">Sign up now</a> to start improving your photography - it is absolutely free!</p>
                 </div>
             </div>
         </form>
-
     </div>
-    <!--</div>-->
 </div>

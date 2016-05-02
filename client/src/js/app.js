@@ -16,6 +16,7 @@ require("../../app/app.module.js");
 //Services
 require("../../app/shared/services/nameService");
 require("../../app/shared/services/callout");
+require("../../app/shared/services/auth");
 
 //Factories
 require("../../app/shared/services/authToken");

@@ -45,6 +45,9 @@ mongoose.mongoDB();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//Passport
+
+
 //TODO: Environment variables for session name and secret
 //TODO: Don't forget to secure Redis
 //session

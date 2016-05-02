@@ -82,22 +82,35 @@ router.route("/signup")
         res.redirect("/#/signup");
     })
     .post(function(req, res) {
-        console.log(req.body);
 
-        var user = req.body;
+        req.user = req.body;
+        var searchUser = {
+            email: req.user.email
+        };
 
-        var newUser = new User({
-            email: user.email,
-            password: user.password
-        });
-
-        newUser.save(function(err) {
+        User.findOne(searchUser, function(err, user) {
             if (err) {
                 console.log(err);
-            } else {
-                createSendToken(newUser, res);
             }
-        })
+
+            if (user) {
+                return res.status(401).send({message: "An account with that email already exists"});
+            }
+
+            var newUser = new User({
+                email: req.user.email,
+                password: req.user.password
+            });
+
+            newUser.save(function(err) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    createSendToken(newUser, res);
+                }
+            });
+
+        });
 
     });
 
@@ -130,7 +143,9 @@ router.route("/signin")
             }
 
             if (!user) {
-                return res.status(401).send({message: "Wrong email/password!"});
+                return res.status(401).send({
+                    message: "Wrong email/password!"
+                });
             }
 
             user.comparePasswords(req.user.password, function(err, isMatch) {

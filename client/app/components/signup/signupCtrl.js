@@ -4,21 +4,16 @@
 
 "use strict";
 
-module.exports = angular.module("slideZapp").controller("signupCtrl", ["$scope", "$rootScope", "$http", "callout", "authToken", function($scope, $rootScope, $http, callout, authToken) {
-    $scope.submit = function() {
+module.exports = angular.module("slideZapp")
+    .controller("signupCtrl", ["$scope", "callout", "auth", function($scope, callout, auth) {
+        $scope.submit = function() {
 
-        var url = "/signup";
-        var user = {
-            email: $scope.email,
-            password: $scope.password
-        };
-        $http.post(url, user)
-            .success(function(res) {
-                callout("success", "Sweet!", "You're now registered with email: " + res.user.email);
-                authToken.setToken(res.token);
-            })
-            .error(function(err) {
-                callout("warning", "Oops!", "Could not register!", err.message);
-            })
-    }
-}]);
+            auth.signup($scope.email, $scope.password)
+                .success(function(res) {
+                    callout("success", "Sweet!", "You're now registered with email: " + res.user.email);
+                })
+                .error(function(err) {
+                    callout("warning", "Oops!", err.message);
+                })
+        }
+    }]);

@@ -6,13 +6,14 @@
  * Exports the controller
  * */
 module.exports = angular.module("slideZapp")
-    .controller("dashboardController", ["$scope", "$http", "API_URL", "callout", function($scope, $http, API_URL, callout) {
+    .controller("dashboardController", ["$scope", "$http", "callout", "$state", function($scope, $http, callout, $state) {
 
         $http.get("/upload")
             .success(function() {
 
             }).error(function(err) {
                 callout("warning", "Unable to get upload", err.message);
+                $state.go("signin");
             })
 
     }]);
