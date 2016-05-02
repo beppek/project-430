@@ -47,6 +47,7 @@
     "jwt-simple": "^0.5.0",
     "mongoose": "^4.4.11",
     "passport": "^0.3.2",
+    "node-sass": "^3.5.1",
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
@@ -54,7 +55,6 @@
     "chai": "^3.5.0",
     "karma": "^0.13.22",
     "mocha": "^2.4.5",
-    "node-sass": "^3.5.1",
     "supertest": "^1.2.0"
   },
   "config": {

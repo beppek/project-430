@@ -32,15 +32,6 @@ var port            = process.env.PORT || 8000;
 //Connect to database
 mongoose.mongoDB();
 
-//TODO: Keeping this here until I know how to handle errors.
-//TODO: Use Angular to show error pages?
-//View engine
-// app.engine("hbs", exphbs({
-//     defaultLayout: "default",
-//     extname: "hbs"
-// }));
-// app.set("view engine", ".hbs");
-
 //body parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

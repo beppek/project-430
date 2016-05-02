@@ -5,9 +5,15 @@
 "use strict";
 
 module.exports = angular.module("slideZapp")
-    .controller("menuCtrl", function($scope, authToken, $state) {
+    .controller("menuCtrl", function($scope, authToken, $state, nameService) {
         $scope.isAuthenticated = authToken.isAuthenticated;
         $scope.currentPage = function() {
             return $state.current.url;
-        }
+        };
+
+        $scope.$watch("email", function() {
+            nameService.name = $scope.email;
+        });
+
+        $scope.name = nameService.name;
     });
