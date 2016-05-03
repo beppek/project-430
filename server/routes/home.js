@@ -7,9 +7,63 @@
 
 //Requires
 var router = require("express").Router();
-
 var User = require("../models/User");
 var jwt = require("jwt-simple");
+var passport = require("passport");
+var LocalStrategy = require("passport-local").Strategy;
+
+//Passport setup
+router.use(passport.initialize());
+passport.serializeUser(function(user, done) {
+    done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+    User.findById(id, function (err, user) {
+        done(err, user);
+    });
+});
+
+//Local Strategy setup
+var localStrategy = new LocalStrategy({
+    usernameField: "email"
+}, function(email, password, done) {
+
+    var searchUser = {
+        email: email
+    };
+
+    User.findOne(searchUser, function(err, user) {
+        if (err) {
+            return done(err);
+        }
+
+        if (!user) {
+            return done(null, false, {
+                message: "Wrong email/password!"
+            });
+        }
+
+        user.comparePasswords(password, function(err, isMatch) {
+            if (err) {
+                return done(err);
+            }
+
+            if (!isMatch) {
+                return done(null, false, {
+                    message: "Wrong email/password!"
+                });
+            }
+
+            return done(null, user);
+
+        });
+
+    })
+
+});
+
+passport.use(localStrategy);
 
 /**
  *
@@ -74,7 +128,8 @@ router.route("/challenges")
 
 /**
  *
- * Redirect to signup with hashbang
+ * @get redirects to signup with hashbang
+ * @post handles signup requests
  *
  * */
 router.route("/signup")
@@ -129,40 +184,27 @@ router.route("/about")
  * Handle the sign in functionality
  *
  * */
-router.route("/signin")
-    .post(function(req, res) {
+router.post("/signin", (function(req, res, next) {
 
-        req.user = req.body;
-        var searchUser = {
-            email: req.user.email
-        };
+    passport.authenticate("local", function(err, user) {
 
-        User.findOne(searchUser, function(err, user) {
+        if (err) {
+            next(err);
+        }
+
+        req.login(user, function(err) {
+
             if (err) {
-                throw err;
+                next(err);
             }
 
-            if (!user) {
-                return res.status(401).send({
-                    message: "Wrong email/password!"
-                });
-            }
+            createSendToken(user, res);
 
-            user.comparePasswords(req.user.password, function(err, isMatch) {
-                if (err) {
-                    throw err;
-                }
+        });
 
-                if (!isMatch) {
-                    return res.status(401).send({message: "Wrong email/password!"});
-                }
+    })(req, res, next);
 
-                createSendToken(user, res);
-
-            });
-
-        })
-    });
+}));
 
 /**
  *

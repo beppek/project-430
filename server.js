@@ -21,6 +21,7 @@ var bodyParser      = require("body-parser");
 var session         = require("express-session");
 var mongoose        = require("./server/config/mongoose");
 var csurf           = require("csurf");
+
 var RedisStore      = require("connect-redis")(session);
 
 var sessionStore    = new RedisStore();
@@ -36,8 +37,8 @@ mongoose.mongoDB();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//Passport
-
+// //Passport
+// app.use(passport.initialize());
 
 //TODO: Environment variables for session name and secret
 //TODO: Don't forget to secure Redis
