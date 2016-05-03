@@ -17,5 +17,7 @@ module.exports = angular.module("slideZapp")
                         $state.go("signin");
                     }
                 })
-        }
+            
+        };
+
     });
