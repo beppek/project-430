@@ -10,44 +10,44 @@
 "use strict";
 
 // LOAD SETUP MODULE
-require("../../app/app.module.js");
+require("../../client/app/app.module.js");
 
 // LOAD SHARED
 //Services
-require("../../app/shared/services/nameService");
-require("../../app/shared/services/callout");
-require("../../app/shared/services/auth");
+require("../../client/app/shared/services/nameService");
+require("../../client/app/shared/services/callout");
+require("../../client/app/shared/services/auth");
 
 //Factories
-require("../../app/shared/services/authToken");
-require("../../app/shared/services/authInterceptor");
+require("../../client/app/shared/services/authToken");
+require("../../client/app/shared/services/authInterceptor");
 
 // LOAD ROUTES
-require("../../app/app.routes.js");
+require("../../client/app/app.routes.js");
 
 //Directives
-require("../../app/shared/directives/validateEquals");
+require("../../client/app/shared/directives/validateEquals");
 
 //Controllers
-require("../../app/shared/controllers/signinCtrl");
-require("../../app/shared/controllers/menuCtrl");
-require("../../app/shared/controllers/signoutCtrl");
+require("../../client/app/shared/controllers/signinCtrl");
+require("../../client/app/shared/controllers/menuCtrl");
+require("../../client/app/shared/controllers/signoutCtrl");
 
 // LOAD COMPONENTS
 // Home
-require("../../app/components/home/homeController");
+require("../../client/app/components/home/homeController");
 
 // Leaderboard
-require("../../app/components/leaderboard/leaderboardController");
+require("../../client/app/components/leaderboard/leaderboardController");
 
 // Upload
-require("../../app/components/dash/dashCtrl");
+require("../../client/app/components/dash/dashCtrl");
 
 // Challenges
-require("../../app/components/challenges/challengesController");
+require("../../client/app/components/challenges/challengesController");
 
 // Signup
-require("../../app/components/signup/signupCtrl");
+require("../../client/app/components/signup/signupCtrl");
 
 // LOAD OWN JS MODULES
 var toggleNav = require("./toggleNav");
