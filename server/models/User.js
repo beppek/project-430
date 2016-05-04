@@ -12,8 +12,7 @@ var bcrypt   = require("bcrypt-nodejs");
 var UserSchema = new mongoose.Schema({
     email: {
         type: String,
-        required: false,
-        unique: [true, "`{PATH}` ({VALUE}) is already in use."]
+        required: false
     },
     password: {
         type: String,
@@ -21,8 +20,11 @@ var UserSchema = new mongoose.Schema({
     },
     googleId: {
         type: String,
-        required: false,
-        unique: [true, "`{PATH}` ({VALUE}) is already in use."]
+        required: false
+    },
+    facebookId: {
+        type: String,
+        required: false
     },
     displayName: {
         type: String,

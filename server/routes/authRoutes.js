@@ -12,6 +12,9 @@ var jwt = require("jwt-simple");
 var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
 var request = require("request");
+var moment = require("moment");
+var facebookAuth = require("../services/facebookAuth");
+var createSendToken = require("../services/jwt");
 
 //Load in secrets set as ENV_VARIABLEs in production
 var secrets = require("../../secrets");
@@ -260,47 +263,41 @@ router.route("/auth/google")
 
 /**
  *
+ * Handles sign in with Facebook
+ *
+ * */
+router.route("/auth/facebook")
+    .get(function(req, res) {
+        res.redirect("/#/signin");
+    })
+    .post(facebookAuth);
+
+/**
+ *
  * Restrict access to upload page
  *
  * */
 router.route("/upload")
     .get(function(req, res) {
 
-        if (!req.headers.authorization) {
-            res.status(401).send({
-                message: "You are not authorized"
-            });
-        } else {
 
-            var token = req.headers.authorization.split(" ")[1];
-            var payload = jwt.decode(token, "shhh...");
-
-            if (!payload.sub) {
-                res.status(401).send({
-                    message: "Authentication failed"
-                });
-            }
-
-        }
+        // if (!localStorage.satellizer_token) {
+        //     res.status(401).send({
+        //         message: "You are not authorized"
+        //     });
+        // } else {
+        //
+        //     var token = localStorage.satellizer_token.split(" ")[1];
+        //     var payload = jwt.decode(token, "shhh...");
+        //
+        //     if (!payload.sub) {
+        //         res.status(401).send({
+        //             message: "Authentication failed"
+        //         });
+        //     }
+        //
+        // }
 
     });
-
-/**
- *
- * This function creates and sends a token
- *
- * */
-function createSendToken(user, res) {
-    var payload = {
-        sub: user.id
-    };
-
-    var token = jwt.encode(payload, "shhh...");
-
-    res.status(200).send({
-        user: user.toJSON(),
-        token: token
-    });
-}
 
 module.exports = router;

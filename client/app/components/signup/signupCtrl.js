@@ -5,28 +5,42 @@
 "use strict";
 
 module.exports = angular.module("slideZapp")
-    .controller("signupCtrl", ["$scope", "callout", "auth", function($scope, callout, auth) {
+    .controller("signupCtrl", ["$scope", "callout", "auth", "$auth", "$state", function($scope, callout, auth, $auth, $state) {
         $scope.submit = function() {
 
-            auth.signup($scope.email, $scope.password)
-                .success(function(res) {
-                    callout("success", "Sweet!", "You're now registered with email: " + res.user.email);
+            $auth.signup({ email: $scope.email, password: $scope.password})
+                .then(function(res) {
+                    callout("success", "Sweet!", "You're now registered with email: " + res.data.user.email);
+                    $auth.login({
+                        email: $scope.email,
+                        password: $scope.password
+                    }).then(function() {
+                        checkState();
+                    })
                 })
-                .error(function(err) {
-                    callout("warning", "Oops!", err.message);
-                })
+                .catch(handleError);
+            
         };
 
-        $scope.google = function() {
-            auth.googleAuth().then(function(res) {
+        $scope.authenticate = function(provider) {
+            $auth.authenticate(provider).then(function(res) {
 
-                callout("success", "Sweet!", "Welcome " + res.user.displayName);
+                callout("success", "Sweet!", "Welcome " + res.data.user.displayName + ", thanks for using Google");
+                checkState();
 
             }, handleError);
         };
 
         function handleError(err) {
-            callout("warning", "Oops!", err.message);
+            callout("warning", "Oops!", err.data.message);
+        }
+
+        function checkState() {
+
+            if ($state.current.url === "/signup" || $state.current.url === "/signin") {
+                $state.go("home");
+            }
+
         }
 
     }]);

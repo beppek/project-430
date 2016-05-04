@@ -12,7 +12,7 @@
 /**
  * Exports the routes
  * */
-module.exports = angular.module("slideZapp").config(function($urlRouterProvider, $stateProvider, $httpProvider) {
+module.exports = angular.module("slideZapp").config(function($urlRouterProvider, $stateProvider, $httpProvider, $authProvider) {
 
     $urlRouterProvider.otherwise("/");
 
@@ -56,6 +56,19 @@ module.exports = angular.module("slideZapp").config(function($urlRouterProvider,
             controller: "signoutCtrl"
         });
 
+    $authProvider.loginUrl = "/signin";
+    $authProvider.signupUrl = "/signup";
+
+    $authProvider.google({
+        clientId: "288476738545-srv0bg4vvfv7tjimqttr2g1hcm6pheni.apps.googleusercontent.com",
+        url: "/auth/google"
+    });
+
+    $authProvider.facebook({
+        clientId: "991948577519173",
+        url: "/auth/facebook"
+    });
+
     $httpProvider.interceptors.push("authInterceptor");
 
 })
@@ -63,6 +76,7 @@ module.exports = angular.module("slideZapp").config(function($urlRouterProvider,
 .constant("API_URL", "http://localhost:8000/")
 
 .run(function($window) {
+
     var params = {};
     var queryString = $window.location.search.substring(1);
     var regex = /([^&=]+)=([^&]*)/g;
