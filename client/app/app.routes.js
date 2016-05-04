@@ -60,4 +60,23 @@ module.exports = angular.module("slideZapp").config(function($urlRouterProvider,
 
 })
 
-.constant("API_URL", "http://localhost:8000/");
+.constant("API_URL", "http://localhost:8000/")
+
+.run(function($window) {
+    var params = {};
+    var queryString = $window.location.search.substring(1);
+    var regex = /([^&=]+)=([^&]*)/g;
+    var m;
+
+    if (queryString && $window.opener && $window.opener.location.origin === $window.location.origin) {
+
+        while (m = regex.exec(queryString)) {
+            params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+        }
+
+        var code = params.code;
+
+        $window.opener.postMessage(code, $window.location.origin);
+    }
+
+});

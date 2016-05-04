@@ -11,6 +11,7 @@ var User = require("../models/User");
 var jwt = require("jwt-simple");
 var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
+var request = require("request");
 
 //Passport setup
 router.use(passport.initialize());
@@ -19,7 +20,7 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-    User.findById(id, function (err, user) {
+    User.findById(id, function(err, user) {
         done(err, user);
     });
 });
@@ -105,7 +106,6 @@ var localSignupStrategy = new LocalStrategy(strategyOptions, function(email, pas
 passport.use("local-signup", localSignupStrategy);
 passport.use("local-signin", localSigninStrategy);
 
-
 /**
  *
  * @get redirects to signup with hashbang
@@ -179,6 +179,16 @@ router.route("/signin")
 
         })(req, res, next);
 
+    });
+
+router.route("/auth/google")
+    .get(function(req, res) {
+        res.redirect("/#/signin");
+    })
+    .post(function(req, res) {
+        console.log(req.body.code);
+
+        request.post(url, {})
     });
 
 /**

@@ -8,7 +8,6 @@
 //Requires
 var router = require("express").Router();
 
-
 /**
  *
  * Redirect to leaderboard with hashbang

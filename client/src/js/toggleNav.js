@@ -11,24 +11,14 @@
 var nav = $("#menu");
 
 /**
- * This function opens the nav menu
+ * This function toggles the nav menu
  * */
-function openNav() {
-
-    nav.toggleClass("menu-closed menu-open");
-
-}
-
-/**
- * This function closes the nav menu
- * */
-function closeNav() {
+function toggleNav() {
 
     nav.toggleClass("menu-closed menu-open");
 
 }
 
 module.exports = {
-    open: openNav,
-    close: closeNav
+    toggle: toggleNav
 };

@@ -17,7 +17,10 @@ module.exports = angular.module("slideZapp")
                         $state.go("signin");
                     }
                 })
-            
         };
+
+        $scope.google = function() {
+            auth.googleAuth().then();
+        }
 
     });

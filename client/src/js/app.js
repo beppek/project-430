@@ -64,11 +64,7 @@ $(document).ready(function() {
     $("#menu-button").click(function(event) {
 
         event.preventDefault();
-        if ($(nav).hasClass("menu-closed")) {
-            toggleNav.open();
-        } else {
-            toggleNav.close();
-        }
+        toggleNav.toggle();
     });
 
     //Close menu when clicked outside
@@ -76,7 +72,7 @@ $(document).ready(function() {
 
         if (!$(nav).is(event.target)) {
             if (!$(nav).hasClass("menu-closed")) {
-                toggleNav.close();
+                toggleNav.toggle();
             }
         }
     });

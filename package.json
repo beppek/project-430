@@ -46,9 +46,10 @@
     "jquery": "^2.2.3",
     "jwt-simple": "^0.5.0",
     "mongoose": "^4.4.11",
-    "passport": "^0.3.2",
     "node-sass": "^3.5.1",
-    "passport-local": "^1.0.0"
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "request": "^2.72.0"
   },
   "devDependencies": {
     "blanket": "^1.2.3",

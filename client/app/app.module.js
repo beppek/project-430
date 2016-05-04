@@ -11,7 +11,6 @@
 
 // LOAD ANGULAR AND DEPENDENCIES
 var ng = require("angular");
-// var ngRoute = require("angular-route");
 var uiRouter = require("angular-ui-router");
 var ngAnimate = require("angular-animate");
 
