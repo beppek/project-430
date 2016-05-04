@@ -77,4 +77,7 @@ $(document).ready(function() {
         }
     });
 
+    var facebookSDK = require("./facebookSDK");
+    facebookSDK();
+
 });

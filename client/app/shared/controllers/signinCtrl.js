@@ -12,12 +12,6 @@ module.exports = angular.module("slideZapp")
     .controller("signinCtrl", function($scope, callout, auth, $state, nameService, $auth) {
         $scope.submit = function() {
 
-            // auth.signin($scope.email, $scope.password)
-            //     .success(function(res) {
-            //         nameService.name = res.user.email;
-            //         callout("success", "Good to see you!", "Welcome " + res.user.email);
-            //     })
-            //     .error(handleError)
             $auth.login({
                 email: $scope.email,
                 password: $scope.password
@@ -30,12 +24,9 @@ module.exports = angular.module("slideZapp")
         };
 
         $scope.authenticate = function(provider) {
-            // auth.googleAuth().then(function(res) {
-            //
-            //     callout("success", "Good to see you!", "Welcome " + res.user.displayName);
-            //
-            // }, handleError);
             $auth.authenticate(provider).then(function(res) {
+
+                console.log(res);
 
                 callout("success", "Good to see you!", "Welcome " + res.data.user.displayName);
                 checkState();
@@ -43,6 +34,7 @@ module.exports = angular.module("slideZapp")
             }, handleError);
         };
 
+        //TODO: Rewrite as service
         function handleError(err) {
             console.log(err);
             callout("warning", "Oops!", err.data.message);
@@ -51,6 +43,7 @@ module.exports = angular.module("slideZapp")
             }
         }
 
+        //TODO: Rewrite as service
         function checkState() {
 
             if ($state.current.url === "/signup" || $state.current.url === "/signin") {

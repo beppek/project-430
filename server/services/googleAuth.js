@@ -9,45 +9,40 @@ var request = require("request");
 var createSendToken = require("./jwt");
 var User = require("../models/User");
 
-/**
- *
- * Login using Facebook
- *
- * */
 module.exports = function(req, res, next) {
-    
-    var accessTokenUrl = "https://graph.facebook.com/v2.3/oauth/access_token";
-    var graphApiUrl = "https://graph.facebook.com/me";
+
+    var url = "https://www.googleapis.com/oauth2/v4/token";
+    var apiUrl = "https://www.googleapis.com/plus/v1/people/me/openIdConnect";
 
     var params = {
+        code: req.body.code,
         client_id: req.body.clientId,
+        client_secret: secrets.GOOGLE_SECRET,
         redirect_uri: req.body.redirectUri,
-        client_secret: secrets.FACEBOOK_SECRET,
-        code: req.body.code
+        grant_type: "authorization_code"
     };
 
-    request.get({
-        url: accessTokenUrl,
-        qs: params
-    }, function(err, response, accessToken) {
-
+    request.post(url, {
+        json: true,
+        form: params
+    }, function(err, response, token) {
         if (err) {
             return next(err);
         }
 
-        accessToken = JSON.parse(accessToken);
+        var accessToken = token.access_token;
+        var tokenType = token.token_type + " ";
+        var headers = {
+            Authorization: tokenType + accessToken
+        };
 
         request.get({
-            url: graphApiUrl,
-            qs: accessToken,
+            url: apiUrl,
+            headers: headers,
             json: true
         }, function(err, response, profile) {
 
-            if (err) {
-                return next(err);
-            }
-
-            User.findOne({facebookId: profile.id}, function(err, user) {
+            User.findOne({googleId: profile.sub}, function(err, user) {
                 if (err) {
                     return next(err);
                 }
@@ -57,7 +52,8 @@ module.exports = function(req, res, next) {
                 }
 
                 var newUser = new User({
-                    facebookId: profile.id,
+                    email: profile.email,
+                    googleId: profile.sub,
                     displayName: profile.name
                 });
 
@@ -72,7 +68,8 @@ module.exports = function(req, res, next) {
                 });
 
             })
-        });
-    })
 
+        })
+
+    });
 };
