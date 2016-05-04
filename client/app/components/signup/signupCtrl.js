@@ -15,5 +15,18 @@ module.exports = angular.module("slideZapp")
                 .error(function(err) {
                     callout("warning", "Oops!", err.message);
                 })
+        };
+
+        $scope.google = function() {
+            auth.googleAuth().then(function(res) {
+
+                callout("success", "Sweet!", "Welcome " + res.user.displayName);
+
+            }, handleError);
+        };
+
+        function handleError(err) {
+            callout("warning", "Oops!", err.message);
         }
+
     }]);

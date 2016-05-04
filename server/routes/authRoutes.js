@@ -13,6 +13,9 @@ var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
 var request = require("request");
 
+//Load in secrets set as ENV_VARIABLEs in production
+var secrets = require("../../secrets");
+
 //Passport setup
 router.use(passport.initialize());
 passport.serializeUser(function(user, done) {
@@ -181,14 +184,78 @@ router.route("/signin")
 
     });
 
+/**
+ *
+ * Handles sign in with Google OAuth
+ *
+ * */
 router.route("/auth/google")
     .get(function(req, res) {
         res.redirect("/#/signin");
     })
-    .post(function(req, res) {
-        console.log(req.body.code);
+    .post(function(req, res, next) {
 
-        request.post(url, {})
+        var url = "https://www.googleapis.com/oauth2/v4/token";
+        var apiUrl = "https://www.googleapis.com/plus/v1/people/me/openIdConnect";
+
+        var params = {
+            code: req.body.code,
+            client_id: req.body.clientId,
+            client_secret: secrets.oauthClientSecret,
+            redirect_uri: req.body.redirectUri,
+            grant_type: "authorization_code"
+        };
+
+        request.post(url, {
+            json: true,
+            form: params
+        }, function(err, response, token) {
+            if (err) {
+                return next(err);
+            }
+
+            var accessToken = token.access_token;
+            var tokenType = token.token_type + " ";
+            var headers = {
+                Authorization: tokenType + accessToken
+            };
+
+            request.get({
+                url: apiUrl,
+                headers: headers,
+                json: true
+            }, function(err, response, profile) {
+
+                User.findOne({googleId: profile.sub}, function(err, user) {
+                    if (err) {
+                        return next(err);
+                    }
+
+                    if (user) {
+                        return createSendToken(user, res);
+                    }
+
+                    var newUser = new User({
+                        email: profile.email,
+                        googleId: profile.sub,
+                        displayName: profile.name
+                    });
+
+                    newUser.save(function(err) {
+                        if (err) {
+                            return next(err);
+                        } else {
+
+                            createSendToken(newUser, res);
+
+                        }
+                    });
+
+                })
+
+            })
+
+        });
     });
 
 /**

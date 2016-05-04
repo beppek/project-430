@@ -1,7 +1,7 @@
 /**
- * Created by Beppe on 4/05/2016.
+ * To hold secret vars that will be turned into env vars in production
  */
 
-exports = {
-    oathClientSecret: "0Q53D0DHVFuAJiJmCTVx-wdf"
+module.exports = {
+    oauthClientSecret: "0Q53D0DHVFuAJiJmCTVx-wdf"
 };
