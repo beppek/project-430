@@ -18,13 +18,13 @@ var http            = require("http");
 
 var express         = require("express");
 var bodyParser      = require("body-parser");
-var session         = require("express-session");
 var mongoose        = require("./server/config/mongoose");
+
+var session         = require("express-session");
 var csurf           = require("csurf");
-
 var RedisStore      = require("connect-redis")(session);
-
 var sessionStore    = new RedisStore();
+
 var app             = express();
 var port            = process.env.PORT || 8000;
 
@@ -53,11 +53,11 @@ app.use(session({
 }));
 
 //Flash message, delete after display
-app.use(function(req, res, next) {
-    res.locals.flash = req.session.flash;
-    delete req.session.flash;
-    next();
-});
+// app.use(function(req, res, next) {
+//     res.locals.flash = req.session.flash;
+//     delete req.session.flash;
+//     next();
+// });
 
 app.use(function(req, res, next) {
 

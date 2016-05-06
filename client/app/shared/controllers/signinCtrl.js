@@ -9,7 +9,7 @@
  *
  */
 module.exports = angular.module("slideZapp")
-    .controller("signinCtrl", function($scope, callout, auth, $state, nameService, $auth) {
+    .controller("signinCtrl", function($scope, callout, $state, nameService, $auth) {
         $scope.submit = function() {
 
             $auth.login({
@@ -26,9 +26,10 @@ module.exports = angular.module("slideZapp")
         $scope.authenticate = function(provider) {
             $auth.authenticate(provider).then(function(res) {
 
-                console.log(res);
+                var authProvider = provider.charAt(0).toUpperCase() + provider.slice(1);
 
-                callout("success", "Good to see you!", "Welcome " + res.data.user.displayName);
+                nameService.name = res.data.user.displayName;
+                callout("success", "Good to see you!", "Welcome " + res.data.user.displayName + ", thanks for signing in with " + authProvider);
                 checkState();
 
             }, handleError);

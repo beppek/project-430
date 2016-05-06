@@ -50,7 +50,6 @@
     "node-sass": "^3.5.1",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
-    "querystring": "^0.2.0",
     "request": "^2.72.0",
     "satellizer": "^0.14.0"
   },

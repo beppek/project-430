@@ -4,24 +4,35 @@
 
 //Requires
 var jwt = require("jwt-simple");
+var secrets = require("../../secrets");
+var moment = require("moment");
 
 module.exports = function(req, res) {
 
-    // if (!localStorage.satellizer_token) {
-    //     res.status(401).send({
-    //         message: "You are not authorized"
-    //     });
-    // } else {
-    //
-    //     var token = localStorage.satellizer_token.split(" ")[1];
-    //     var payload = jwt.decode(token, "shhh...");
-    //
-    //     if (!payload.sub) {
-    //         res.status(401).send({
-    //             message: "Authentication failed"
-    //         });
-    //     }
-    //
-    // }
+    if (!req.header("Authorization")) {
+        res.status(401).send({
+            message: "You are not authorized"
+        });
+    } else {
+
+        var token = req.header("Authorization").split(" ")[1];
+        token = token.split(",")[0];
+
+        var payload = null;
+
+        try {
+            payload = jwt.decode(token, secrets.JWT_SECRET);
+        }
+        catch (err) {
+            return res.status(401).send({ message: "You are not authorized" });
+        }
+
+        if (payload.exp <= moment().unix()) {
+            return res.status(401).send({ message: "Your session has expired" });
+        }
+
+        req.user = payload.sub;
+
+    }
 
 };

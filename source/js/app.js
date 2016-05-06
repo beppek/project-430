@@ -44,7 +44,8 @@ require("../../client/app/components/leaderboard/leaderboardController");
 require("../../client/app/components/dash/dashCtrl");
 
 // Challenges
-require("../../client/app/components/challenges/challengesController");
+require("../../client/app/components/challenges/challengesCtrl");
+require("../../client/app/components/challenges/challenge/createChallengeCtrl");
 
 // Signup
 require("../../client/app/components/signup/signupCtrl");
@@ -76,8 +77,5 @@ $(document).ready(function() {
             }
         }
     });
-
-    var facebookSDK = require("./facebookSDK");
-    facebookSDK();
 
 });
