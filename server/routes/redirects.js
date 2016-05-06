@@ -29,6 +29,17 @@ router.route("/challenges")
     });
 
 /**
+*
+* Redirect to challenge/create with hashbang
+*
+* */
+router.route("/challenge/create")
+    .get(function(req, res) {
+        res.redirect("/#/challenge/create");
+    });
+
+
+/**
  *
  * Redirect to about with hashbang
  *

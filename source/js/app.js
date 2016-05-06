@@ -17,6 +17,7 @@ require("../../client/app/app.module.js");
 require("../../client/app/shared/services/nameService");
 require("../../client/app/shared/services/callout");
 require("../../client/app/shared/services/auth");
+require("../../client/app/shared/services/challenge");
 
 //Factories
 require("../../client/app/shared/services/authToken");

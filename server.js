@@ -77,6 +77,7 @@ app.use(express.static(path.join(__dirname, "client")));
 app.use("/", require("./server/routes/home.js"));
 app.use("/", require("./server/routes/authRoutes.js"));
 app.use("/", require("./server/routes/redirects.js"));
+app.use("/", require("./server/routes/challengeRoutes"));
 
 //TODO: Actually display some sort of error pages
 // 400 handler.
