@@ -5,8 +5,8 @@
 "use strict";
 
 module.exports = angular.module("slideZapp")
-    .controller("signoutCtrl", function(authToken, $state, $auth) {
-        // authToken.removeToken();
+    .controller("signoutCtrl", function(authToken, $state, $auth, callout) {
         $auth.logout();
+        callout("success", "You've signed out!", "Bye bye now");
         $state.go("home");
     });

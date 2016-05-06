@@ -9,7 +9,26 @@
 
             <button type="button" class="hollow button" ng-click="getUser()"><i class="fi-torso"></i> Get User</button>
 
-            <p ng-model="user"></p>
+            <p>{{userId}}</p>
+
+            <form ng-submit="submit()" name="createChallenge" class="challenge-form" novalidate>
+                <div class="row align-center">
+                    <div class="medium-6 columns">
+                        <input name="title" ng-model="title" type="text" placeholder="Title" required>
+                    </div>
+                </div>
+                <div class="row align-center">
+                    <div class="medium-6 columns">
+                        <textarea name="description" ng-model="description" placeholder="Description..." required></textarea>
+                    </div>
+                </div>
+                <div class="row align-center">
+                    <div class="medium-6 columns">
+                        <button ng-disabled="createChallenge.$invalid" type="submit" class="secondary hollow button save"><i class="fi-save"></i> Save</button>
+                    </div>
+                </div>
+            </form>
+
 
         </div>
     </div>
