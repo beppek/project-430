@@ -5,17 +5,10 @@
 "use strict";
 
 module.exports = angular.module("slideZapp")
-    .service("challenge", function challenge($http, $state, callout) {
-
-        // function saveSuccessful() {
-        //
-        //     callout("success", "Challenge Accepted!", "You created a challenge.");
-        //
-        // }
+    .service("challenge", function challenge($http) {
 
         this.save = function(challenge) {
             return $http.post("/challenge/create", challenge);
-                // .success(saveSuccessful);
         };
 
     });

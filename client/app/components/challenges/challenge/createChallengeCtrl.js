@@ -5,7 +5,7 @@
 /**
  * Exports the controller
  * */
-module.exports = angular.module("slideZapp").controller("createChallengeCtrl", ["$scope", "$auth", "challenge", "callout", function($scope, $auth, challenge, callout) {
+module.exports = angular.module("slideZapp").controller("createChallengeCtrl", ["$scope", "$auth", "challenge", "callout", "$state", function($scope, $auth, challenge, callout, $state) {
 
     $scope.getUser = function() {
         var payload = $auth.getPayload();
@@ -25,12 +25,15 @@ module.exports = angular.module("slideZapp").controller("createChallengeCtrl", [
 
         challenge.save(challengeObj)
             .success(function(res) {
-                console.log(res);
-                callout("success", "Challenge Accepted!", "You created a challenge.");
+                callout("success", "Challenge Accepted!", "You successfully created the " + res.title + " challenge.");
+                $state.go("challenge-id", {
+                    id: res._id,
+                    title: res.title
+                });
             })
             .error(function(err) {
                 callout("warning", "Challenge Not Accepted!", err.message);
-                
+
             });
 
     };

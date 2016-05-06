@@ -62,11 +62,10 @@ router.route("/challenge/create")
             newChallenge.save(function(err) {
                 if (err) {
                     return next(err);
-                } else {
-
-                    res.send(newChallenge._id)
-
                 }
+
+                res.send(newChallenge)
+
             });
 
         });
