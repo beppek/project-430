@@ -49,6 +49,7 @@ require("../../client/app/components/dash/dashCtrl");
 require("../../client/app/components/challenges/challengesCtrl");
 require("../../client/app/components/challenges/challenge/create/createChallengeCtrl");
 require("../../client/app/components/challenges/challenge/challengeCtrl");
+require("../../client/app/components/challenges/challenge/join/joinChallengeCtrl");
 
 // Signup
 require("../../client/app/components/signup/signupCtrl");

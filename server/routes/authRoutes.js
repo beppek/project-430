@@ -133,7 +133,7 @@ router.route("/auth/facebook")
  * Restrict access to upload page
  *
  * */
-router.route("/upload")
+router.route("/challenge/:id/join")
     .get(upload);
 
 module.exports = router;
