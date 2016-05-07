@@ -25,10 +25,14 @@ module.exports = angular.module("slideZapp").controller("createChallengeCtrl", [
 
         challenge.save(challengeObj)
             .success(function(res) {
+
+                var uriEncodedId = encodeURIComponent(res._id);
+                var uriEncodedTitle = encodeURIComponent(res.title);
+
                 callout("success", "Challenge Accepted!", "You successfully created the " + res.title + " challenge.");
                 $state.go("challenge-id", {
-                    id: res._id,
-                    title: res.title
+                    id: uriEncodedId,
+                    title: uriEncodedTitle
                 });
             })
             .error(function(err) {

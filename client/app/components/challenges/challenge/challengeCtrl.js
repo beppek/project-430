@@ -10,9 +10,7 @@
 module.exports = angular.module("slideZapp")
     .controller("challengeCtrl", ["$scope", "$auth", "challenge", "callout", "$state", "$stateParams", function($scope, $auth, challenge, callout, $state, $stateParams) {
 
-        console.log($stateParams);
-
-        $scope.title = $stateParams.title;
+        $scope.title = decodeURIComponent($stateParams.title);
 
         $scope.getUser = function() {
             var payload = $auth.getPayload();

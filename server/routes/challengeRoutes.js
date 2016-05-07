@@ -24,7 +24,7 @@ router.route("/challenge/create")
             _id: req.body.userId
         };
 
-        var createdBy;
+        var createdByName;
 
         User.findOne(searchUser, function(err, user) {
             if (err) {
@@ -32,7 +32,7 @@ router.route("/challenge/create")
             }
 
             if (user) {
-                createdBy = user.displayName;
+                createdByName = user.displayName;
             }else {
                 return res.status(401).send({
                     message: "You must have been logged out, log back in and try again."
@@ -54,7 +54,8 @@ router.route("/challenge/create")
             }
 
             var newChallenge = new Challenge({
-                createdBy: createdBy,
+                createdByName: createdByName,
+                createdById: req.body.userId,
                 title: req.body.title,
                 description: req.body.description
             });
