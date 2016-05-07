@@ -9,7 +9,7 @@
 module.exports = angular.module("slideZapp")
     .service("challenges", ["$http", function challenges($http) {
 
-        this.get = function() {
+        this.listAll = function() {
             return $http.post("/challenges/list")
         };
     

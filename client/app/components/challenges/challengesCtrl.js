@@ -12,7 +12,7 @@ module.exports = angular.module("slideZapp")
             return $auth.isAuthenticated();
         };
 
-        challenges.get()
+        challenges.listAll()
             .success(function(res) {
                 $scope.challenges = res;
             })
@@ -21,14 +21,11 @@ module.exports = angular.module("slideZapp")
             });
 
         $scope.toChallenge = function(challenge) {
-            console.log(challenge);
 
             var uriEncodedId = encodeURIComponent(challenge._id);
-            var uriEncodedTitle = encodeURIComponent(challenge.title);
 
             $state.go("challenge-id", {
-                id: uriEncodedId,
-                title: uriEncodedTitle
+                id: uriEncodedId
             })
         }
 

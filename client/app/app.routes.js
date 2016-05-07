@@ -62,7 +62,7 @@ module.exports = angular.module("slideZapp")
                 controller: "createChallengeCtrl"
             })
             .state("challenge-id", {
-                url: "/challenge/:id&:title",
+                url: "/challenge/:id",
                 templateUrl: "app/components/challenges/challenge/challengeView.html",
                 controller: "challengeCtrl"
             });

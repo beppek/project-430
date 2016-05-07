@@ -14,8 +14,6 @@ var jwt = require("jwt-simple");
 router.route("/challenge/create")
     .post(function(req, res, next) {
 
-        console.log(req.body);
-
         var searchChallenge = {
             title: req.body.title
         };
@@ -87,7 +85,31 @@ router.route("/challenges/list")
             }
 
             res.send(challenges)
-            
+
+        });
+
+    });
+
+router.route("/challenge/:id")
+    .post(function(req, res, next) {
+
+        console.log(req.params.id);
+
+        var searchChallenge = {
+            _id: req.params.id
+        };
+
+        Challenge.findOne(searchChallenge, function(err, challenge) {
+
+            if (err) {
+                return next(err);
+            }
+
+            if (challenge) {
+                console.log(challenge);
+                return res.send(challenge);
+            }
+
         });
 
     });
