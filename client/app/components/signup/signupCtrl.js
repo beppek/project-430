@@ -8,10 +8,16 @@ module.exports = angular.module("slideZapp")
     .controller("signupCtrl", ["$scope", "callout", "$auth", "$state", "nameService", function($scope, callout, $auth, $state, nameService) {
         $scope.submit = function() {
 
-            $auth.signup({ email: $scope.email, password: $scope.password})
+            var newUser = {
+                email: $scope.email,
+                displayName: $scope.displayName,
+                password: $scope.password
+            };
+
+            $auth.signup(newUser)
                 .then(function(res) {
-                    nameService.name = res.data.user.email;
-                    callout("success", "Sweet!", "You're now registered with email: " + res.data.user.email);
+                    nameService.name = res.data.user.displayName;
+                    callout("success", "Sweet!", res.data.user.displayName + ", welcome to Skwirrl!");
                     $auth.login({
                         email: $scope.email,
                         password: $scope.password

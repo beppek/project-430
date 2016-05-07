@@ -12,6 +12,11 @@ var strategyOptions = {
     usernameField: "email"
 };
 
+var signupOptions = {
+    usernameField: "email",
+    passReqToCallback: true
+};
+
 //Local Sign in Strategy setup
 var signin = new LocalStrategy(strategyOptions, function(email, password, done) {
 
@@ -50,7 +55,7 @@ var signin = new LocalStrategy(strategyOptions, function(email, password, done) 
 });
 
 //Local Sign up strategy setup
-var signup = new LocalStrategy(strategyOptions, function(email, password, done) {
+var signup = new LocalStrategy(signupOptions, function(req, email, password, done) {
 
     var searchUser = {
         email: email
@@ -69,6 +74,7 @@ var signup = new LocalStrategy(strategyOptions, function(email, password, done) 
 
         var newUser = new User({
             email: email,
+            displayName: req.body.displayName,
             password: password
         });
 

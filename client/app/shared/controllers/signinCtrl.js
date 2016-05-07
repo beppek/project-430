@@ -3,8 +3,8 @@
  * Sign in functionality for:
  * - Local
  * - Google+
- * TBD:
  * - Facebook
+ * TBD:
  * - Instagram
  *
  */
@@ -16,8 +16,8 @@ module.exports = angular.module("slideZapp")
                 email: $scope.email,
                 password: $scope.password
             }).then(function(res) {
-                nameService.name = res.data.user.email;
-                callout("success", "Good to see you!", "Welcome back " + res.data.user.email);
+                nameService.name = res.data.user.displayName;
+                callout("success", "Good to see you!", "Welcome back " + res.data.user.displayName);
                 checkState();
             }).catch(handleError)
 

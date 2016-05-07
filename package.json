@@ -10,7 +10,7 @@
     "test": "mocha",
     "test-coverage": "mocha test --require blanket --reporter html-cov > coverage.html",
     "build": "browserify source/js/app.js -o client/assets/js/bundle.js ",
-    "serve": "nodemon --watch client server.js"
+    "serve": "nodemon --watch server.js server"
   },
   "repository": {
     "type": "git",

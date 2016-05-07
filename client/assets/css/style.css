@@ -6,6 +6,9 @@ body, html {
 label {
   color: #f0f0f0; }
 
+.logoImg {
+  width: 100px; }
+
 .menu-wrapper {
   padding-top: 60px;
   background-color: #233d4f;

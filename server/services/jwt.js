@@ -22,7 +22,6 @@ module.exports = function(user, res) {
     };
 
     var token = jwt.encode(payload, secrets.JWT_SECRET);
-    console.log(token.length);
 
     res.status(200).send({
         user: user.toJSON(),
