@@ -89,6 +89,12 @@ label {
 .callout-hidden {
   visibility: hidden; }
 
+.challenge {
+  background-color: #525252; }
+  .challenge:hover {
+    background-color: #6c6c6c;
+    cursor: pointer; }
+
 .ui-view-container {
   position: relative;
   z-index: 0; }

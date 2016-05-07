@@ -4,6 +4,8 @@ $menuBG: #233d4f;
 $textColor: #f0f0f0;
 $menuHover: lighten($menuBG, 25%);
 $active: lighten($menuBG, 15%);
+$challengeBG: lighten($mainBG, 15%);
+$challengeBGHover: lighten($mainBG, 25%);
 
 $tinyres: 320px;
 $mobileres: 480px;
@@ -146,6 +148,15 @@ label {
 }
 .callout-hidden {
     visibility: hidden;
+}
+
+//Challenges styles
+.challenge {
+    background-color: $challengeBG;
+    &:hover {
+        background-color: $challengeBGHover;
+        cursor: pointer;
+    }
 }
 
 //Animate UI
