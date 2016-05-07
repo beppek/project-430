@@ -29,6 +29,18 @@ var UserSchema = new mongoose.Schema({
     displayName: {
         type: String,
         required: false
+    },
+    stats: {
+        uploadedImages: {
+            type: Number,
+            required: false,
+            default: 0
+        },
+        createdChallenges: {
+            type: Number,
+            required: false,
+            default: 0
+        }
     }
 });
 

@@ -53,9 +53,13 @@ router.route("/challenge/create")
                 });
             }
 
-            var newChallenge = new Challenge({
+            var createdBy = {
                 createdByName: createdByName,
-                createdById: req.body.userId,
+                createdById: req.body.userId
+            };
+
+            var newChallenge = new Challenge({
+                createdBy: createdBy,
                 title: req.body.title,
                 description: req.body.description
             });
@@ -69,6 +73,21 @@ router.route("/challenge/create")
 
             });
 
+        });
+
+    });
+
+router.route("/challenges/list")
+    .post(function(req, res, next) {
+
+        Challenge.find(function(err, challenges) {
+
+            if (err) {
+                return next(err);
+            }
+
+            res.send(challenges)
+            
         });
 
     });

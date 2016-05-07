@@ -8,13 +8,15 @@
 var mongoose = require("mongoose");
 
 var ChallengeSchema = new mongoose.Schema({
-    createdByName: {
-        type: String,
-        required: true
-    },
-    createdById: {
-        type: String,
-        required: true
+    createdBy: {
+        createdByName: {
+            type: String,
+            required: true
+        },
+        createdById: {
+            type: String,
+            required: true
+        }
     },
     title: {
         type: String,
@@ -29,10 +31,17 @@ var ChallengeSchema = new mongoose.Schema({
         required: false,
         default: Date.now
     },
-    plusCounter: {
-        type: Number,
-        required: false,
-        default: 0
+    stats: {
+        upVoted: {
+            type: Number,
+            required: false,
+            default: 0
+        },
+        contributions: {
+            type: Number,
+            required: false,
+            default: 0
+        }
     }
 });
 
