@@ -9,7 +9,6 @@
 var Challenge = require("../models/Challenge");
 var User = require("../models/User");
 var Image = require("../models/Image");
-var fs = require("fs");
 
 module.exports = {
     create: createChallenge,
@@ -25,8 +24,6 @@ function getChallengeImages(req, res, next) {
 
     var challengeId = req.params.id;
 
-    // var path = "./client/imgDB/" + challengeId;
-
     var searchImages = {
         challenge: challengeId
     };
@@ -40,36 +37,6 @@ function getChallengeImages(req, res, next) {
         res.send(images);
 
     });
-
-    // fs.readdir(path, function(err, files) {
-    //     if (err) {
-    //         next(err);
-    //     }
-    //
-    //     filenames = files;
-    //
-    //     var resObj;
-    //
-    //     filenames.forEach(function(filename) {
-    //
-    //         var searchImage = {
-    //             "fileInfo.fileName": filename
-    //         };
-    //
-    //         Image.findOne(searchImage, function(err, image) {
-    //             if (err) {
-    //                 return next(err);
-    //             }
-    //
-    //             res
-    //
-    //         })
-    //
-    //     });
-    //
-    //     // res.send(files);
-    //
-    // });
 
 }
 
