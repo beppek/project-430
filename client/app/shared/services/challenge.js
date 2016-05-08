@@ -5,7 +5,7 @@
 "use strict";
 
 module.exports = angular.module("slideZapp")
-    .service("challengeService", function challengeService($http) {
+    .service("challengeService", ["$http", "Upload", function challengeService($http, Upload) {
 
         this.save = function(challenge) {
             return $http.post("/challenge/create", challenge);
@@ -15,4 +15,4 @@ module.exports = angular.module("slideZapp")
             return $http.post("/challenge/" + id);
         };
 
-    });
+    }]);

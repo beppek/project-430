@@ -26,6 +26,13 @@
                 </div>
                 <div class="row align-center">
                     <div class="medium-6 columns">
+                        <div class="button" ngf-select ng-model="image" name="image" ngf-pattern="'image/jpeg'" ngf-accept="'image/jpeg'" ngf-max-size="2MB" ngf-min-height="100" ngf-resize="{width: 100, height: 100}">Select</div>
+                        <!--<div ngf-drop ng-model="image" class="drop-box">Drop</div>-->
+                        <img ngf-thumbnail="image || '/assets/img/placeholder.png'">
+                    </div>
+                </div>
+                <div class="row align-center">
+                    <div class="medium-6 columns">
                         <button ng-disabled="joinChallenge.$invalid" type="submit" class="secondary hollow button save"><i class="fi-upload"></i> Upload</button>
                     </div>
                 </div>

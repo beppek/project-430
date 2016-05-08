@@ -14,12 +14,14 @@ var ng = require("angular");
 var uiRouter = require("angular-ui-router");
 var ngAnimate = require("angular-animate");
 var satellizer = require("satellizer");
+var ngFileUpload = require("ng-file-upload");
 
 // CREATE APP
 var slideZapp = ng.module("slideZapp", [
     uiRouter,
     ngAnimate,
-    satellizer
+    satellizer,
+    ngFileUpload
 ]);
 
 module.exports = slideZapp;

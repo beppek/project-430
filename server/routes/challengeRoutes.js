@@ -10,6 +10,8 @@ var router = require("express").Router();
 var Challenge = require("../models/Challenge");
 var User = require("../models/User");
 var jwt = require("jwt-simple");
+// var multiparty = require("connect-multiparty");
+// var multipartyMiddleware = multiparty();
 
 router.route("/challenge/create")
     .post(function(req, res, next) {
@@ -90,10 +92,21 @@ router.route("/challenges/list")
 
     });
 
-router.route("/challenge/:id")
+router.route("/challenge/upload")
     .post(function(req, res, next) {
 
-        console.log(req.params.id);
+        console.log(__dirname);
+
+        // var file = req.files.file;
+        // var imgData = req.body;
+        //
+        // console.log(imgData);
+        // console.log(file);
+
+    });
+
+router.route("/challenge/:id")
+    .post(function(req, res, next) {
 
         var searchChallenge = {
             _id: req.params.id
@@ -106,7 +119,6 @@ router.route("/challenge/:id")
             }
 
             if (challenge) {
-                console.log(challenge);
                 return res.send(challenge);
             }
 

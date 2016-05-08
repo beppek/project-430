@@ -31,8 +31,6 @@ module.exports = function(req, res) {
             return res.status(401).send({ message: "Your session has expired" });
         }
 
-        req.user = payload.sub;
-
     }
 
 };
