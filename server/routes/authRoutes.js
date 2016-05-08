@@ -14,7 +14,7 @@ var LocalStrategy = require("../services/localStrategy");
 var facebookAuth = require("../services/facebookAuth");
 var googleAuth = require("../services/googleAuth");
 var createSendToken = require("../services/jwt");
-var upload = require("../services/upload");
+var checkAuth = require("../services/checkAuth");
 
 //Passport setup
 router.use(passport.initialize());
@@ -134,6 +134,6 @@ router.route("/auth/facebook")
  *
  * */
 router.route("/challenge/:id/join")
-    .get(upload);
+    .get(checkAuth);
 
 module.exports = router;
