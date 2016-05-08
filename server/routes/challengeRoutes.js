@@ -12,12 +12,12 @@ var User = require("../models/User");
 var jwt = require("jwt-simple");
 var multiparty = require("connect-multiparty");
 var upload = require("../services/upload");
-var createChallenge = require("../services/createChallenge");
+var challenge = require("../services/challenge");
 
 var multipartyMiddleware = multiparty({uploadDir: "./client/imgDB"});
 
 router.route("/challenge/create")
-    .post(createChallenge);
+    .post(challenge.create);
 
 router.route("/challenges/list")
     .post(function(req, res, next) {
@@ -38,6 +38,7 @@ router.route("/challenge/upload")
     .post(multipartyMiddleware, upload.file);
 
 router.route("/challenge/:id")
+    .get(challenge.getImages)
     .post(function(req, res, next) {
 
         var searchChallenge = {

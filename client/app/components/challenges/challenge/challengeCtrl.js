@@ -8,31 +8,62 @@
  * Exports the controller
  * */
 module.exports = angular.module("slideZapp")
-    .controller("challengeCtrl", ["$scope", "$auth", "challengeService", "callout", "$state", "$stateParams", function($scope, $auth, challengeService, callout, $state, $stateParams) {
+    .controller("challengeCtrl", ["$scope", "$auth", "challengeService", "callout", "$state", "$stateParams", "$http",
+        function($scope, $auth, challengeService, callout, $state, $stateParams, $http) {
 
-        $scope.isAuthenticated = function() {
-            return $auth.isAuthenticated();
-        };
+            var challengeId = $stateParams.id;
 
-        $scope.getUser = function() {
-            var payload = $auth.getPayload();
+            /**
+             * Get images for challenge
+             * */
+            $http.get("/challenge/" + challengeId)
+                .success(function(res) {
 
-            $scope.userId = payload.sub;
-        };
+                    return $scope.images = res;
+                    console.log(res);
 
-        challengeService.get(decodeURIComponent($stateParams.id))
-            .success(function(challenge) {
+                });
+            // /**
+            //  * Return full image path
+            //  * */
+            // $scope.getImagePath = function(imageName) {
+            //     return "./imgDB/" + challengeId + "/" + imageName;
+            // };
 
-                $scope.challenge = challenge;
-            })
-            .error(function(err) {
-                callout("warning", "Something went wrong", err.message);
-            });
+            /**
+             * Check if authenticated
+             * */
+            $scope.isAuthenticated = function() {
+                return $auth.isAuthenticated();
+            };
 
-        $scope.joinChallenge = function() {
-            $state.go("joinChallenge", {
-                id: $stateParams.id
-            })
-        };
+            /**
+             * Get the user
+             * */
+            $scope.getUser = function() {
+                var payload = $auth.getPayload();
+                $scope.userId = payload.sub;
+            };
 
-    }]);
+            /**
+             * Get the challenge
+             * */
+            challengeService.get(decodeURIComponent($stateParams.id))
+                .success(function(challenge) {
+
+                    $scope.challenge = challenge;
+                })
+                .error(function(err) {
+                    callout("warning", "Something went wrong", err.message);
+                });
+
+            /**
+             * Join challenge function
+             * */
+            $scope.joinChallenge = function() {
+                $state.go("joinChallenge", {
+                    id: $stateParams.id
+                })
+            };
+
+        }]);

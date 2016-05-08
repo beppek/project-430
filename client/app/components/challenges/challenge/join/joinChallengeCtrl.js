@@ -28,6 +28,14 @@ module.exports = angular.module("slideZapp")
 
             };
 
+            $scope.validateImage = function() {
+
+                if ($scope.joinChallenge.image.$error.maxSize) {
+                    callout("warning", "Image size too big.", "Must be less than 2mb");
+                }
+
+            };
+
             $scope.upload = function(file) {
 
                 var formData = {
@@ -47,6 +55,12 @@ module.exports = angular.module("slideZapp")
                 }).then(function(res) {
                     callout("success", "Challenge Accepted!", "You successfully uploaded " + res.config.data.file.name);
                     console.log(res.data);
+
+                    $state.go("image", {
+                        challengeId: res.data.challenge,
+                        imageId: res.data._id
+                    });
+
                     // console.log("Success " + res.config.data.file.name + " uploaded. Response: " + res.data);
                 },
 

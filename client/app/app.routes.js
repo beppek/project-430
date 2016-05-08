@@ -70,6 +70,11 @@ module.exports = angular.module("slideZapp")
                 url: "/challenge/:id/join",
                 templateUrl: "app/components/challenges/challenge/join/joinChallengeView.html",
                 controller: "joinChallengeCtrl"
+            })
+            .state("image", {
+                url: "/image/:challengeId/:imageId",
+                templateUrl: "app/components/image/imageView.html",
+                controller: "imageCtrl"
             });
 
         $authProvider.loginUrl = "/signin";

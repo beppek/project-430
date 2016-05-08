@@ -78,6 +78,7 @@ app.use("/", require("./server/routes/home.js"));
 app.use("/", require("./server/routes/authRoutes.js"));
 app.use("/", require("./server/routes/redirects.js"));
 app.use("/", require("./server/routes/challengeRoutes"));
+app.use("/", require("./server/routes/imageRoutes"));
 
 //TODO: Actually display some sort of error pages
 // 400 handler.

@@ -20,6 +20,7 @@ function uploadFile(req, res) {
     var fileName = file.path.split("/")[2];
     var destDir = "./client/imgDB/" + imgData.challengeId;
     var dest = destDir + "/" + fileName;
+    var relPath = "./imgDB/" + imgData.challengeId + "/" + fileName;
 
     fs.mkdir(destDir, function(err) {
 
@@ -106,7 +107,7 @@ function uploadFile(req, res) {
         Challenge.findOneAndUpdate(searchChallenge, { $inc: { "stats.contributions": 1 } });
 
         var searchImage = {
-            "fileInfo.path": dest
+            "fileInfo.path": relPath
         };
 
         Image.findOne(searchImage, function(err, image) {
@@ -128,7 +129,7 @@ function uploadFile(req, res) {
 
             var fileInfo = {
                 fileName: fileName,
-                path: dest
+                path: relPath
             };
 
             var newImage = new Image({

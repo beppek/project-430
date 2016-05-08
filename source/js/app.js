@@ -52,6 +52,9 @@ require("../../client/app/components/challenges/challenge/create/createChallenge
 require("../../client/app/components/challenges/challenge/challengeCtrl");
 require("../../client/app/components/challenges/challenge/join/joinChallengeCtrl");
 
+//Image
+require("../../client/app/components/image/imageCtrl");
+
 // Signup
 require("../../client/app/components/signup/signupCtrl");
 

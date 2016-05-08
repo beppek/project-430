@@ -18,7 +18,7 @@ module.exports = angular.module("slideZapp").service("callout", function callout
         $timeout.cancel(calloutTimeout);
         calloutTimeout = $timeout(function() {
             $rootScope.callout.show = false;
-        }, timeout || 3000);
+        }, timeout || 5000);
     }
 
 });
