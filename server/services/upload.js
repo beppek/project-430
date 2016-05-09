@@ -104,7 +104,18 @@ function uploadFile(req, res) {
 
         });
 
-        Challenge.findOneAndUpdate(searchChallenge, { $inc: { "stats.contributions": 1 } });
+        Challenge.findOneAndUpdate(searchChallenge, { $inc: { "stats.contributions": 1 } }, function(err, challenge) {
+            if (err) {
+                throw err;
+            }
+
+            if (!challenge) {
+                return res.status(401).send({
+                    message: "Challenge doesn't exist!"
+                });
+            }
+
+        });
 
         var searchImage = {
             "fileInfo.path": relPath

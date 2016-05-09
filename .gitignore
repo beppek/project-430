@@ -7,4 +7,4 @@ bundle.js
 *.log
 coverage.html
 secrets.js
-client/imgDB
+client/imgDB/*
