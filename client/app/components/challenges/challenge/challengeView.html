@@ -12,14 +12,13 @@
     </div>
     <div class="row">
         <div class="medium-12 columns">
-            <div ng-repeat="image in images" class="row challenge">
+            <div ng-click="toImage(image)" ng-repeat="image in images" class="row challenge">
                 <div class="medium-12 columns">
 
                     <img ng-src="{{image.fileInfo.path}}" alt="">
-
+                    <p><span><i class="fi-arrow-up upvoteBtn"></i></span> {{image.stats.upVoted}}</p>
                     <p>{{image.title}}</p>
                     <p>{{image.description}}</p>
-                    <p>Upvoted: {{image.stats.upVoted}} times</p>
                     <p>Uploaded by: {{image.uploadedBy.name}}</p>
 
                 </div>

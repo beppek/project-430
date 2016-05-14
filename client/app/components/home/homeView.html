@@ -1,30 +1,40 @@
 <div ng-controller="homeController">
     <div class="row">
         <div class="medium-12 columns">
-            <h1>Hello {{ name }}! You are on the first page</h1>
+            <div ng-click="toChallenge(challenge)" ng-repeat="challenge in challenges" class="row challenge">
+                <div class="medium-12 columns">
 
-            <div>
-                <label>Your name:</label>
-                <input type="text" ng-model="name">
+                    <h3>{{challenge.title}}</h3>
+                    <p>{{challenge.description}}</p>
+                    <p>Contributions: {{challenge.stats.contributions}} Upvoted: {{challenge.stats.upVoted}}</p>
+                    <p>Created by: {{challenge.createdBy.createdByName}}</p>
+
+                </div>
             </div>
+            <!--<h1>Hello {{ name }}! You are on the first page</h1>-->
 
-            <div ng-show="name.length < 5">
+            <!--<div>-->
+                <!--<label>Your name:</label>-->
+                <!--<input type="text" ng-model="name">-->
+            <!--</div>-->
 
-                You have less than 5 characters!
+            <!--<div ng-show="name.length < 5">-->
 
-            </div>
-            <div ng-show="name.length > 5">
+                <!--You have less than 5 characters!-->
 
-                You have more than 5 characters!
+            <!--</div>-->
+            <!--<div ng-show="name.length > 5">-->
 
-            </div>
+                <!--You have more than 5 characters!-->
 
-            <hr>
+            <!--</div>-->
 
-            <h3>Rules</h3>
-            <ul>
-                <li ng-repeat="rule in rules">{{rule.rulename}}</li>
-            </ul>
+            <!--<hr>-->
+
+            <!--<h3>Rules</h3>-->
+            <!--<ul>-->
+                <!--<li ng-repeat="rule in rules">{{rule.rulename}}</li>-->
+            <!--</ul>-->
         </div>
     </div>
 </div>

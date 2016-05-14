@@ -10,15 +10,17 @@ module.exports = angular.module("slideZapp")
 
         var challengeId = $stateParams.challengeId;
         var imageId = $stateParams.imageId;
-        var imgObj;
 
         $http.get("/image/" + challengeId + "/" + imageId)
             .success(function(res) {
 
-                $scope.imgSrc = res.fileInfo.path;
-                $scope.imgDescription = res.description;
-                imgObj = res;
+                $scope.image = res;
 
+            });
+
+        $http.get("/challengeName/" + challengeId)
+            .success(function(res) {
+                $scope.challenge = res;
             });
 
     }]);

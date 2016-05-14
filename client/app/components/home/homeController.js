@@ -12,18 +12,36 @@
 /**
  * Exports the controller
  * */
-module.exports = angular.module("slideZapp").controller("homeController", ["$scope", "$log", "nameService", function($scope, $log, nameService) {
+module.exports = angular.module("slideZapp").controller("homeController", ["$scope", "$log", "nameService", "challenges", "$state",
+    function($scope, $log, nameService, challenges, $state) {
 
-    $scope.name = nameService.name;
+        $scope.name = nameService.name;
 
-    $scope.$watch("name", function() {
-        nameService.name = $scope.name;
-    });
+        challenges.listAll()
+            .success(function(res) {
+                $scope.challenges = res;
+            })
+            .error(function(err) {
+                callout("warning", "Something went wrong", err.message);
+            });
 
-    $scope.rules = [
-        {rulename: "Must be 5 characters"},
-        {rulename: "Must not be used elsewhere"},
-        {rulename: "Must be cool"}
-    ];
+        $scope.toChallenge = function(challenge) {
 
-}]);
+            var uriEncodedId = encodeURIComponent(challenge._id);
+
+            $state.go("challenge-id", {
+                id: uriEncodedId
+            })
+        };
+
+        $scope.$watch("name", function() {
+            nameService.name = $scope.name;
+        });
+
+        $scope.rules = [
+            {rulename: "Must be 5 characters"},
+            {rulename: "Must not be used elsewhere"},
+            {rulename: "Must be cool"}
+        ];
+
+    }]);

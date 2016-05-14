@@ -20,15 +20,18 @@ module.exports = angular.module("slideZapp")
                 .success(function(res) {
 
                     return $scope.images = res;
-                    console.log(res);
 
                 });
-            // /**
-            //  * Return full image path
-            //  * */
-            // $scope.getImagePath = function(imageName) {
-            //     return "./imgDB/" + challengeId + "/" + imageName;
-            // };
+
+            $scope.toImage = function(image) {
+
+                var imageId = encodeURIComponent(image._id);
+
+                $state.go("image", {
+                    challengeId: challengeId,
+                    imageId: imageId
+                })
+            };
 
             /**
              * Check if authenticated

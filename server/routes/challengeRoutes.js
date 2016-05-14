@@ -59,4 +59,24 @@ router.route("/challenge/:id")
 
     });
 
+router.route("/challengeName/:id").get(function(req, res, next) {
+
+    var searchChallenge = {
+        _id: req.params.id
+    };
+
+    Challenge.findOne(searchChallenge, function(err, challenge) {
+
+        if (err) {
+            return next(err);
+        }
+
+        if (challenge) {
+            return res.send(challenge.title);
+        }
+
+    });
+
+});
+
 module.exports = router;
