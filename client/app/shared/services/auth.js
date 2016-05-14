@@ -4,7 +4,7 @@
 
 "use strict";
 
-module.exports = angular.module("slideZapp")
+module.exports = angular.module("shutterSnappy")
     .service("auth", function auth($http, authToken, $state, $window, $q) {
 
         function authSuccessful(res) {

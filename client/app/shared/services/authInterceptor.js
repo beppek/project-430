@@ -4,7 +4,7 @@
 
 "use strict";
 
-module.exports = angular.module("slideZapp").factory("authInterceptor", function(authToken) {
+module.exports = angular.module("shutterSnappy").factory("authInterceptor", function(authToken) {
         return {
             request: function(config) {
                 var token = authToken.getToken();

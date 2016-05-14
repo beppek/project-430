@@ -12,7 +12,7 @@
 /**
  * Exports the routes
  * */
-module.exports = angular.module("slideZapp")
+module.exports = angular.module("shutterSnappy")
     .config(function($urlRouterProvider, $stateProvider, $httpProvider, $authProvider) {
 
         $urlRouterProvider.otherwise("/");

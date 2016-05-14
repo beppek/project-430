@@ -5,7 +5,7 @@
 /**
  * Exports the controller
  * */
-module.exports = angular.module("slideZapp")
+module.exports = angular.module("shutterSnappy")
     .controller("imageCtrl", ["$scope", "callout", "$state", "$stateParams", "$http", function($scope, callout, $state, $stateParams, $http) {
 
         var challengeId = $stateParams.challengeId;

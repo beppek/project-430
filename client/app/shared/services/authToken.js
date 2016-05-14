@@ -4,7 +4,7 @@
 
 "use strict";
 
-module.exports = angular.module("slideZapp").factory("authToken", function($window) {
+module.exports = angular.module("shutterSnappy").factory("authToken", function($window) {
 
     var storage = $window.localStorage;
     var cachedToken;

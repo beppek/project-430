@@ -5,8 +5,9 @@
 /**
  * Exports the controller
  * */
-module.exports = angular.module("slideZapp").controller("leaderboardController", ["$scope", "$log", function($scope, $log) {
+module.exports = angular.module("shutterSnappy")
+    .controller("leaderboardController", ["$scope", "$log", function($scope, $log) {
 
 
 
-}]);
+    }]);

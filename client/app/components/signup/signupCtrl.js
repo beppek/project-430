@@ -4,7 +4,7 @@
 
 "use strict";
 
-module.exports = angular.module("slideZapp")
+module.exports = angular.module("shutterSnappy")
     .controller("signupCtrl", ["$scope", "callout", "$auth", "$state", "nameService", function($scope, callout, $auth, $state, nameService) {
         $scope.submit = function() {
 

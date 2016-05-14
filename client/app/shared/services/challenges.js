@@ -6,7 +6,7 @@
 
 "use strict";
 
-module.exports = angular.module("slideZapp")
+module.exports = angular.module("shutterSnappy")
     .service("challenges", ["$http", function challenges($http) {
 
         this.listAll = function() {

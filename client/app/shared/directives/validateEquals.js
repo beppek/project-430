@@ -4,7 +4,7 @@
 
 "use strict";
 
-module.exports = angular.module("slideZapp")
+module.exports = angular.module("shutterSnappy")
     .directive("validateEquals", function() {
         return {
             require: "ngModel",

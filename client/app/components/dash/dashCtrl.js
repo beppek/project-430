@@ -5,7 +5,7 @@
 /**
  * Exports the controller
  * */
-module.exports = angular.module("slideZapp")
+module.exports = angular.module("shutterSnappy")
     .controller("dashboardController", ["$scope", "$http", "callout", "$state", function($scope, $http, callout, $state) {
 
         $http.get("/upload")

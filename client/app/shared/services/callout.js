@@ -4,7 +4,7 @@
 
 "use strict";
 
-module.exports = angular.module("slideZapp").service("callout", function callout($rootScope, $timeout) {
+module.exports = angular.module("shutterSnappy").service("callout", function callout($rootScope, $timeout) {
 
     var calloutTimeout;
     return function(type, title, message, timeout) {

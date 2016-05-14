@@ -8,7 +8,7 @@
  * - Instagram
  *
  */
-module.exports = angular.module("slideZapp")
+module.exports = angular.module("shutterSnappy")
     .controller("signinCtrl", function($scope, callout, $state, nameService, $auth) {
         $scope.submit = function() {
 

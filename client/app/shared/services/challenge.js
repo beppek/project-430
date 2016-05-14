@@ -4,7 +4,7 @@
 
 "use strict";
 
-module.exports = angular.module("slideZapp")
+module.exports = angular.module("shutterSnappy")
     .service("challengeService", ["$http", "Upload", function challengeService($http, Upload) {
 
         this.save = function(challenge) {

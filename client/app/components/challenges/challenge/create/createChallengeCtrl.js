@@ -5,7 +5,7 @@
 /**
  * Exports the controller
  * */
-module.exports = angular.module("slideZapp").controller("createChallengeCtrl", ["$scope", "$auth", "challengeService", "callout", "$state", function($scope, $auth, challengeService, callout, $state) {
+module.exports = angular.module("shutterSnappy").controller("createChallengeCtrl", ["$scope", "$auth", "challengeService", "callout", "$state", function($scope, $auth, challengeService, callout, $state) {
 
     $scope.getUser = function() {
         var payload = $auth.getPayload();

@@ -4,7 +4,7 @@
 
 "use strict";
 
-module.exports = angular.module("slideZapp")
+module.exports = angular.module("shutterSnappy")
     .controller("menuCtrl", function($scope, authToken, $state, nameService, $auth) {
         $scope.isAuthenticated = $auth.isAuthenticated;
         $scope.currentPage = function() {

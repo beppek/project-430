@@ -9,7 +9,7 @@
 /**
  * Exports the service
  * */
-module.exports = angular.module("slideZapp").service("nameService", function() {
+module.exports = angular.module("shutterSnappy").service("nameService", function() {
 
     this.name = "";
 

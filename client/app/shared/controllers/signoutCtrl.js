@@ -4,7 +4,7 @@
 
 "use strict";
 
-module.exports = angular.module("slideZapp")
+module.exports = angular.module("shutterSnappy")
     .controller("signoutCtrl", function(authToken, $state, $auth, callout) {
         $auth.logout();
         callout("success", "You've signed out!", "Bye bye now");

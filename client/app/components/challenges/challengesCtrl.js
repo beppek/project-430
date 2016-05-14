@@ -5,7 +5,7 @@
 /**
  * Exports the controller
  * */
-module.exports = angular.module("slideZapp")
+module.exports = angular.module("shutterSnappy")
     .controller("challengesCtrl", ["$scope", "$auth", "challenges", "callout", "$state", function($scope, $auth, challenges, callout, $state) {
 
         $scope.isAuthenticated = function() {
