@@ -11,6 +11,15 @@ module.exports = angular.module("shutterSnappy")
         var challengeId = $stateParams.challengeId;
         var imageId = $stateParams.imageId;
 
+        $scope.isDisabled = false;
+
+        $scope.upVote = function() {
+
+            $scope.isDisabled = true;
+            $scope.image.stats.upVoted += 1;
+
+        };
+
         $http.get("/image/" + challengeId + "/" + imageId)
             .success(function(res) {
 
