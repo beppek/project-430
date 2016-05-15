@@ -1,8 +1,10 @@
 /**
- *
+ * Challenge Controller
  * @author beppek
  *
  */
+
+"use strict";
 
 /**
  * Exports the controller
@@ -56,7 +58,6 @@ module.exports = angular.module("shutterSnappy")
                 .success(function(challenge) {
 
                     $scope.challenge = challenge;
-                    console.log(challenge);
                 })
                 .error(function(err) {
                     callout("warning", "Something went wrong", err.message);

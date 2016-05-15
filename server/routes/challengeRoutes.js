@@ -19,6 +19,10 @@ var multipartyMiddleware = multiparty({uploadDir: "./client/imgDB"});
 router.route("/challenge/create")
     .post(challenge.create);
 
+/**
+ * TODO: CHANGE TO GET
+ * POST for list of all challenges
+ * */
 router.route("/challenges/list")
     .post(function(req, res, next) {
 
@@ -34,8 +38,19 @@ router.route("/challenges/list")
 
     });
 
+/**
+ * POST to upload image to challenge
+ * */
 router.route("/challenge/upload")
     .post(multipartyMiddleware, upload.file);
+
+// /**
+//  * POST for the leaderboard
+//  * */
+// router.route("/challenge/leaderboard")
+//     .post(function(req, res, next) {
+//         console.log(req);
+//     });
 
 router.route("/challenge/:id")
     .get(challenge.getImages)

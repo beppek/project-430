@@ -3,4 +3,12 @@
         <a ng-click="toChallenge(challenge)">{{challenge.title}}</a> |
         Leaderboard
     </div>
+    <div class="row">
+        <div class="medium-12 columns">
+            <ol>
+                <li ng-repeat="image in top10"><a ng-click="toImage(image)" >{{image.title}} by: {{image.uploadedBy.name}} <i class="fi-arrow-up"></i>{{image.stats.votes.length}}</a></li>
+            </ol>
+
+        </div>
+    </div>
 </div>
