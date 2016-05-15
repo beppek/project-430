@@ -14,7 +14,8 @@ var ChallengeSchema = new mongoose.Schema({
             required: true
         },
         createdById: {
-            type: String,
+            type: mongoose.Schema.ObjectId,
+            ref: "User",
             required: true
         }
     },
@@ -36,11 +37,10 @@ var ChallengeSchema = new mongoose.Schema({
             type: mongoose.Schema.ObjectId,
             ref: "User"
         }],
-        contributions: {
-            type: Number,
-            required: false,
-            default: 0
-        }
+        contributions: [{
+            type: mongoose.Schema.ObjectId,
+            ref: "Image"
+        }]
     }
 });
 

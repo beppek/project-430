@@ -31,16 +31,14 @@ var UserSchema = new mongoose.Schema({
         required: false
     },
     stats: {
-        uploadedImages: {
-            type: Number,
-            required: false,
-            default: 0
-        },
-        createdChallenges: {
-            type: Number,
-            required: false,
-            default: 0
-        }
+        uploadedImages: [{
+            type: mongoose.Schema.ObjectId,
+            ref: "Image"
+        }],
+        createdChallenges: [{
+            type: mongoose.Schema.ObjectId,
+            ref: "Challenge"
+        }]
     }
 });
 

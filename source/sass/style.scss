@@ -147,7 +147,7 @@ label {
 .callout-box {
     position: absolute;
     left: 15px;
-    top: 10px;
+    top: $paddingTop;
     @media screen and (max-width: $smallres) and (min-width: $phabletres) {
         max-width: 300px;
     }

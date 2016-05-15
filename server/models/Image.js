@@ -14,7 +14,8 @@ var ImageSchema = new mongoose.Schema({
             required: true
         },
         userId: {
-            type: String,
+            type: mongoose.Schema.ObjectId,
+            ref: "User",
             required: true
         }
     },
@@ -42,7 +43,8 @@ var ImageSchema = new mongoose.Schema({
         }
     },
     challenge: {
-        type: String,
+        type: mongoose.Schema.ObjectId,
+        ref: "Challenge",
         required: true
     },
     stats: {

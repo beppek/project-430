@@ -86,7 +86,7 @@ label {
 .callout-box {
   position: absolute;
   left: 15px;
-  top: 10px; }
+  top: 20px; }
   @media screen and (max-width: 960px) and (min-width: 760px) {
     .callout-box {
       max-width: 300px; } }

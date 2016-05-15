@@ -44,14 +44,6 @@ router.route("/challenges/list")
 router.route("/challenge/upload")
     .post(multipartyMiddleware, upload.file);
 
-// /**
-//  * POST for the leaderboard
-//  * */
-// router.route("/challenge/leaderboard")
-//     .post(function(req, res, next) {
-//         console.log(req);
-//     });
-
 router.route("/challenge/:id")
     .get(challenge.getImages)
     .post(function(req, res, next) {

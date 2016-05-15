@@ -89,7 +89,7 @@ function uploadFile(req, res) {
 
         var createdByName;
 
-        User.findOneAndUpdate(searchUser, { $inc: { "stats.uploadedImages": 1 } }, function(err, user) {
+        User.findOne(searchUser, function(err, user) {
             if (err) {
                 throw err;
             }
@@ -104,18 +104,18 @@ function uploadFile(req, res) {
 
         });
 
-        Challenge.findOneAndUpdate(searchChallenge, { $inc: { "stats.contributions": 1 } }, function(err, challenge) {
-            if (err) {
-                throw err;
-            }
-
-            if (!challenge) {
-                return res.status(401).send({
-                    message: "Challenge doesn't exist!"
-                });
-            }
-
-        });
+        // Challenge.findOneAndUpdate(searchChallenge, {$addToSet: {"stats.contributions": imgData.id}}, {new:true}, function(err, challenge) {
+        //     if (err) {
+        //         throw err;
+        //     }
+        //
+        //     if (!challenge) {
+        //         return res.status(401).send({
+        //             message: "Challenge doesn't exist!"
+        //         });
+        //     }
+        //
+        // });
 
         var searchImage = {
             "fileInfo.path": relPath
@@ -155,6 +155,20 @@ function uploadFile(req, res) {
                 if (err) {
                     throw err;
                 }
+
+                Challenge.findOneAndUpdate(searchChallenge, {$addToSet: {"stats.contributions": newImage.id}}, {new:true}, function(err, challenge) {
+                    if (err) {
+                        throw err;
+                    }
+
+                });
+
+                User.findOneAndUpdate(searchUser, {$addToSet: {"stats.uploadedImages": newImage.id}}, {new:true}, function(err, user) {
+                    if (err) {
+                        throw err;
+                    }
+
+                });
 
                 return res.send(newImage)
 

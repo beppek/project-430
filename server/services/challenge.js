@@ -57,7 +57,7 @@ function createChallenge(req, res, next) {
 
     var createdByName;
 
-    User.findOneAndUpdate(searchUser, {$inc: { "stats.createdChallenges": 1 } }, function(err, user) {
+    User.findOne(searchUser, function(err, user) {
         if (err) {
             return next(err);
         }
@@ -100,10 +100,14 @@ function createChallenge(req, res, next) {
                 return next(err);
             }
 
-            res.send(newChallenge)
+            User.findOneAndUpdate(searchUser, {$addToSet: {"stats.createdChallenges": newChallenge._id}}, {new:true}, function(err, user) {
+
+            });
+
+            return res.send(newChallenge)
 
         });
 
     });
 
-};
+}
