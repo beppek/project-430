@@ -12,6 +12,7 @@ module.exports = angular.module("shutterSnappy")
         function($scope, $auth, challengeService, callout, $state, $stateParams, $http) {
 
             var challengeId = $stateParams.id;
+            var payload = $auth.getPayload();
 
             /**
              * Get images for challenge
@@ -55,6 +56,7 @@ module.exports = angular.module("shutterSnappy")
                 .success(function(challenge) {
 
                     $scope.challenge = challenge;
+                    console.log(challenge);
                 })
                 .error(function(err) {
                     callout("warning", "Something went wrong", err.message);
@@ -67,6 +69,37 @@ module.exports = angular.module("shutterSnappy")
                 $state.go("joinChallenge", {
                     id: $stateParams.id
                 })
+            };
+
+            /**
+             * Check if user has voted
+             * */
+            $scope.hasVoted = function(challenge) {
+                if (challenge.stats.votes.indexOf(payload.sub) === -1) {
+                    return false;
+                } else {
+                    return true;
+                }
+            };
+
+            /**
+             * Vote
+             * */
+            $scope.vote = function(challenge) {
+
+                console.log(challenge);
+
+                challenge.stats.votes.push(payload.sub);
+
+                challengeService.vote({
+                    challengeId: challenge._id,
+                    userId: payload.sub
+                }).success(function(res) {
+                    challenge.stats.votes = res;
+                }).error(function(err) {
+                    callout("warning", "Something went wrong!", err.message);
+                });
+
             };
 
         }]);

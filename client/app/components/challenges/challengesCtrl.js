@@ -12,6 +12,7 @@ module.exports = angular.module("shutterSnappy")
             $scope.isAuthenticated = function() {
                 return $auth.isAuthenticated();
             };
+            
             var payload = $auth.getPayload();
 
             /**
@@ -33,12 +34,6 @@ module.exports = angular.module("shutterSnappy")
                     id: uriEncodedId
                 })
             };
-
-            // if (image.stats.votes.indexOf(req.body.userId) === -1) {
-            //     return res.send(false);
-            // } else {
-            //     return res.send(true);
-            // }
 
             /**
              * Check if user has voted
