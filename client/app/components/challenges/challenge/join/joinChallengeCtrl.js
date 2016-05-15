@@ -26,6 +26,18 @@ module.exports = angular.module("shutterSnappy")
                 });
 
             /**
+             * Go back to challenge
+             * */
+            $scope.toChallenge = function(challenge) {
+
+                var uriEncodedId = encodeURIComponent(challenge._id);
+
+                $state.go("challenge-id", {
+                    id: uriEncodedId
+                })
+            };
+
+            /**
              * Save image
              * */
             $scope.submit = function() {

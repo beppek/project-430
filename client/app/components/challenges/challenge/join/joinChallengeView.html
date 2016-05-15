@@ -1,4 +1,11 @@
 <div ng-controller="joinChallengeCtrl" class="">
+    <div ng-if="challenge" class="toolbar">
+
+        <a ng-click="toChallenge(challenge)">{{challenge.title}}</a> |
+        {{challenge.description}} |
+        <a ng-click="gotoLeaderboard(challenge)"><i class="fi-results-demographics"></i>Leaderboard</a></li></a>
+
+    </div>
     <div class="row">
         <div class="medium-12 columns">
             <h1>{{challenge.title}}</h1>

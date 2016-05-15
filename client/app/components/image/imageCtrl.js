@@ -8,8 +8,8 @@
  * Exports the controller
  * */
 module.exports = angular.module("shutterSnappy")
-    .controller("imageCtrl", ["$scope", "callout", "$state", "$stateParams", "$http", "imageService", "$auth",
-        function($scope, callout, $state, $stateParams, $http, imageService, $auth) {
+    .controller("imageCtrl", ["$scope", "callout", "$state", "$stateParams", "$http", "imageService", "$auth", "challengeService",
+        function($scope, callout, $state, $stateParams, $http, imageService, $auth, challengeService) {
 
             var challengeId = $stateParams.challengeId;
             var imageId = $stateParams.imageId;
@@ -28,11 +28,14 @@ module.exports = angular.module("shutterSnappy")
             });
 
             /**
-             * Get challenge name
+             * Get challenge
              * */
-            $http.get("/challengeName/" + challengeId)
+            challengeService.get(challengeId)
                 .success(function(res) {
                     $scope.challenge = res;
+                })
+                .error(function(err) {
+
                 });
 
             /**
@@ -66,6 +69,18 @@ module.exports = angular.module("shutterSnappy")
                     callout("warning", "Something went wrong!", err.message);
                 });
 
+            };
+
+            /**
+             * Go back to challenge
+             * */
+            $scope.toChallenge = function(challenge) {
+
+                var uriEncodedId = encodeURIComponent(challenge._id);
+
+                $state.go("challenge-id", {
+                    id: uriEncodedId
+                })
             };
 
         }]);

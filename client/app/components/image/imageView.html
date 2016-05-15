@@ -1,4 +1,9 @@
 <div ng-controller="imageCtrl">
+    <div class="toolbar">
+        <a ng-click="toChallenge(challenge)">{{challenge.title}}</a> |
+        {{image.title}} |
+        {{image.uploadedBy.name}}
+    </div>
     <div ng-if="image" class="row">
         <div class="medium-12 columns">
 
@@ -13,7 +18,7 @@
                 <p>{{image.description}}</p>
                 <p>Uploaded by: {{image.uploadedBy.name}}</p>
                 <p>{{image.dateUploaded}}</p>
-                <p>Challenge: {{challenge}}</p>
+                <p>Challenge: <a ng-click="toChallenge(challenge)">{{challenge.title}}</a></p>
             </div>
 
         </div>
