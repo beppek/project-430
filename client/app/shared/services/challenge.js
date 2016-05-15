@@ -15,4 +15,8 @@ module.exports = angular.module("shutterSnappy")
             return $http.post("/challenge/" + id);
         };
 
+        this.vote = function(data) {
+            return $http.post("/challenge/vote", data);
+        }
+
     }]);

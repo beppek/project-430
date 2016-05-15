@@ -68,7 +68,6 @@ module.exports = angular.module("shutterSnappy")
                     userId: payload.sub
                 }).success(function(res) {
                     $scope.votes = res.length;
-                    console.log(res);
                 }).error(function(err) {
                     callout("warning", "Something went wrong!", err.message);
                 });

@@ -32,15 +32,9 @@ var ChallengeSchema = new mongoose.Schema({
         default: Date.now
     },
     stats: {
-        // upVoted: {
-        //     type: Number,
-        //     required: false,
-        //     default: 0
-        // },
-        upVoted: [{
-            userId: {
-                type: String
-            }
+        votes: [{
+            type: mongoose.Schema.ObjectId,
+            ref: "User"
         }],
         contributions: {
             type: Number,

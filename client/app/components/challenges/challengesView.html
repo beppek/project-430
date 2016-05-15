@@ -8,7 +8,10 @@
         <div class="medium-12 columns">
 
             <h3>{{challenge.title}}</h3>
-            <p><span><i class="fi-arrow-up upvoteBtn"></i></span> {{challenge.stats.upVoted.length}}</p>
+            <p><button ng-if="!hasVoted(challenge)" ng-click="vote(challenge); $event.stopPropagation();" class="secondary button"><span><i class="fi-arrow-up upvoteBtn"></i></span></button>
+                <i ng-if="hasVoted(challenge)" class="fi-arrow-up upvoteBtn"></i></span>
+                {{challenge.stats.votes.length}}
+            </p>
             <p>{{challenge.description}}</p>
             <p>Contributions: {{challenge.stats.contributions}}</p>
             <p>Created by: {{challenge.createdBy.createdByName}}</p>

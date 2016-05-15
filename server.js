@@ -76,10 +76,10 @@ app.use(express.static(path.join(__dirname, "client")));
 //Routes
 app.use("/", require("./server/routes/home.js"));
 app.use("/", require("./server/routes/authRoutes.js"));
+app.use("/", require("./server/routes/votingRoutes"));
 app.use("/", require("./server/routes/redirects.js"));
 app.use("/", require("./server/routes/challengeRoutes"));
 app.use("/", require("./server/routes/imageRoutes"));
-app.use("/", require("./server/routes/votingRoutes"));
 
 //TODO: Actually display some sort of error pages
 // 400 handler.

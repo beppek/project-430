@@ -31,6 +31,25 @@ router.route("/image/vote")
 
     });
 
+router.route("/challenge/vote")
+    .post(function(req, res, next) {
+
+        var searchChallenge = {
+            _id: req.body.challengeId
+        };
+
+        Challenge.findOneAndUpdate(searchChallenge, {$addToSet: {"stats.votes": req.body.userId}}, {new:true}, function(err, challenge) {
+
+            if (err) {
+                return next(err);
+            }
+
+            return res.send(challenge.stats.votes);
+
+        })
+
+    });
+
 router.route("/image/checkvoted")
     .post(function(req, res, next) {
 

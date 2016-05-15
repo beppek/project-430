@@ -6,7 +6,8 @@
             <div class="imgOverlay">
                 <h4>{{image.title}}</h4>
                 <p>
-                    <button ng-if="!hasVoted" ng-click="vote()" ng-model="isDisabled" class="secondary button"><i class="fi-arrow-up upvoteBtn"></i></button>
+                    <button ng-if="!hasVoted" ng-click="vote()" class="secondary button"><i class="fi-arrow-up upvoteBtn"></i></button>
+                    <i ng-if="hasVoted" class="fi-arrow-up upvoteBtn"></i>
                     {{votes}}
                 </p>
                 <p>{{image.description}}</p>
