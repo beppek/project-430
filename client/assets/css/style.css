@@ -9,6 +9,14 @@ label {
 .logoImg {
   width: 100px; }
 
+.toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #0a0a0a;
+  height: 20px;
+  width: 100%; }
+
 .menu-wrapper {
   padding-top: 60px;
   background-color: #233d4f;
@@ -45,7 +53,7 @@ label {
 
 .menu-buttons {
   z-index: 3;
-  top: 10px;
+  top: 20px;
   right: 20px;
   position: absolute; }
 
@@ -71,9 +79,9 @@ label {
   background-color: #2c2c2c; }
 
 .main-content {
-  padding-top: 60px;
+  padding-top: 20px;
   background-color: #2c2c2c;
-  min-height: calc(100vh - 60px); }
+  min-height: calc(100vh - 20px); }
 
 .callout-box {
   position: absolute;
@@ -117,7 +125,7 @@ label {
   z-index: 0; }
 
 [ui-view] {
-  min-height: calc(100vh - 60px); }
+  min-height: calc(100vh - 20px); }
 
 [ui-view].ng-enter,
 [ui-view].ng-leave {

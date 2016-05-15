@@ -15,7 +15,7 @@ $mediumres: 1200px;
 $largeres: 1920px;
 $xlres: 2400px;
 
-$paddingTop: 60px;
+$paddingTop: 20px;
 
 //mixins
 @mixin vertical-align {
@@ -51,9 +51,19 @@ label {
     width: 100px;
 }
 
+//Toolbar Styles
+.toolbar {
+    position: fixed;
+    top:0;
+    left:0;
+    background-color: #0a0a0a;
+    height: $paddingTop;
+    width: 100%;
+}
+
 //Menu Styles
 .menu-wrapper {
-    padding-top: $paddingTop;
+    padding-top: $paddingTop*3;
     background-color: $menuBG;
     height: 100vh;
     width: 250px;
@@ -89,7 +99,7 @@ label {
 }
 .menu-buttons {
     z-index: 3;
-    top: 10px;
+    top: $paddingTop;
     right: 20px;
     position: absolute;
 }

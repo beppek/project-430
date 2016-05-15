@@ -46,11 +46,15 @@ var ImageSchema = new mongoose.Schema({
         required: true
     },
     stats: {
-        upVoted: {
-            type: Number,
-            required: false,
-            default: 0
-        }
+        // upVoted: {
+        //     type: Number,
+        //     required: false,
+        //     default: 0
+        // }
+        votes: [{
+            type: mongoose.Schema.ObjectId,
+            ref: "User"
+        }]
     }
 });
 

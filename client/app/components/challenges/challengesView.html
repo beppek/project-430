@@ -1,22 +1,14 @@
 <div ng-controller="challengesCtrl" class="">
-    <div class="row">
-        <div class="medium-12 columns">
-            <h1>This is the Challenges page</h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="medium-12 columns">
-
-            <button ng-if="isAuthenticated()" type="button" class="hollow button" ui-sref="createChallenge"><i class="fi-plus"></i> Create</button>
-
-        </div>
+    <div class="toolbar">
+        Challenges
+        <a ng-if="isAuthenticated()" ui-sref="createChallenge"><i class="fi-plus"></i> Create</a>
     </div>
 
     <div ng-click="toChallenge(challenge)" ng-repeat="challenge in challenges" class="row challenge">
         <div class="medium-12 columns">
 
             <h3>{{challenge.title}}</h3>
-            <p><span><i class="fi-arrow-up upvoteBtn"></i></span> {{challenge.stats.upVoted}}</p>
+            <p><span><i class="fi-arrow-up upvoteBtn"></i></span> {{challenge.stats.upVoted.length}}</p>
             <p>{{challenge.description}}</p>
             <p>Contributions: {{challenge.stats.contributions}}</p>
             <p>Created by: {{challenge.createdBy.createdByName}}</p>

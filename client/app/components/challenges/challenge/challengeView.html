@@ -1,14 +1,6 @@
 <div ng-controller="challengeCtrl" class="">
-    <div class="row">
-        <div class="medium-12 columns">
-            <h1>{{challenge.title}}</h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="medium-12 columns">
-            <p>{{challenge.description}}</p>
-            <button ng-if="isAuthenticated()" ng-click="joinChallenge()" type="button" class="hollow button"><i class="fi-upload"></i> Upload</button>
-        </div>
+    <div class="toolbar">
+        {{challenge.title}} | {{challenge.description}} | <a ng-if="isAuthenticated()" ng-click="joinChallenge()"><i class="fi-upload"></i> Upload</a>
     </div>
     <div class="row">
         <div class="medium-12 columns">
@@ -16,7 +8,7 @@
                 <div class="medium-12 columns">
 
                     <img ng-src="{{image.fileInfo.path}}" alt="">
-                    <p><span><i class="fi-arrow-up upvoteBtn"></i></span> {{image.stats.upVoted}}</p>
+                    <p><span><i class="fi-arrow-up upvoteBtn"></i></span> {{image.stats.votes.length}}</p>
                     <p>{{image.title}}</p>
                     <p>{{image.description}}</p>
                     <p>Uploaded by: {{image.uploadedBy.name}}</p>

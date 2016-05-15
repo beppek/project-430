@@ -20,6 +20,7 @@ require("../../client/app/shared/services/auth");
 require("../../client/app/shared/services/challenge");
 require("../../client/app/shared/services/challenges");
 require("../../client/app/shared/services/userService");
+require("../../client/app/shared/services/image");
 
 //Factories
 require("../../client/app/shared/services/authToken");
