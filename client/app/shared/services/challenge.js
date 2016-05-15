@@ -5,7 +5,7 @@
 "use strict";
 
 module.exports = angular.module("shutterSnappy")
-    .service("challengeService", ["$http", "Upload", function challengeService($http, Upload) {
+    .service("challengeService", ["$http", function challengeService($http) {
 
         this.save = function(challenge) {
             return $http.post("/challenge/create", challenge);

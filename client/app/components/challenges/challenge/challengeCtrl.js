@@ -102,4 +102,13 @@ module.exports = angular.module("shutterSnappy")
 
             };
 
+            /**
+             * Go to Leaderboard
+             * */
+            $scope.gotoLeaderboard = function(challenge) {
+                $state.go("leaderboard", {
+                    challenge: challenge._id
+                })
+            }
+
         }]);

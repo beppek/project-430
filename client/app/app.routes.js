@@ -23,8 +23,8 @@ module.exports = angular.module("shutterSnappy")
                 templateUrl: "app/components/home/homeView.html",
                 controller: "homeController"
             })
-            .state("leaderboard", {
-                url: "/leaderboard",
+            .state("leaderboards", {
+                url: "/leaderboards",
                 templateUrl: "app/components/leaderboard/leaderboardView.html",
                 controller: "leaderboardController"
             })
@@ -75,6 +75,11 @@ module.exports = angular.module("shutterSnappy")
                 url: "/image/:challengeId/:imageId",
                 templateUrl: "app/components/image/imageView.html",
                 controller: "imageCtrl"
+            })
+            .state("leaderboard", {
+                url: "/leaderboard/:challenge",
+                templateUrl: "app/components/leaderboard/leaderboardView.html",
+                controller: "leaderboardCtrl"
             });
 
         $authProvider.loginUrl = "/signin";

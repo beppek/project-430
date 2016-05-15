@@ -1,11 +1,14 @@
 <div ng-controller="challengeCtrl" class="">
     <div ng-if="challenge" class="toolbar">
+
         {{challenge.title}} |
         {{challenge.description}} |
         <a ng-if="isAuthenticated()" ng-click="joinChallenge()"><i class="fi-upload"></i> Upload</a> |
         <a ng-if="!hasVoted(challenge)" ng-click="vote(challenge); $event.stopPropagation();"><span><i class="fi-arrow-up upvoteBtn"></i></span></a>
         <i ng-if="hasVoted(challenge)" class="fi-arrow-up upvoteBtn"></i></span>
-        {{challenge.stats.votes.length}}
+        {{challenge.stats.votes.length}} |
+        <a ng-click="gotoLeaderboard(challenge)"><i class="fi-results-demographics"></i>Leaderboard</a></li></a>
+
     </div>
     <div class="row">
         <div class="medium-12 columns">

@@ -42,7 +42,7 @@ require("../../client/app/shared/controllers/signoutCtrl");
 require("../../client/app/components/home/homeController");
 
 // Leaderboard
-require("../../client/app/components/leaderboard/leaderboardController");
+require("../../client/app/components/leaderboard/leaderboardCtrl");
 
 // Upload
 require("../../client/app/components/dash/dashCtrl");
