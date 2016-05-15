@@ -12,7 +12,7 @@ module.exports = angular.module("shutterSnappy")
             $scope.isAuthenticated = function() {
                 return $auth.isAuthenticated();
             };
-            
+
             var payload = $auth.getPayload();
 
             /**
@@ -39,8 +39,12 @@ module.exports = angular.module("shutterSnappy")
              * Check if user has voted
              * */
             $scope.hasVoted = function(challenge) {
-                if (challenge.stats.votes.indexOf(payload.sub) === -1) {
-                    return false;
+                if (payload) {
+                    if (challenge.stats.votes.indexOf(payload.sub) === -1) {
+                        return false;
+                    } else {
+                        return true;
+                    }
                 } else {
                     return true;
                 }
@@ -51,18 +55,18 @@ module.exports = angular.module("shutterSnappy")
              * */
             $scope.vote = function(challenge) {
 
-                console.log(challenge);
+                if (payload) {
+                    challenge.stats.votes.push(payload.sub);
 
-                challenge.stats.votes.push(payload.sub);
-
-                challengeService.vote({
-                    challengeId: challenge._id,
-                    userId: payload.sub
-                }).success(function(res) {
-                    challenge.stats.votes = res;
-                }).error(function(err) {
-                    callout("warning", "Something went wrong!", err.message);
-                });
+                    challengeService.vote({
+                        challengeId: challenge._id,
+                        userId: payload.sub
+                    }).success(function(res) {
+                        challenge.stats.votes = res;
+                    }).error(function(err) {
+                        callout("warning", "Something went wrong!", err.message);
+                    });
+                }
 
             };
 

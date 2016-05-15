@@ -1,14 +1,14 @@
 <div ng-controller="imageCtrl">
-    <div class="row">
+    <div ng-if="image" class="row">
         <div class="medium-12 columns">
 
-            <img src="{{image.fileInfo.path}}" alt="{{image.description}}">
+            <img ng-src="{{image.fileInfo.path}}" alt="{{image.description}}">
             <div class="imgOverlay">
                 <h4>{{image.title}}</h4>
                 <p>
-                    <button ng-if="!hasVoted" ng-click="vote()" class="secondary button"><i class="fi-arrow-up upvoteBtn"></i></button>
-                    <i ng-if="hasVoted" class="fi-arrow-up upvoteBtn"></i>
-                    {{votes}}
+                    <button ng-if="!hasVoted(image)" ng-click="vote()" class="secondary button"><i class="fi-arrow-up upvoteBtn"></i></button>
+                    <i ng-if="hasVoted(image)" class="fi-arrow-up upvoteBtn"></i>
+                    {{image.stats.votes.length}}
                 </p>
                 <p>{{image.description}}</p>
                 <p>Uploaded by: {{image.uploadedBy.name}}</p>

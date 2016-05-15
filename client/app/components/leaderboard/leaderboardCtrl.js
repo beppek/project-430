@@ -1,20 +1,36 @@
 /**
- * Created by Beppe on 22/04/2016.
+ * Leaderboard Controller
+ * @author beppek
  */
+
+"use strict";
 
 /**
  * Exports the controller
  * */
 module.exports = angular.module("shutterSnappy")
-    .controller("leaderboardCtrl", ["$scope", "$log", "$stateParams", "challengeService",
-        function($scope, $log, $stateParams, challengeService) {
+    .controller("leaderboardCtrl", ["$scope", "$log", "$stateParams", "challengeService", "$state",
+        function($scope, $log, $stateParams, challengeService, $state) {
 
-            challengeService.get($stateParams.challengeId)
+            /**
+             * Get the challenge
+             * */
+            challengeService.get($stateParams.challenge)
                 .success(function(res) {
                     $scope.challenge = res;
                 }).error(function(err) {
 
             });
+
+            /**
+             * Go to challenge
+             * */
+            $scope.toChallenge = function(challenge) {
+                $state.go("challenge-id", {
+                    id: challenge._id
+                })
+            };
+
             console.log($stateParams);
 
         }]);

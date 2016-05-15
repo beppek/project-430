@@ -23,26 +23,6 @@ module.exports = angular.module("shutterSnappy")
 
                     $scope.image = res;
 
-                    $scope.votes = parseInt(res.stats.votes.length);
-
-                    if (payload) {
-
-                        imageService.checkVoted({
-                            imageId: $scope.image._id,
-                            userId: payload.sub
-                        }).success(function(res) {
-                            $scope.hasVoted = res;
-                        }).error(function(err) {
-                            callout("warning", "Something went wrong", err.message);
-                        })
-
-                    } else {
-
-                        //TODO Handle unregistered visitors better
-                        $scope.hasVoted = true;
-
-                    }
-
                 }).error(function(err) {
                     callout("warning", "Something went wrong", err.message);
             });
@@ -56,18 +36,32 @@ module.exports = angular.module("shutterSnappy")
                 });
 
             /**
+             * Check if user has voted
+             * */
+            $scope.hasVoted = function(image) {
+                if (payload) {
+                    if (image.stats.votes.indexOf(payload.sub) === -1) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                } else {
+                    return true;
+                }
+            };
+
+            /**
              * Vote
              * */
             $scope.vote = function() {
 
-                $scope.hasVoted = true;
-                $scope.votes += 1;
+                $scope.image.stats.votes.push(payload.sub);
 
                 imageService.vote({
                     imageId: $scope.image._id,
                     userId: payload.sub
                 }).success(function(res) {
-                    $scope.votes = res.length;
+                    $scope.image.stats.votes = res;
                 }).error(function(err) {
                     callout("warning", "Something went wrong!", err.message);
                 });
