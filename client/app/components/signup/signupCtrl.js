@@ -17,7 +17,7 @@ module.exports = angular.module("shutterSnappy")
             $auth.signup(newUser)
                 .then(function(res) {
                     nameService.name = res.data.user.displayName;
-                    callout("success", "Sweet!", res.data.user.displayName + ", welcome to Skwirrl!");
+                    callout("success", "Sweet!", res.data.user.displayName + ", welcome to ShutterSnappy!");
                     $auth.login({
                         email: $scope.email,
                         password: $scope.password

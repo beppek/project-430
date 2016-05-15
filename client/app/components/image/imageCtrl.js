@@ -1,6 +1,8 @@
 /**
- * Created by Beppe on 8/05/2016.
+ * Image Controller
+ * @author beppek
  */
+"use strict";
 
 /**
  * Exports the controller
@@ -11,30 +13,11 @@ module.exports = angular.module("shutterSnappy")
 
             var challengeId = $stateParams.challengeId;
             var imageId = $stateParams.imageId;
-
-            $scope.isDisabled = false;
-
             var payload = $auth.getPayload();
 
-            $scope.vote = function() {
-                imageService.vote({
-                    imageId: $scope.image._id,
-                    userId: payload.sub
-                }).success(function(res) {
-                    callout("success", "Här följer:", res);
-                    console.log(res);
-                }).error(function(err) {
-                    callout("warning", "Something went wrong!", err.message);
-                });
-            };
-
-            // $scope.upVote = function() {
-            //
-            //     $scope.isDisabled = true;
-            //     $scope.votes  += 1;
-            //
-            // };
-
+            /**
+             * Get the image and info
+             * */
             $http.get("/image/" + challengeId + "/" + imageId)
                 .success(function(res) {
 
@@ -42,11 +25,54 @@ module.exports = angular.module("shutterSnappy")
 
                     $scope.votes = parseInt(res.stats.votes.length);
 
-                });
+                    if (payload) {
 
+                        imageService.checkVoted({
+                            imageId: $scope.image._id,
+                            userId: payload.sub
+                        }).success(function(res) {
+                            $scope.hasVoted = res;
+                        }).error(function(err) {
+                            callout("warning", "Something went wrong", err.message);
+                        })
+
+                    } else {
+
+                        //TODO Handle unregistered visitors better
+                        $scope.hasVoted = true;
+
+                    }
+
+                }).error(function(err) {
+                    callout("warning", "Something went wrong", err.message);
+            });
+
+            /**
+             * Get challenge name
+             * */
             $http.get("/challengeName/" + challengeId)
                 .success(function(res) {
                     $scope.challenge = res;
                 });
+
+            /**
+             * Vote
+             * */
+            $scope.vote = function() {
+
+                $scope.hasVoted = true;
+                $scope.votes += 1;
+
+                imageService.vote({
+                    imageId: $scope.image._id,
+                    userId: payload.sub
+                }).success(function(res) {
+                    $scope.votes = res.length;
+                    console.log(res);
+                }).error(function(err) {
+                    callout("warning", "Something went wrong!", err.message);
+                });
+
+            };
 
         }]);

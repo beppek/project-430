@@ -5,7 +5,10 @@
             <img src="{{image.fileInfo.path}}" alt="{{image.description}}">
             <div class="imgOverlay">
                 <h4>{{image.title}}</h4>
-                <p><button ng-click="vote()" ng-disabled="isDisabled" ng-model="isDisabled" class="secondary button"><i class="fi-arrow-up upvoteBtn"></i></button> {{votes}}</p>
+                <p>
+                    <button ng-if="!hasVoted" ng-click="vote()" ng-model="isDisabled" class="secondary button"><i class="fi-arrow-up upvoteBtn"></i></button>
+                    {{votes}}
+                </p>
                 <p>{{image.description}}</p>
                 <p>Uploaded by: {{image.uploadedBy.name}}</p>
                 <p>{{image.dateUploaded}}</p>

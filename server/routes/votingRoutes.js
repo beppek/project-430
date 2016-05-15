@@ -11,7 +11,7 @@ var Challenge = require("../models/Challenge");
 
 
 router.route("/image/vote")
-    .post(function(req, res, next){
+    .post(function(req, res, next) {
 
         // console.log(req.body);
 
@@ -19,9 +19,45 @@ router.route("/image/vote")
             _id: req.body.imageId
         };
 
-        Image.findOne(searchImage, function(err, image) {
-            
+        Image.findOneAndUpdate(searchImage, {$addToSet: {"stats.votes": req.body.userId}}, {new:true}, function(err, image) {
+
+            if (err) {
+                return next(err);
+            }
+
+            return res.send(image.stats.votes);
+
         })
+
+    });
+
+router.route("/image/checkvoted")
+    .post(function(req, res, next) {
+
+        var searchImage = {
+            _id: req.body.imageId
+        };
+
+        Image.findOne(searchImage, function(err, image) {
+
+            if (err) {
+                return next(err);
+            }
+
+            if (!image) {
+                return res.status(500).send({message: "Something went wrong"});
+            }
+            else {
+
+                if (image.stats.votes.indexOf(req.body.userId) === -1) {
+                    return res.send(false);
+                } else {
+                    return res.send(true);
+                }
+
+            }
+
+        });
 
     });
 
