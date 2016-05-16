@@ -1,5 +1,6 @@
 /**
- * Created by Beppe on 15/05/2016.
+ * Routes to handle voting on the backend
+ * @author beppek
  */
 
 "use strict";
@@ -10,10 +11,11 @@ var Image = require("../models/Image");
 var Challenge = require("../models/Challenge");
 
 
+/**
+ * Vote for image
+ * */
 router.route("/image/vote")
     .post(function(req, res, next) {
-
-        // console.log(req.body);
 
         var searchImage = {
             _id: req.body.imageId
@@ -31,6 +33,33 @@ router.route("/image/vote")
 
     });
 
+/**
+ * Unvote for image
+ * */
+router.route("/image/unvote")
+    .post(function(req, res, next) {
+
+        var searchImage = {
+            _id: req.body.imageId
+        };
+
+        Image.findOneAndUpdate(searchImage, {$pull: {"stats.votes": req.body.userId}}, {new:true}, function(err, image) {
+
+            if (err) {
+                return next(err);
+            }
+
+            return res.send(image.stats.votes);
+
+        })
+
+
+    });
+
+
+/**
+ * Vote for challenge
+ * */
 router.route("/challenge/vote")
     .post(function(req, res, next) {
 
@@ -50,33 +79,25 @@ router.route("/challenge/vote")
 
     });
 
-router.route("/image/checkvoted")
+/**
+ * Unvote for challenge
+ * */
+router.route("/challenge/unvote")
     .post(function(req, res, next) {
 
-        var searchImage = {
-            _id: req.body.imageId
+        var searchChallenge = {
+            _id: req.body.challengeId
         };
 
-        Image.findOne(searchImage, function(err, image) {
+        Challenge.findOneAndUpdate(searchChallenge, {$pull: {"stats.votes": req.body.userId}}, {new:true}, function(err, challenge) {
 
             if (err) {
                 return next(err);
             }
 
-            if (!image) {
-                return res.status(500).send({message: "Something went wrong"});
-            }
-            else {
+            return res.send(challenge.stats.votes);
 
-                if (image.stats.votes.indexOf(req.body.userId) === -1) {
-                    return res.send(false);
-                } else {
-                    return res.send(true);
-                }
-
-            }
-
-        });
+        })
 
     });
 

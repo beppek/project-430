@@ -11,9 +11,15 @@
             <div class="imgOverlay">
                 <h4>{{image.title}}</h4>
                 <p>
-                    <button ng-if="!hasVoted(image)" ng-click="vote()" class="secondary button"><i class="fi-arrow-up upvoteBtn"></i></button>
-                    <i ng-if="hasVoted(image)" class="fi-arrow-up upvoteBtn"></i>
+                <div ng-if="isAuthenticated()">
+                    <a ng-if="!hasVoted(image)" ng-click="vote()"><i class="fi-arrow-up upvoteBtn"></i></a>
+                    <a ng-if="hasVoted(image)" ng-click="unVote()" class="unvote"><i class="fi-arrow-up upvoteBtn"></i></a>
                     {{image.stats.votes.length}}
+                </div>
+                <div ng-if="!isAuthenticated()">
+                    <i class="fi-arrow-up upvoteBtn"></i>
+                    {{image.stats.votes.length}}
+                </div>
                 </p>
                 <p>{{image.description}}</p>
                 <p>Uploaded by: {{image.uploadedBy.name}}</p>

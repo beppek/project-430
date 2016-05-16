@@ -3,10 +3,16 @@
 
         {{challenge.title}} |
         {{challenge.description}} |
-        <a ng-if="isAuthenticated()" ng-click="joinChallenge()"><i class="fi-upload"></i> Upload</a> |
-        <a ng-if="!hasVoted(challenge)" ng-click="vote(challenge); $event.stopPropagation();"><span><i class="fi-arrow-up upvoteBtn"></i></span></a>
-        <i ng-if="hasVoted(challenge)" class="fi-arrow-up upvoteBtn"></i></span>
-        {{challenge.stats.votes.length}} |
+        <span ng-if="isAuthenticated()">
+            <a ng-click="joinChallenge()"><i class="fi-upload"></i> Upload</a> |
+            <a ng-if="!hasVoted(challenge)" ng-click="vote(challenge); $event.stopPropagation();"><i class="fi-arrow-up upvoteBtn"></i></a>
+            <a ng-if="hasVoted(challenge)" ng-click="unVote(challenge); $event.stopPropagation();"><span><i class="fi-arrow-up upvoteBtn"></i></span></a>
+            {{challenge.stats.votes.length}} |
+        </span>
+        <span ng-if="!isAuthenticated()">
+            <i class="fi-arrow-up upvoteBtn"></i>
+            {{challenge.stats.votes.length}} |
+        </span>
         <a ng-click="gotoLeaderboard(challenge)"><i class="fi-results-demographics"></i>Leaderboard</a></li></a>
 
     </div>
@@ -16,7 +22,17 @@
                 <div class="medium-12 columns">
 
                     <img ng-src="{{image.fileInfo.path}}" alt="">
-                    <p><span><i class="fi-arrow-up upvoteBtn"></i></span> {{image.stats.votes.length}}</p>
+                    <p>
+                    <div ng-if="isAuthenticated()">
+                        <a ng-if="!hasVoted(image)" ng-click="imageVote(image); $event.stopPropagation();"><i class="fi-arrow-up upvoteBtn"></i></a>
+                        <a ng-if="hasVoted(image)" ng-click="imageUnVote(image); $event.stopPropagation();" class="unvote"><i class="fi-arrow-up upvoteBtn"></i></a>
+                        {{image.stats.votes.length}}
+                    </div>
+                    <div ng-if="!isAuthenticated()">
+                        <i class="fi-arrow-up upvoteBtn"></i>
+                        {{image.stats.votes.length}}
+                    </div>
+                    </p>
                     <p>{{image.title}}</p>
                     <p>{{image.description}}</p>
                     <p>Uploaded by: {{image.uploadedBy.name}}</p>

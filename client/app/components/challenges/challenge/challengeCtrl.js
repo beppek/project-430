@@ -10,8 +10,8 @@
  * Exports the controller
  * */
 module.exports = angular.module("shutterSnappy")
-    .controller("challengeCtrl", ["$scope", "$auth", "challengeService", "callout", "$state", "$stateParams", "$http",
-        function($scope, $auth, challengeService, callout, $state, $stateParams, $http) {
+    .controller("challengeCtrl", ["$scope", "$auth", "challengeService", "callout", "$state", "$stateParams", "$http", "imageService",
+        function($scope, $auth, challengeService, callout, $state, $stateParams, $http, imageService) {
 
             var challengeId = $stateParams.id;
             var payload = $auth.getPayload();
@@ -26,6 +26,9 @@ module.exports = angular.module("shutterSnappy")
 
                 });
 
+            /**
+             * Go to image
+             * */
             $scope.toImage = function(image) {
 
                 var imageId = encodeURIComponent(image._id);
@@ -75,9 +78,9 @@ module.exports = angular.module("shutterSnappy")
             /**
              * Check if user has voted
              * */
-            $scope.hasVoted = function(challenge) {
+            $scope.hasVoted = function(item) {
                 if (payload) {
-                    if (challenge.stats.votes.indexOf(payload.sub) === -1) {
+                    if (item.stats.votes.indexOf(payload.sub) === -1) {
                         return false;
                     } else {
                         return true;
@@ -89,7 +92,7 @@ module.exports = angular.module("shutterSnappy")
             };
 
             /**
-             * Vote
+             * Vote for challenge
              * */
             $scope.vote = function(challenge) {
                 if (payload) {
@@ -104,6 +107,68 @@ module.exports = angular.module("shutterSnappy")
                         callout("warning", "Something went wrong!", err.message);
                     });
                 }
+
+            };
+
+            /**
+             * Unvote for challenge
+             * */
+            $scope.unVote = function(challenge) {
+                if (payload) {
+                    var i = challenge.stats.votes.indexOf(payload.sub);
+
+                    if (i > -1) {
+                        challenge.stats.votes.splice(i, 1);
+                    }
+
+                    challengeService.unVote({
+                        challengeId: challenge._id,
+                        userId: payload.sub
+                    }).success(function(res) {
+                        challenge.stats.votes = res;
+                    }).error(function(err) {
+                        callout("warning", "Something went wrong!", err.message);
+                    });
+                }
+
+            };
+
+            /**
+             * Vote for image
+             * */
+            $scope.imageVote = function(image) {
+
+                image.stats.votes.push(payload.sub);
+
+                imageService.vote({
+                    imageId: image._id,
+                    userId: payload.sub
+                }).success(function(res) {
+                    image.stats.votes = res;
+                }).error(function(err) {
+                    callout("warning", "Something went wrong!", err.message);
+                });
+
+            };
+            /**
+             * Unvote for image
+             * */
+            $scope.imageUnVote = function(image) {
+
+                var i = image.stats.votes.indexOf(payload.sub);
+
+                if (i > -1) {
+                    image.stats.votes.splice(i, 1);
+                }
+
+                imageService.unVote({
+                    imageId: image._id,
+                    userId: payload.sub
+                }).success(function(res) {
+                    image.stats.votes = res;
+                }).error(function(err) {
+                    callout("warning", "Something went wrong!", err.message);
+                });
 
             };
 

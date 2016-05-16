@@ -12,4 +12,8 @@ module.exports = angular.module("shutterSnappy")
             return $http.post("/image/vote", data);
         };
 
+        this.unVote = function(data) {
+            return $http.post("/image/unvote", data);
+        };
+
     }]);

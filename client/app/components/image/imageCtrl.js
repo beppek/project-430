@@ -14,6 +14,13 @@ module.exports = angular.module("shutterSnappy")
             var challengeId = $stateParams.challengeId;
             var imageId = $stateParams.imageId;
             var payload = $auth.getPayload();
+            
+            /**
+             * Check if user is authenticated
+             * */
+            $scope.isAuthenticated = function() {
+                return $auth.isAuthenticated();
+            };
 
             /**
              * Get the image and info
@@ -61,6 +68,27 @@ module.exports = angular.module("shutterSnappy")
                 $scope.image.stats.votes.push(payload.sub);
 
                 imageService.vote({
+                    imageId: $scope.image._id,
+                    userId: payload.sub
+                }).success(function(res) {
+                    $scope.image.stats.votes = res;
+                }).error(function(err) {
+                    callout("warning", "Something went wrong!", err.message);
+                });
+
+            };
+            /**
+             * Unvote
+             * */
+            $scope.unVote = function() {
+
+                var i = $scope.image.stats.votes.indexOf(payload.sub);
+
+                if (i > -1) {
+                    $scope.image.stats.votes.splice(i, 1);
+                }
+
+                imageService.unVote({
                     imageId: $scope.image._id,
                     userId: payload.sub
                 }).success(function(res) {

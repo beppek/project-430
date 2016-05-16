@@ -23,8 +23,8 @@ module.exports = angular.module("shutterSnappy")
             return $http.get("/challenge/" + id);
         };
 
-        // this.top10 = function(data) {
-        //     return $http.post("/challenge/leaderboard", data);
-        // };
+        this.unVote = function(data) {
+            return $http.post("/challenge/unvote", data);
+        };
 
     }]);
