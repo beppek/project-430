@@ -213,6 +213,13 @@ module.exports = angular.module("shutterSnappy")
                     .error(function(err) {
                         callout("warning", "Something went wrong", err.message);
                     })
+            };
+
+            /**
+             * Checks if current user is creator of challenge
+             * */
+            $scope.isCreator = function(challenge) {
+                return challenge.createdBy.createdById === payload.sub;
             }
 
         }]);
