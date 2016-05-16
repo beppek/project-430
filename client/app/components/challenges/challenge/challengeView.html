@@ -5,14 +5,16 @@
         {{challenge.description}} |
         <span ng-if="isAuthenticated()">
             <a ng-click="joinChallenge()"><i class="fi-upload"></i> Upload</a> |
-            <a ng-if="!hasVoted(challenge)" ng-click="vote(challenge); $event.stopPropagation();"><i class="fi-arrow-up upvoteBtn"></i></a>
-            <a ng-if="hasVoted(challenge)" ng-click="unVote(challenge); $event.stopPropagation();"><span><i class="fi-arrow-up upvoteBtn"></i></span></a>
+            <a ng-if="!hasVoted(challenge)" ng-click="vote(challenge); $event.stopPropagation();"><i class="fi-arrow-up voteBtn"></i></a>
+            <a ng-if="hasVoted(challenge)" ng-click="unVote(challenge); $event.stopPropagation();" class="hasVoted"><span><i class="fi-arrow-up voteBtn"></i></span></a>
             {{challenge.stats.votes.length}} |
         </span>
         <span ng-if="!isAuthenticated()">
-            <i class="fi-arrow-up upvoteBtn"></i>
+            <i class="fi-arrow-up"></i>
             {{challenge.stats.votes.length}} |
         </span>
+        Sort by:
+        <a ng-click="sortByVotes()">Votes</a> / <a ng-click="sortByDate()">Date</a> |
         <a ng-click="gotoLeaderboard(challenge)"><i class="fi-results-demographics"></i>Leaderboard</a></li></a>
 
     </div>
@@ -24,8 +26,8 @@
                     <img ng-src="{{image.fileInfo.path}}" alt="">
                     <p>
                     <div ng-if="isAuthenticated()">
-                        <a ng-if="!hasVoted(image)" ng-click="imageVote(image); $event.stopPropagation();"><i class="fi-arrow-up upvoteBtn"></i></a>
-                        <a ng-if="hasVoted(image)" ng-click="imageUnVote(image); $event.stopPropagation();" class="unvote"><i class="fi-arrow-up upvoteBtn"></i></a>
+                        <a ng-if="!hasVoted(image)" ng-click="imageVote(image); $event.stopPropagation();"><i class="fi-arrow-up voteBtn"></i></a>
+                        <a ng-if="hasVoted(image)" ng-click="imageUnVote(image); $event.stopPropagation();" class="hasVoted"><i class="fi-arrow-up voteBtn"></i></a>
                         {{image.stats.votes.length}}
                     </div>
                     <div ng-if="!isAuthenticated()">

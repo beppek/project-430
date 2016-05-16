@@ -10,9 +10,13 @@ var User = require("../models/User");
 var Image = require("../models/Image");
 
 module.exports = {
-    file: uploadFile
+    upload: uploadFile,
+    deleteImg: deleteImg
 };
 
+/**
+ * Handles uploading of file
+ * */
 function uploadFile(req, res) {
 
     var file = req.files.file;
@@ -104,19 +108,6 @@ function uploadFile(req, res) {
 
         });
 
-        // Challenge.findOneAndUpdate(searchChallenge, {$addToSet: {"stats.contributions": imgData.id}}, {new:true}, function(err, challenge) {
-        //     if (err) {
-        //         throw err;
-        //     }
-        //
-        //     if (!challenge) {
-        //         return res.status(401).send({
-        //             message: "Challenge doesn't exist!"
-        //         });
-        //     }
-        //
-        // });
-
         var searchImage = {
             "fileInfo.path": relPath
         };
@@ -177,5 +168,25 @@ function uploadFile(req, res) {
         });
 
     }
+
+}
+
+/**
+ * Removes file
+ * */
+function deleteImg(req, res) {
+
+    var filePath = "./client/imgDB/" + req.body.challengeId + "/" + req.body.fileName;
+
+    fs.unlink(filePath, function(err){
+        if (err) {
+            return res.status(500).send({
+                message: err
+            });
+        }
+
+        res.send("Successfully deleted the image!");
+
+    });
 
 }

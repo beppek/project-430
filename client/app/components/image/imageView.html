@@ -12,8 +12,8 @@
                 <h4>{{image.title}}</h4>
                 <p>
                 <div ng-if="isAuthenticated()">
-                    <a ng-if="!hasVoted(image)" ng-click="vote()"><i class="fi-arrow-up upvoteBtn"></i></a>
-                    <a ng-if="hasVoted(image)" ng-click="unVote()" class="unvote"><i class="fi-arrow-up upvoteBtn"></i></a>
+                    <a ng-if="!hasVoted(image)" ng-click="vote()"><i class="fi-arrow-up voteBtn"></i></a>
+                    <a ng-if="hasVoted(image)" ng-click="unVote()" class="hasVoted"><i class="fi-arrow-up voteBtn"></i></a>
                     {{image.stats.votes.length}}
                 </div>
                 <div ng-if="!isAuthenticated()">
@@ -23,8 +23,11 @@
                 </p>
                 <p>{{image.description}}</p>
                 <p>Uploaded by: {{image.uploadedBy.name}}</p>
-                <p>{{image.dateUploaded}}</p>
+                <p>{{image.dateCreated}}</p>
                 <p>Challenge: <a ng-click="toChallenge(challenge)">{{challenge.title}}</a></p>
+                <div ng-if="isCreator()">
+                    <button ng-click="deleteImage(image)" class="button alert">Delete</button>
+                </div>
             </div>
 
         </div>

@@ -14,7 +14,7 @@ module.exports = angular.module("shutterSnappy")
             var challengeId = $stateParams.challengeId;
             var imageId = $stateParams.imageId;
             var payload = $auth.getPayload();
-            
+
             /**
              * Check if user is authenticated
              * */
@@ -29,6 +29,9 @@ module.exports = angular.module("shutterSnappy")
                 .success(function(res) {
 
                     $scope.image = res;
+                    var dateCreated = new Date($scope.image.dateCreated);
+
+                    $scope.image.dateCreated = dateCreated.toDateString();
 
                 }).error(function(err) {
                     callout("warning", "Something went wrong", err.message);
@@ -110,5 +113,34 @@ module.exports = angular.module("shutterSnappy")
                     id: uriEncodedId
                 })
             };
+
+            /**
+             * Delete image
+             * */
+            $scope.deleteImage = function(image) {
+                var reqObj = {
+                    challengeId: challengeId,
+                    imageId: image._id,
+                    fileName: image.fileInfo.fileName,
+                    reqUserId: payload.sub,
+                    imageCreatorId: image.uploadedBy.userId
+                };
+
+                imageService.deleteImg(reqObj)
+                    .success(function(res) {
+                        $scope.toChallenge($scope.challenge);
+                        callout("success", "Gone!", res);
+                    })
+                    .error(function(err) {
+                        callout("warning", "Something went wrong", err.message);
+                    })
+            };
+
+            /**
+             * Checks if current user is creator of image
+             * */
+            $scope.isCreator = function() {
+                return $scope.image.uploadedBy.userId === payload.sub;
+            }
 
         }]);

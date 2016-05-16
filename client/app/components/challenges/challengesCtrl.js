@@ -6,8 +6,8 @@
  * Exports the controller
  * */
 module.exports = angular.module("shutterSnappy")
-    .controller("challengesCtrl", ["$scope", "$auth", "challenges", "callout", "$state", "challengeService",
-        function($scope, $auth, challenges, callout, $state, challengeService) {
+    .controller("challengesCtrl", ["$scope", "$auth", "challenges", "callout", "$state", "challengeService","sortService",
+        function($scope, $auth, challenges, callout, $state, challengeService, sortService) {
 
             /**
              * Check if authenticated
@@ -23,12 +23,15 @@ module.exports = angular.module("shutterSnappy")
              * */
             challenges.listAll()
                 .success(function(res) {
-                    $scope.challenges = res;
+                    $scope.challenges = sortService.byVotes(res);;
                 })
                 .error(function(err) {
                     callout("warning", "Something went wrong", err.message);
                 });
 
+            /**
+             * Go to challenge
+             * */
             $scope.toChallenge = function(challenge) {
 
                 var uriEncodedId = encodeURIComponent(challenge._id);
@@ -72,7 +75,7 @@ module.exports = angular.module("shutterSnappy")
                 }
 
             };
-            
+
             /**
              * Unvote
              * */
@@ -94,6 +97,27 @@ module.exports = angular.module("shutterSnappy")
                     });
                 }
 
+            };
+
+            /**
+             * Sort by votes
+             * */
+            $scope.sortByVotes = function() {
+                $scope.challenges = sortService.byVotes($scope.challenges);
+            };
+
+            /**
+             * Sort by contributions
+             * */
+            $scope.sortByContributions = function() {
+                $scope.challenges = sortService.byContributions($scope.challenges);
+            };
+
+            /**
+             * Sort by date
+             * */
+            $scope.sortByDate = function() {
+                $scope.challenges = sortService.byDate($scope.challenges);
             };
 
         }]);

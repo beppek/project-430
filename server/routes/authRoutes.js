@@ -134,6 +134,6 @@ router.route("/auth/facebook")
  *
  * */
 router.route("/challenge/:id/join")
-    .get(checkAuth);
+    .get(checkAuth.normal);
 
 module.exports = router;

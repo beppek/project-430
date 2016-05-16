@@ -10,8 +10,8 @@
  * Exports the controller
  * */
 module.exports = angular.module("shutterSnappy")
-    .controller("challengeCtrl", ["$scope", "$auth", "challengeService", "callout", "$state", "$stateParams", "$http", "imageService",
-        function($scope, $auth, challengeService, callout, $state, $stateParams, $http, imageService) {
+    .controller("challengeCtrl", ["$scope", "$auth", "challengeService", "callout", "$state", "$stateParams", "$http", "imageService", "sortService",
+        function($scope, $auth, challengeService, callout, $state, $stateParams, $http, imageService, sortService) {
 
             var challengeId = $stateParams.id;
             var payload = $auth.getPayload();
@@ -22,7 +22,7 @@ module.exports = angular.module("shutterSnappy")
             $http.get("/challenge/" + challengeId)
                 .success(function(res) {
 
-                    return $scope.images = res;
+                    $scope.images = sortService.byDate(res);
 
                 });
 
@@ -179,6 +179,20 @@ module.exports = angular.module("shutterSnappy")
                 $state.go("leaderboard", {
                     challenge: challenge._id
                 })
-            }
+            };
+
+            /**
+             * Sort by votes
+             * */
+            $scope.sortByVotes = function() {
+                $scope.images = sortService.byVotes($scope.images);
+            };
+
+            /**
+             * Sort by date
+             * */
+            $scope.sortByDate = function() {
+                $scope.images = sortService.byDate($scope.images);
+            };
 
         }]);

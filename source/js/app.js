@@ -21,6 +21,7 @@ require("../../client/app/shared/services/challenge");
 require("../../client/app/shared/services/challenges");
 require("../../client/app/shared/services/userService");
 require("../../client/app/shared/services/image");
+require("../../client/app/shared/services/sort");
 
 //Factories
 require("../../client/app/shared/services/authToken");

@@ -1,15 +1,19 @@
 <div ng-controller="createChallengeCtrl" class="">
+    <div class="toolbar">
+        Create a new challenge
+    </div>
     <div class="row">
-        <div class="medium-12 columns">
-            <h1>This is where you create a new challenge</h1>
+        <div class="medium-6 columns">
+            <ul>
+                <li>Title must be unique</li>
+                <li>Be descriptive! Remember that other people need to know what the challenge is about</li>
+                <li>Set restrictions. Examples: - must be black and white, - Must be taken with smartphone, - Must use flash</li>
+            </ul>
+            <p>... and don't forget to upload an image yourself</p>
         </div>
     </div>
     <div class="row">
         <div class="medium-12 columns">
-
-            <button type="button" class="hollow button" ng-click="getUser()"><i class="fi-torso"></i> Get User</button>
-
-            <p>{{userId}}</p>
 
             <form ng-submit="submit()" name="createChallenge" class="challenge-form" novalidate>
                 <div class="row align-center">
@@ -28,7 +32,6 @@
                     </div>
                 </div>
             </form>
-
 
         </div>
     </div>

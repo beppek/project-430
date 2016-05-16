@@ -30,6 +30,11 @@ var UserSchema = new mongoose.Schema({
         type: String,
         required: false
     },
+    dateCreated: {
+        type: Date,
+        required: false,
+        default: Date.now
+    },
     stats: {
         uploadedImages: [{
             type: mongoose.Schema.ObjectId,

@@ -11,7 +11,7 @@ var Challenge = require("../models/Challenge");
 var User = require("../models/User");
 var jwt = require("jwt-simple");
 var multiparty = require("connect-multiparty");
-var upload = require("../services/upload");
+var fileService = require("../services/fileService");
 var challenge = require("../services/challenge");
 
 var multipartyMiddleware = multiparty({uploadDir: "./client/imgDB"});
@@ -42,7 +42,7 @@ router.route("/challenges/list")
  * POST to upload image to challenge
  * */
 router.route("/challenge/upload")
-    .post(multipartyMiddleware, upload.file);
+    .post(multipartyMiddleware, fileService.upload);
 
 router.route("/challenge/:id")
     .get(challenge.getImages)

@@ -1,7 +1,9 @@
 <div ng-controller="challengesCtrl" class="">
     <div class="toolbar">
         Challenges
-        <a ng-if="isAuthenticated()" ui-sref="createChallenge"><i class="fi-plus"></i> Create</a>
+        <span ng-if="isAuthenticated()">| <a ui-sref="createChallenge"><i class="fi-plus"></i> Create</a> |</span>
+        Sort by:
+        <a ng-click="sortByVotes()">Votes</a> / <a ng-click="sortByContributions()">Contributions</a> / <a ng-click="sortByDate()">Date</a>
     </div>
 
     <div ng-click="toChallenge(challenge)" ng-repeat="challenge in challenges" class="row challenge">
@@ -9,12 +11,12 @@
 
             <h3>{{challenge.title}}</h3>
             <div ng-if="isAuthenticated()">
-                <a ng-if="!hasVoted(challenge)" ng-click="vote(challenge); $event.stopPropagation();"><i class="fi-arrow-up upvoteBtn"></i></a>
-                <a ng-if="hasVoted(challenge)" ng-click="unVote(challenge); $event.stopPropagation();"><i class="fi-arrow-up upvoteBtn"></i></a>
+                <a ng-if="!hasVoted(challenge)" ng-click="vote(challenge); $event.stopPropagation();"><i class="fi-arrow-up voteBtn"></i></a>
+                <a ng-if="hasVoted(challenge)" ng-click="unVote(challenge); $event.stopPropagation();" class="hasVoted"><i class="fi-arrow-up voteBtn"></i></a>
                 {{challenge.stats.votes.length}}
             </div>
             <div ng-if="!isAuthenticated()">
-                <i class="fi-arrow-up upvoteBtn"></i>
+                <i class="fi-arrow-up"></i>
                 {{challenge.stats.votes.length}}
             </div>
             <p>{{challenge.description}}</p>

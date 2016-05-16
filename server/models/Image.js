@@ -27,7 +27,7 @@ var ImageSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    dateUploaded: {
+    dateCreated: {
         type: Date,
         required: false,
         default: Date.now
