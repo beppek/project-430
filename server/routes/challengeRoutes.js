@@ -13,6 +13,7 @@ var jwt = require("jwt-simple");
 var multiparty = require("connect-multiparty");
 var fileService = require("../services/fileService");
 var challenge = require("../services/challenge");
+var checkAuth = require("../services/checkAuth");
 
 var multipartyMiddleware = multiparty({uploadDir: "./client/imgDB"});
 
@@ -43,6 +44,11 @@ router.route("/challenges/list")
  * */
 router.route("/challenge/upload")
     .post(multipartyMiddleware, fileService.upload);
+
+/**
+ * POST to delete challenge
+ * */
+router.post("/challenge/delete", checkAuth.forDelete, challenge.deleteChallenge, fileService.deleteChallenge);
 
 router.route("/challenge/:id")
     .get(challenge.getImages)

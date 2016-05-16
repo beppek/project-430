@@ -16,6 +16,9 @@
         Sort by:
         <a ng-click="sortByVotes()">Votes</a> / <a ng-click="sortByDate()">Date</a> |
         <a ng-click="gotoLeaderboard(challenge)"><i class="fi-results-demographics"></i>Leaderboard</a></li></a>
+        <!--<div ng-if="isCreator()">-->
+            | <a ng-click="deleteChallenge(challenge)" class="alert">Delete</a>
+        <!--</div>-->
 
     </div>
     <div class="row">

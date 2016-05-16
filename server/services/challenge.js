@@ -12,7 +12,8 @@ var Image = require("../models/Image");
 
 module.exports = {
     create: createChallenge,
-    getImages: getChallengeImages
+    getImages: getChallengeImages,
+    deleteChallenge: deleteChallenge
 };
 
 /**
@@ -111,3 +112,69 @@ function createChallenge(req, res, next) {
     });
 
 }
+
+/**
+ * Deletes the challenge
+ * */
+function deleteChallenge(req, res, next) {
+
+    var searchChallenge = {
+        _id: req.body.challengeId
+    };
+
+    var searchImage = {
+        challenge: req.body.challengeId
+    };
+
+    Image.find(searchImage, function(err, images) {
+        if (err) {
+            return next(err);
+        }
+
+        images.forEach(function(image) {
+
+            var searchUser = {
+                "stats.uploadedImages": image._id
+            };
+
+            User.findOneAndUpdate(searchUser, {$pull: {"stats.uploadedImages": image._id}}, {new:true}, function(err, user) {
+
+                if (err) {
+                    return next(err);
+                }
+
+            });
+
+        });
+
+    });
+
+    Image.remove(searchImage, function(err) {
+        if (err) {
+            return next(err);
+        }
+    });
+
+    Challenge.remove(searchChallenge, function(err) {
+        if (err) {
+            return next(err);
+        }
+
+        var searchUser = {
+            _id: req.body.creatorId
+        };
+
+        User.findOneAndUpdate(searchUser, {$pull: {"stats.createdChallenges": req.body.challengeId}}, {new:true}, function(err) {
+
+            if (err) {
+                return next(err);
+            }
+
+        });
+
+        next();
+
+    });
+
+}
+

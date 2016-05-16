@@ -123,7 +123,7 @@ module.exports = angular.module("shutterSnappy")
                     imageId: image._id,
                     fileName: image.fileInfo.fileName,
                     reqUserId: payload.sub,
-                    imageCreatorId: image.uploadedBy.userId
+                    creatorId: image.uploadedBy.userId
                 };
 
                 imageService.deleteImg(reqObj)

@@ -27,4 +27,8 @@ module.exports = angular.module("shutterSnappy")
             return $http.post("/challenge/unvote", data);
         };
 
+        this.deleteChallenge = function(data) {
+            return $http.post("/challenge/delete", data);
+        };
+
     }]);

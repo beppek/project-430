@@ -8,10 +8,12 @@ var fs = require("fs");
 var Challenge = require("../models/Challenge");
 var User = require("../models/User");
 var Image = require("../models/Image");
+var rmdir = require("rimraf");
 
 module.exports = {
     upload: uploadFile,
-    deleteImg: deleteImg
+    deleteImg: deleteImg,
+    deleteChallenge: deleteChallenge
 };
 
 /**
@@ -188,5 +190,24 @@ function deleteImg(req, res) {
         res.send("Successfully deleted the image!");
 
     });
+
+}
+
+/**
+ * Removes challenge folder
+ * */
+function deleteChallenge(req, res) {
+
+    var path = "./client/imgDB/" + req.body.challengeId;
+    rmdir(path, function(err) {
+        if (err) {
+            res.send({
+                message: err
+            })
+        }
+
+        res.send("Successfully deleted the challenge and all containing images");
+        
+    })
 
 }

@@ -195,4 +195,24 @@ module.exports = angular.module("shutterSnappy")
                 $scope.images = sortService.byDate($scope.images);
             };
 
+            /**
+             * Deletes challenge
+             * */
+            $scope.deleteChallenge = function(challenge) {
+                var reqObj = {
+                    challengeId: challenge._id,
+                    reqUserId: payload.sub,
+                    creatorId: challenge.createdBy.createdById
+                };
+
+                challengeService.deleteChallenge(reqObj)
+                    .success(function(res) {
+                        $state.go("challenges");
+                        callout("success", "Gone!", res);
+                    })
+                    .error(function(err) {
+                        callout("warning", "Something went wrong", err.message);
+                    })
+            }
+
         }]);

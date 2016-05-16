@@ -72,7 +72,7 @@ function checkAuthForDelete(req, res, next) {
             return res.status(401).send({ message: "Your session has expired" });
         }
 
-        if (payload.sub === req.body.reqUserId && payload.sub === req.body.imageCreatorId) {
+        if (payload.sub === req.body.reqUserId && payload.sub === req.body.creatorId) {
             next();
         } else {
             return res.status(401).send({
