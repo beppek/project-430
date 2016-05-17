@@ -1,37 +1,43 @@
 <div ng-controller="createChallengeCtrl" class="">
     <div class="toolbar">
-        Create a new challenge
-    </div>
-    <div class="row">
-        <div class="medium-6 columns">
-            <ul>
-                <li>Title must be unique</li>
-                <li>Be descriptive! Remember that other people need to know what the challenge is about</li>
-                <li>Set restrictions. Examples: - must be black and white, - Must be taken with smartphone, - Must use flash</li>
-            </ul>
-            <p>... and don't forget to upload an image yourself</p>
+        Create a new challenge |
+        <div class="dropdown">
+            <a>Tooltips</a>
+            <div class="dropdown-content">
+                <ul>
+                    <li>Title must be unique</li>
+                    <li>Be descriptive! Remember that other people need to know what the challenge is about</li>
+                    <li>Set restrictions. For example:
+                        <ul>
+                            <li>Must be black and white</li>
+                            <li>Must be taken with smartphone</li>
+                            <li>Must use flash</li>
+                        </ul>
+                    </li>
+                </ul>
+                <p>... and don't forget to upload an image yourself</p>
+            </div>
         </div>
     </div>
     <div class="row">
         <div class="medium-12 columns">
 
-            <form ng-submit="submit()" name="createChallenge" class="challenge-form" novalidate>
-                <div class="row align-center">
-                    <div class="medium-6 columns">
-                        <input name="title" ng-model="title" type="text" placeholder="Title" required>
-                    </div>
+            <div class="v-align-container">
+                <div class="v-align-inner">
+                    <form ng-submit="submit()" name="createChallenge" class="challenge-form" novalidate>
+                        <div class="row">
+                            <input name="title" ng-model="title" type="text" placeholder="Title" required>
+                        </div>
+                        <div class="row">
+                            <textarea name="description" ng-model="description" placeholder="Description..." required></textarea>
+                        </div>
+                        <div class="row">
+                            <button ng-disabled="createChallenge.$invalid" type="submit" class="secondary hollow button save"><i class="fa fa-floppy-o"></i> Save</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="row align-center">
-                    <div class="medium-6 columns">
-                        <textarea name="description" ng-model="description" placeholder="Description..." required></textarea>
-                    </div>
-                </div>
-                <div class="row align-center">
-                    <div class="medium-6 columns">
-                        <button ng-disabled="createChallenge.$invalid" type="submit" class="secondary hollow button save"><i class="fi-save"></i> Save</button>
-                    </div>
-                </div>
-            </form>
+
+            </div>
 
         </div>
     </div>

@@ -1,24 +1,44 @@
 <div ng-controller="challengeCtrl" class="">
     <div ng-if="challenge" class="toolbar">
-
-        {{challenge.title}} |
-        {{challenge.description}} |
-        <span ng-if="isAuthenticated()">
-            <a ng-click="joinChallenge()"><i class="fi-upload"></i> Upload</a> |
-            <a ng-if="!hasVoted(challenge)" ng-click="vote(challenge); $event.stopPropagation();"><i class="fi-arrow-up voteBtn"></i></a>
-            <a ng-if="hasVoted(challenge)" ng-click="unVote(challenge); $event.stopPropagation();" class="hasVoted"><span><i class="fi-arrow-up voteBtn"></i></span></a>
-            {{challenge.stats.votes.length}} |
-        </span>
+        <!--Description dropdown-->
+        <div class="dropdown">
+            <a>{{challenge.title}}</a>
+            <div class="dropdown-content">
+                {{challenge.description}}
+            </div>
+        </div> |
+        <!--Votes-->
         <span ng-if="!isAuthenticated()">
-            <i class="fi-arrow-up"></i>
+            <i class="fa fa-hand-spock-o"></i>
             {{challenge.stats.votes.length}} |
         </span>
-        Sort by:
-        <a ng-click="sortByVotes()">Votes</a> / <a ng-click="sortByDate()">Date</a> |
-        <a ng-click="gotoLeaderboard(challenge)"><i class="fi-results-demographics"></i>Leaderboard</a></li></a>
-        <span ng-if="isCreator(challenge)">
-            | <a ng-click="deleteChallenge(challenge)" class="alert">Delete</a>
+        <span ng-if="isAuthenticated()">
+            <a ng-if="!hasVoted(challenge)" ng-click="vote(challenge); $event.stopPropagation();"><i class="fa fa-hand-spock-o voteBtn"></i></a>
+            <a ng-if="hasVoted(challenge)" ng-click="unVote(challenge); $event.stopPropagation();" class="hasVoted"><span><i class="fa fa-hand-spock-o voteBtn"></i></span></a>
+            {{challenge.stats.votes.length}} |
         </span>
+        <!--Sort-->
+        <div class="dropdown">
+            <a><i class="fa fa-sort" aria-hidden="true"></i>Sort</a>
+            <div class="dropdown-content">
+                <a class="dd-item" ng-click="sortByVotes()">Votes</a>
+                <a class="dd-item" ng-click="sortByDate()">Date</a>
+            </div>
+        </div> |
+        <!--Leaderboard-->
+        <a ng-click="gotoLeaderboard(challenge)"><i class="fa fa-trophy" aria-hidden="true"></i></a> |
+        <div class="inline-block" ng-if="isAuthenticated()">
+            <!--Tools-->
+            <div class="dropdown">
+                <a><i class="fa fa-cogs" aria-hidden="true"></i> Tools</a>
+                <div class="dropdown-content">
+                    <a ng-click="joinChallenge()" class="dd-item"><i class="fa fa-upload"></i> Upload</a>
+                    <span ng-if="isCreator(challenge)">
+                        <a ng-click="deleteChallenge(challenge)" class="alert dd-item"><i class="fa fa-trash" aria-hidden="true"></i>Delete</a>
+                    </span>
+                </div>
+            </div>
+        </div>
 
     </div>
     <div class="row">
@@ -29,12 +49,12 @@
                     <img ng-src="{{image.fileInfo.path}}" alt="">
                     <p>
                     <div ng-if="isAuthenticated()">
-                        <a ng-if="!hasVoted(image)" ng-click="imageVote(image); $event.stopPropagation();"><i class="fi-arrow-up voteBtn"></i></a>
-                        <a ng-if="hasVoted(image)" ng-click="imageUnVote(image); $event.stopPropagation();" class="hasVoted"><i class="fi-arrow-up voteBtn"></i></a>
+                        <a ng-if="!hasVoted(image)" ng-click="imageVote(image); $event.stopPropagation();"><i class="fa fa-hand-spock-o voteBtn"></i></a>
+                        <a ng-if="hasVoted(image)" ng-click="imageUnVote(image); $event.stopPropagation();" class="hasVoted"><i class="fa fa-hand-spock-o voteBtn"></i></a>
                         {{image.stats.votes.length}}
                     </div>
                     <div ng-if="!isAuthenticated()">
-                        <i class="fi-arrow-up upvoteBtn"></i>
+                        <i class="fa fa-hand-spock-o upvoteBtn"></i>
                         {{image.stats.votes.length}}
                     </div>
                     </p>

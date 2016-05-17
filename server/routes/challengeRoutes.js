@@ -18,10 +18,9 @@ var checkAuth = require("../services/checkAuth");
 var multipartyMiddleware = multiparty({uploadDir: "./client/imgDB"});
 
 router.route("/challenge/create")
-    .post(challenge.create);
+    .post(checkAuth.normal, challenge.create);
 
 /**
- * TODO: CHANGE TO GET
  * POST for list of all challenges
  * */
 router.route("/challenges/list")

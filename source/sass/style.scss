@@ -2,6 +2,7 @@
 $mainBG: #2c2c2c;
 $menuBG: #233d4f;
 $textColor: #f0f0f0;
+$hasVoted: darken($textColor, 25%);
 $menuHover: lighten($menuBG, 25%);
 $active: lighten($menuBG, 15%);
 $challengeBG: lighten($mainBG, 15%);
@@ -14,6 +15,8 @@ $smallres: 960px;
 $mediumres: 1200px;
 $largeres: 1920px;
 $xlres: 2400px;
+
+$topLeftLogoWidth: 50px;
 
 $paddingTop: 40px;
 
@@ -43,12 +46,25 @@ label {
     color: $textColor;
 }
 
+.inline-block {
+    display: inline-block;
+}
+
 //Site wrapper
 .site-wrapper {
 }
 
 .logoImg {
     width: 100px;
+}
+
+.top-left-logo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    width: $topLeftLogoWidth;
+    padding: 0 5px;
 }
 
 //Toolbar Styles
@@ -60,7 +76,28 @@ label {
     height: $paddingTop;
     width: 100%;
     line-height: $paddingTop;
-    padding-left: 10px;
+    padding-left: $topLeftLogoWidth;
+}
+
+.dropdown {
+    display: inline-block;
+    position: relative;
+    &:hover .dropdown-content{
+        display: block;
+    }
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 200px;
+    background-color: #0a0a0a;
+    padding: 10px;
+    font-size: 13px;
+}
+
+.dd-item {
+    display: block;
 }
 
 //Menu Styles
@@ -122,14 +159,44 @@ label {
     color: $textColor;
 }
 
-.signin-form input {
+.all-forms {
+    @media screen and (max-width: $phabletres) {
+        width: 320px;
+    }
+}
+
+.all-forms input {
     margin: 0;
     border-radius: 0!important;
     border: none;
 }
 
-.signin-form button {
+.all-forms button {
     margin-top: 15px;
+}
+
+
+
+.all-forms textarea {
+    resize: none;
+    overflow: auto;
+    border-radius: 0;
+    @media screen and (max-width: $phabletres) {
+        height: 10em;
+    }
+    @media screen and (max-width: $smallres) and (min-width: $phabletres) {
+        height: 15em;
+    }
+    @media screen and (max-width: $largeres) and (min-width: $smallres) {
+        height: 20em;
+    }
+    @media screen and (max-width: $xlres) and (min-width: $largeres) {
+        height: 30em;
+    }
+}
+
+.signin-form {
+    @extend .all-forms;
 }
 
 //Content Wrapper
@@ -154,8 +221,8 @@ label {
 //Callout box
 .callout-box {
     position: absolute;
-    left: 15px;
-    top: $paddingTop;
+    right: 15px;
+    bottom: $paddingTop;
     @media screen and (max-width: $smallres) and (min-width: $phabletres) {
         max-width: 300px;
     }
@@ -199,7 +266,29 @@ label {
 
 //Create Challenge
 .challenge-form {
-    @extend .signin-form;
+    @extend .all-forms;
+}
+
+.hasVoted {
+    color: $hasVoted;
+}
+
+//Vertical align container only for 100% screen height
+.v-align-container {
+    height: calc(100vh - #{$paddingTop});
+    white-space: nowrap;
+}
+.v-align-container:before {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.25em;
+}
+.v-align-inner {
+    display: inline-block;
+    vertical-align: middle;
+    width: 500px;
 }
 
 //Animate UI

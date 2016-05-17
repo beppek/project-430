@@ -23,6 +23,10 @@ var ChallengeSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    lcTitle: {
+        type: String,
+        required: true
+    },
     description: {
         type: String,
         required: true

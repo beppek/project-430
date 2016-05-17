@@ -1,43 +1,49 @@
 /**
- * Created by Beppe on 6/05/2016.
+ * Create Challenge Controller
+ * @author beppek
  */
 
-/**
- * Exports the controller
- * */
-module.exports = angular.module("shutterSnappy").controller("createChallengeCtrl", ["$scope", "$auth", "challengeService", "callout", "$state", function($scope, $auth, challengeService, callout, $state) {
+"use strict";
+module.exports = angular.module("shutterSnappy")
+    .controller("createChallengeCtrl", ["$scope", "$auth", "challengeService", "callout", "$state",
+        function($scope, $auth, challengeService, callout, $state) {
 
-    $scope.getUser = function() {
-        var payload = $auth.getPayload();
+            /**
+             * Gets the User
+             * */
+            $scope.getUser = function() {
+                var payload = $auth.getPayload();
 
-        $scope.userId = payload.sub;
-    };
+                $scope.userId = payload.sub;
+            };
 
-    $scope.submit = function() {
+            /**
+             * Create challenge on submit
+             * */
+            $scope.submit = function() {
 
-        var payload = $auth.getPayload();
+                var payload = $auth.getPayload();
 
-        var challengeObj = {
-            userId: payload.sub,
-            title: $scope.title,
-            description: $scope.description
-        };
+                var challengeObj = {
+                    userId: payload.sub,
+                    title: $scope.title,
+                    description: $scope.description
+                };
 
-        challengeService.save(challengeObj)
-            .success(function(res) {
+                challengeService.save(challengeObj)
+                    .success(function(res) {
 
-                var uriEncodedId = encodeURIComponent(res._id);
+                        var uriEncodedId = encodeURIComponent(res._id);
 
-                callout("success", "Challenge Accepted!", "You successfully created the " + res.title + " challenge.");
-                $state.go("challenge-id", {
-                    id: uriEncodedId
-                });
-            })
-            .error(function(err) {
-                callout("warning", "Challenge Not Accepted!", err.message);
+                        callout("success", "Challenge Accepted!", "You successfully created the " + res.title + " challenge.");
+                        $state.go("challenge-id", {
+                            id: uriEncodedId
+                        });
+                    })
+                    .error(function(err) {
+                        callout("warning", "Challenge Not Accepted!", err.message);
+                    });
 
-            });
+            };
 
-    };
-
-}]);
+        }]);

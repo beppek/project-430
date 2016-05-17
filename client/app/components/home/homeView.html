@@ -1,6 +1,6 @@
 <div ng-controller="homeController">
     <div class="toolbar">
-        Home
+        ShutterSnappy
     </div>
     <div class="row">
         <div class="medium-12 columns">
@@ -9,35 +9,20 @@
 
                     <h3>{{challenge.title}}</h3>
                     <p>{{challenge.description}}</p>
-                    <p>Contributions: {{challenge.stats.contributions.length}} Upvoted: {{challenge.stats.votes.length}}</p>
-                    <p>Created by: {{challenge.createdBy.createdByName}}</p>
+                    <div ng-if="isAuthenticated()">
+                        <a ng-if="!hasVoted(challenge)" ng-click="vote(challenge); $event.stopPropagation();"><i class="fa fa-hand-spock-o voteBtn"></i></a>
+                        <a ng-if="hasVoted(challenge)" ng-click="unVote(challenge); $event.stopPropagation();" class="hasVoted"><i class="fa fa-hand-spock-o voteBtn"></i></a>
+                        {{challenge.stats.votes.length}}
+                    </div>
+                    <div ng-if="!isAuthenticated()">
+                        <i class="fa fa-hand-spock-o"></i>
+                        {{challenge.stats.votes.length}}
+                    </div>
+                    <p><i class="fa fa-picture-o"></i> {{challenge.stats.contributions.length}}</p>
+                    <p class="">Created by: {{challenge.createdBy.createdByName}}</p>
 
                 </div>
             </div>
-            <!--<h1>Hello {{ name }}! You are on the first page</h1>-->
-
-            <!--<div>-->
-                <!--<label>Your name:</label>-->
-                <!--<input type="text" ng-model="name">-->
-            <!--</div>-->
-
-            <!--<div ng-show="name.length < 5">-->
-
-                <!--You have less than 5 characters!-->
-
-            <!--</div>-->
-            <!--<div ng-show="name.length > 5">-->
-
-                <!--You have more than 5 characters!-->
-
-            <!--</div>-->
-
-            <!--<hr>-->
-
-            <!--<h3>Rules</h3>-->
-            <!--<ul>-->
-                <!--<li ng-repeat="rule in rules">{{rule.rulename}}</li>-->
-            <!--</ul>-->
         </div>
     </div>
 </div>
