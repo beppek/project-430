@@ -1,6 +1,6 @@
 /**
  * Router for the Image functions of application
- * @author BeppeK
+ * @author beppek
  */
 
 "use strict";

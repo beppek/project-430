@@ -25,7 +25,7 @@ router.route("/challenge/create")
  * POST for list of all challenges
  * */
 router.route("/challenges/list")
-    .post(function(req, res, next) {
+    .get(function(req, res, next) {
 
         Challenge.find(function(err, challenges) {
 

@@ -1,16 +1,18 @@
 /**
- * 
- * This service gets all the challenges from the database
- * 
+ * Challenges Service
  */
 
 "use strict";
 
 module.exports = angular.module("shutterSnappy")
-    .service("challenges", ["$http", function challenges($http) {
+    .service("challenges", ["$http",
+        function challenges($http) {
 
-        this.listAll = function() {
-            return $http.post("/challenges/list")
-        };
-    
-    }]);
+            /**
+             * Call to list all challenges
+             * */
+            this.listAll = function() {
+                return $http.get("/challenges/list")
+            };
+
+        }]);

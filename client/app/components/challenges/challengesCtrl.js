@@ -1,12 +1,12 @@
 /**
- * Created by Beppe on 22/04/2016.
+ * Challenges Controller
+ * @author beppek
  */
 
-/**
- * Exports the controller
- * */
+"use strict";
+
 module.exports = angular.module("shutterSnappy")
-    .controller("challengesCtrl", ["$scope", "$auth", "challenges", "callout", "$state", "challengeService","sortService",
+    .controller("challengesCtrl", ["$scope", "$auth", "challenges", "callout", "$state", "challengeService", "sortService",
         function($scope, $auth, challenges, callout, $state, challengeService, sortService) {
 
             /**

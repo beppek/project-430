@@ -1,7 +1,7 @@
 <div ng-controller="challengesCtrl" class="">
     <div class="toolbar">
-        Challenges
-        <span ng-if="isAuthenticated()">| <a ui-sref="createChallenge"><i class="fi-plus"></i> Create</a> |</span>
+        Challenges |
+        <span ng-if="isAuthenticated()"> <a ui-sref="createChallenge"><i class="fi-plus"></i> Create</a> |</span>
         Sort by:
         <a ng-click="sortByVotes()">Votes</a> / <a ng-click="sortByContributions()">Contributions</a> / <a ng-click="sortByDate()">Date</a>
     </div>

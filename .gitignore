@@ -4,6 +4,7 @@ node_modules
 .jscsrc
 .jshintrc
 bundle.js
+bundle.min.js
 *.log
 coverage.html
 secrets.js

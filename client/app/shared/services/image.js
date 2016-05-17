@@ -1,23 +1,33 @@
 /**
- * Handles image related functionality on front end
+ * Image Service
  * @author beppek
  */
 
 "use strict";
 
 module.exports = angular.module("shutterSnappy")
-    .service("imageService", ["$http", function imageService($http) {
+    .service("imageService", ["$http",
+        function imageService($http) {
 
-        this.vote = function(data) {
-            return $http.post("/image/vote", data);
-        };
+            /**
+             * Vote
+             * */
+            this.vote = function(data) {
+                return $http.post("/image/vote", data);
+            };
 
-        this.unVote = function(data) {
-            return $http.post("/image/unvote", data);
-        };
+            /**
+             * Unvote
+             * */
+            this.unVote = function(data) {
+                return $http.post("/image/unvote", data);
+            };
 
-        this.deleteImg = function(data) {
-            return $http.post("/image/delete", data);
-        }
+            /**
+             * Delete Image
+             * */
+            this.deleteImg = function(data) {
+                return $http.post("/image/delete", data);
+            }
 
-    }]);
+        }]);

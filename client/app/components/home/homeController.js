@@ -1,17 +1,11 @@
 /**
- *
  * This is the controller for the homepage
- *
  * @author: beppek
- *
  */
 
 "use strict";
 
 //TODO: Actually do something useful
-/**
- * Exports the controller
- * */
 module.exports = angular.module("shutterSnappy")
     .controller("homeController", ["$scope", "$log", "nameService", "challenges", "$state",
         function($scope, $log, nameService, challenges, $state) {

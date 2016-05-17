@@ -48,9 +48,7 @@ var UserSchema = new mongoose.Schema({
 });
 
 /**
- *
  * This middleware creates a salt and hashes the password before save
- *
  * */
 UserSchema.pre("save", function(next) {
     var user = this;
@@ -81,7 +79,6 @@ UserSchema.pre("save", function(next) {
 });
 
 /**
- *
  * Compares the password with the one saved in the db
  * @param {string} password - password to be hashed
  * @param {function} callback - callback function
@@ -101,9 +98,7 @@ UserSchema.methods.comparePasswords = function(password, callback) {
 };
 
 /**
- *
- * This function returs the user as a JSON string without the password
- *
+ * This function returns the user as a JSON string without the password
  * */
 UserSchema.methods.toJSON = function() {
 

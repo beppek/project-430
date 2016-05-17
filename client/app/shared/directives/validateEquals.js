@@ -1,26 +1,27 @@
 /**
- * Created by Beppe on 24/04/2016.
+ * Validate Equals Directive
  */
 
 "use strict";
 
 module.exports = angular.module("shutterSnappy")
-    .directive("validateEquals", function() {
-        return {
-            require: "ngModel",
-            link: function(scope, element, attrs, ngModelCtrl) {
-                function validateEqual(value) {
-                    var valid = (value === scope.$eval(attrs.validateEquals));
-                    ngModelCtrl.$setValidity("equal", valid);
-                    return valid ? value : undefined;
+    .directive("validateEquals", [
+        function() {
+            return {
+                require: "ngModel",
+                link: function(scope, element, attrs, ngModelCtrl) {
+                    function validateEqual(value) {
+                        var valid = (value === scope.$eval(attrs.validateEquals));
+                        ngModelCtrl.$setValidity("equal", valid);
+                        return valid ? value : undefined;
+                    }
+
+                    ngModelCtrl.$parsers.push(validateEqual);
+                    ngModelCtrl.$formatters.push(validateEqual);
+
+                    scope.$watch(attrs.validateEquals, function() {
+                        ngModelCtrl.$setViewValue(ngModelCtrl.$viewValue);
+                    })
                 }
-
-                ngModelCtrl.$parsers.push(validateEqual);
-                ngModelCtrl.$formatters.push(validateEqual);
-
-                scope.$watch(attrs.validateEquals, function() {
-                    ngModelCtrl.$setViewValue(ngModelCtrl.$viewValue);
-                })
             }
-        }
-    });
+        }]);

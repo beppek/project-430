@@ -1,10 +1,7 @@
 /**
- *
  * This file handles Angular routes
- *
  * @author: beppek
- *
- */
+ * */
 
 "use strict";
 

@@ -1,16 +1,12 @@
 /**
- *
- * This is the nameService used during early development and learning AngularJS
- *
+ * Name Service
  */
 
 "use strict";
 
-/**
- * Exports the service
- * */
-module.exports = angular.module("shutterSnappy").service("nameService", function() {
+module.exports = angular.module("shutterSnappy")
+    .service("nameService", [function() {
 
-    this.name = "";
+        this.name = "";
 
-});
+    }]);

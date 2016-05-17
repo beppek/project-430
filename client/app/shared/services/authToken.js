@@ -4,36 +4,38 @@
 
 "use strict";
 
-module.exports = angular.module("shutterSnappy").factory("authToken", function($window) {
+module.exports = angular.module("shutterSnappy")
+    .factory("authToken", ["$window",
+        function($window) {
 
-    var storage = $window.localStorage;
-    var cachedToken;
-    var authToken = {
+            var storage = $window.localStorage;
+            var cachedToken;
+            var authToken = {
 
-        setToken: function(token) {
-            cachedToken = token;
-            storage.setItem("userToken", token);
-        },
+                setToken: function(token) {
+                    cachedToken = token;
+                    storage.setItem("userToken", token);
+                },
 
-        getToken: function() {
+                getToken: function() {
 
-            if (!cachedToken) {
-                cachedToken = storage.getItem("userToken");
-            }
+                    if (!cachedToken) {
+                        cachedToken = storage.getItem("userToken");
+                    }
 
-            return cachedToken;
-        },
+                    return cachedToken;
+                },
 
-        isAuthenticated: function() {
-            return !!authToken.getToken();
-        },
+                isAuthenticated: function() {
+                    return !!authToken.getToken();
+                },
 
-        removeToken: function() {
-            cachedToken = null;
-            storage.removeItem("userToken");
-        }
-    };
+                removeToken: function() {
+                    cachedToken = null;
+                    storage.removeItem("userToken");
+                }
+            };
 
-    return authToken;
+            return authToken;
 
-});
+        }]);

@@ -17,11 +17,11 @@ var satellizer = require("satellizer");
 var ngFileUpload = require("ng-file-upload");
 
 // CREATE APP
-var slideZapp = ng.module("shutterSnappy", [
+var shutterSnappy = ng.module("shutterSnappy", [
     uiRouter,
     ngAnimate,
     satellizer,
     ngFileUpload
 ]);
 
-module.exports = slideZapp;
+module.exports = shutterSnappy;

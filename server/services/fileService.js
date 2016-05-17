@@ -67,7 +67,7 @@ function uploadFile(req, res) {
                     throw err;
                 }
 
-                fs.unlink(source, function(){
+                fs.unlink(source, function() {
                     if (err) {
                         res.status(500).send({
                             message: err
@@ -180,7 +180,7 @@ function deleteImg(req, res) {
 
     var filePath = "./client/imgDB/" + req.body.challengeId + "/" + req.body.fileName;
 
-    fs.unlink(filePath, function(err){
+    fs.unlink(filePath, function(err) {
         if (err) {
             return res.status(500).send({
                 message: err
@@ -207,7 +207,7 @@ function deleteChallenge(req, res) {
         }
 
         res.send("Successfully deleted the challenge and all containing images");
-        
+
     })
 
 }

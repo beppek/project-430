@@ -9,6 +9,9 @@ module.exports = angular.module("shutterSnappy")
     .service("sortService", ["$http", "$auth",
         function sortService() {
 
+            /**
+             * By Votes
+             * */
             this.byVotes = function(array) {
 
                 var sortedArray = array.slice();
@@ -29,6 +32,9 @@ module.exports = angular.module("shutterSnappy")
 
             };
 
+            /**
+             * By Contributions
+             * */
             this.byContributions = function(array) {
 
                 var sortedArray = array.slice();
@@ -49,6 +55,10 @@ module.exports = angular.module("shutterSnappy")
 
             };
 
+            /**
+             * By Date
+             * Returns most recent first
+             * */
             this.byDate = function(array) {
                 var sortedArray = array.slice();
 

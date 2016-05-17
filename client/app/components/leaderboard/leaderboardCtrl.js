@@ -5,9 +5,6 @@
 
 "use strict";
 
-/**
- * Exports the controller
- * */
 module.exports = angular.module("shutterSnappy")
     .controller("leaderboardCtrl", ["$scope", "$log", "$stateParams", "challengeService", "$state",
         function($scope, $log, $stateParams, challengeService, $state) {

@@ -1,6 +1,6 @@
 /**
  * Router for the starting point of application
- * @author BeppeK
+ * @author beppek
  */
 
 "use strict";

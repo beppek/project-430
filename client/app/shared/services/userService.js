@@ -1,8 +1,6 @@
 /**
- *
+ * User Service
  * @author beppek
- * This service handles user related functions
- *
  */
 
 "use strict";

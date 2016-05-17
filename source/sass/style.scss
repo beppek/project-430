@@ -15,7 +15,7 @@ $mediumres: 1200px;
 $largeres: 1920px;
 $xlres: 2400px;
 
-$paddingTop: 20px;
+$paddingTop: 40px;
 
 //mixins
 @mixin vertical-align {
@@ -59,20 +59,22 @@ label {
     background-color: #0a0a0a;
     height: $paddingTop;
     width: 100%;
+    line-height: $paddingTop;
+    padding-left: 10px;
 }
 
 //Menu Styles
 .menu-wrapper {
-    padding-top: $paddingTop*3;
+    padding-top: $paddingTop*2;
     background-color: $menuBG;
     height: 100vh;
-    width: 250px;
+    width: 220px;
     position: fixed;
     top: 0;
     z-index: 3;
 }
 .menu-closed {
-    right: -250px;
+    right: -220px;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -99,9 +101,15 @@ label {
 }
 .menu-buttons {
     z-index: 3;
-    top: $paddingTop;
+    top: 0;
     right: 20px;
-    position: absolute;
+    position: fixed;
+}
+.menu-btn {
+    color: $textColor;
+    line-height: $paddingTop - 2px;
+    font-size: 18px;
+    padding: 0 15px;
 }
 .close-menu-btn {
     padding: 5px 15px;
@@ -189,6 +197,11 @@ label {
     }
 }
 
+//Create Challenge
+.challenge-form {
+    @extend .signin-form;
+}
+
 //Animate UI
 .ui-view-container {
     position: relative;
@@ -233,4 +246,7 @@ label {
 }
 .js-off-canvas-exit {
     background-color: transparent;
+}
+.button {
+    border-radius: 0;
 }

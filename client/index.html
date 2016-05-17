@@ -61,7 +61,7 @@
                 <ul class="vertical menu">
                     <li><a ui-sref="home" ui-sref-active="active"><i class="fi-home"></i>Home</a></li>
                     <li><a ui-sref="challenges" ui-sref-active="active"><i class="fi-camera"></i>Challenges</a></li>
-                    <li><a ui-sref="leaderboard" ui-sref-active="active"><i class="fi-results-demographics"></i>Leaderboard</a></li>
+                    <!--<li><a ui-sref="leaderboards" ui-sref-active="active"><i class="fi-results-demographics"></i>Leaderboards</a></li>-->
                     <li ng-if="!isAuthenticated()"><a ui-sref="signup" ui-sref-active="active"><i class="fi-torso"></i>Sign up</a></li>
                     <li ng-if="isAuthenticated()"><a ui-sref="signout" ui-sref-active="active"><i class="fi-torso"></i>Sign out</a></li>
                     <li><a ui-sref="about" ui-sref-active="active"><i class="fi-info"></i>About</a></li>
@@ -71,7 +71,7 @@
             <div class="menu-buttons">
                 <button ng-if="!isAuthenticated() && currentPage() !== '/signin'" type="button" class="secondary hollow button menu-btn" data-open="signinModal"><i class="fi-torso"></i> Sign In/Up</button>
                 <!--<button ng-if="isAuthenticated()" ui-sref="upload" type="button" class="secondary hollow button menu-btn"><i class="fi-torso"></i>{{ name }}</button>-->
-                <button type="button" class="secondary button menu-btn" id="menu-button"><i class="fi-list"></i></button>
+                <button type="button" class="secondary hollow button menu-btn" id="menu-button"><i class="fi-list"></i></button>
             </div>
         </div>
 
@@ -97,9 +97,9 @@
         </div>
 
         <!--Load in Scripts-->
-        <script src="libs/js/vendor/jquery.js"></script>
-        <script src="libs/js/vendor/foundation.js"></script>
-        <script src="assets/js/bundle.js"></script>
+        <script src="libs/js/vendor/jquery-2.2.3.min.js"></script>
+        <script src="libs/js/vendor/foundation.min.js"></script>
+        <script src="assets/js/bundle.min.js"></script>
     </div>
 </body>
 </html>

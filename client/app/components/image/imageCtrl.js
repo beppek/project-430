@@ -4,9 +4,6 @@
  */
 "use strict";
 
-/**
- * Exports the controller
- * */
 module.exports = angular.module("shutterSnappy")
     .controller("imageCtrl", ["$scope", "callout", "$state", "$stateParams", "$http", "imageService", "$auth", "challengeService",
         function($scope, callout, $state, $stateParams, $http, imageService, $auth, challengeService) {
