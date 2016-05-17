@@ -22,7 +22,7 @@ module.exports = angular.module("shutterSnappy")
             };
 
             this.getImages = function(id) {
-                return $http.get("/challenge/" + id);
+                return $http.get("/challenge/" + id + "/images");
             };
 
             this.unVote = function(data) {

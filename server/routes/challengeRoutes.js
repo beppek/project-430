@@ -78,7 +78,7 @@ router.route("/challenge/:title")
 /**
  * Gets the images of the challenge
  * */
-router.route("/challenge/:id")
+router.route("/challenge/:id/images")
     .get(challenge.getImages);
 
 module.exports = router;
