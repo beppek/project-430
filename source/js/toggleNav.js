@@ -9,6 +9,7 @@
 "use strict";
 
 var nav = $("#menu");
+var navBtn = $("#menu-icon");
 
 /**
  * This function toggles the nav menu
@@ -16,6 +17,7 @@ var nav = $("#menu");
 function toggleNav() {
 
     nav.toggleClass("menu-closed menu-open");
+    navBtn.toggleClass("fa-bars fa-times");
 
 }
 

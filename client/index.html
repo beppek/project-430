@@ -14,7 +14,7 @@
 <body>
     <div class="site-wrapper" ng-cloak>
 
-        <div class="top-left-logo"><a ui-sref="home"><img src="assets/img/logo-min.png" alt="Camera"></a></div>
+        <a class="top-left-logo" ui-sref="home"><img src="assets/img/logo-min.png" alt="Camera"></a>
 
         <!--Sign In modal-->
         <div ng-controller="signinCtrl" class="medium reveal" id="signinModal" data-reveal data-animation-in="slide-in-down" data-animation-out="slide-out-up">
@@ -72,9 +72,9 @@
             </div>
 
             <div class="menu-buttons">
-                <button ng-if="!isAuthenticated() && currentPage() !== '/signin'" type="button" class="secondary hollow button menu-btn" data-open="signinModal"><i class="fa fa-user"></i> Sign In/Up</button>
+                <button ng-if="!isAuthenticated() && currentPage() !== '/signin'" type="button" class="menu-btn" data-open="signinModal"><i class="fa fa-user"></i> Sign In/Up</button>
                 <!--<button ng-if="isAuthenticated()" ui-sref="upload" type="button" class="secondary hollow button menu-btn"><i class="fa fa-user"></i>{{ name }}</button>-->
-                <button type="button" class="secondary hollow button menu-btn" id="menu-button"><i class="fa fa-bars" aria-hidden="true"></i></button>
+                <button type="button" class="menu-btn" id="menu-button"><i id="menu-icon" class="fa fa-bars" aria-hidden="true"></i></button>
             </div>
         </div>
 
@@ -102,6 +102,7 @@
         <!--Load in Scripts-->
         <script src="libs/js/vendor/jquery-2.2.3.min.js"></script>
         <script src="libs/js/vendor/foundation.min.js"></script>
+        <!--<script src="https://npmcdn.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>-->
         <!--TODO: Production use min-->
         <script src="assets/js/bundle.js"></script>
     </div>

@@ -1,12 +1,15 @@
 //SCSS Variables
-$mainBG: #2c2c2c;
-$menuBG: #233d4f;
+$mainBG: darken(#2c2c2c, 5%);
+$modalBG: #233d4f;
+$toolbarColor: lighten(#0a0a0a, 5%);
+$menuBG: $toolbarColor;
 $textColor: #f0f0f0;
 $hasVoted: darken($textColor, 25%);
 $menuHover: lighten($menuBG, 25%);
 $active: lighten($menuBG, 15%);
 $challengeBG: lighten($mainBG, 15%);
 $challengeBGHover: lighten($mainBG, 25%);
+
 
 $tinyres: 320px;
 $mobileres: 480px;
@@ -27,6 +30,13 @@ $paddingTop: 40px;
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
+}
+
+//Base classes to extend
+.box-shadow {
+    -webkit-box-shadow: 0px 0px 10px 4px rgba(25,25,25,0.75);
+    -moz-box-shadow: 0px 0px 10px 4px rgba(25,25,25,0.75);
+    box-shadow: 0px 0px 10px 4px rgba(25,25,25,0.75);
 }
 
 .testColor {
@@ -62,7 +72,7 @@ label {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 4;
+    z-index: 5!important;
     width: $topLeftLogoWidth;
     padding: 0 5px;
 }
@@ -72,11 +82,13 @@ label {
     position: fixed;
     top:0;
     left:0;
-    background-color: #0a0a0a;
+    z-index: 4;
+    background-color: $toolbarColor;
     height: $paddingTop;
     width: 100%;
     line-height: $paddingTop;
     padding-left: $topLeftLogoWidth;
+    @extend .box-shadow;
 }
 
 .dropdown {
@@ -91,10 +103,11 @@ label {
     display: none;
     position: absolute;
     min-width: 200px;
-    background-color: #0a0a0a;
+    background-color: $toolbarColor;
     padding: 10px;
     font-size: 13px;
     left:-20px;
+    @extend .box-shadow;
 }
 
 .dd-item {
@@ -148,6 +161,17 @@ label {
     line-height: $paddingTop - 2px;
     font-size: 18px;
     padding: 0 15px;
+    background-color: $toolbarColor;
+    border-radius: 0;
+    &:visited {
+        background-color: $modalBG;
+    }
+    &:hover {
+        background-color: $modalBG;
+    }
+    &:active {
+        background-color: $modalBG;
+    }
 }
 .close-menu-btn {
     padding: 5px 15px;
@@ -156,7 +180,7 @@ label {
 
 //Sign in modal
 #signinModal {
-    background-color: $menuBG;
+    background-color: $modalBG;
     color: $textColor;
 }
 
@@ -230,7 +254,6 @@ label {
     position: absolute;
     left: 15px;
     top: $paddingTop;
-    z-index: 5;
     @media screen and (max-width: $smallres) and (min-width: $phabletres) {
         max-width: 300px;
     }
@@ -250,6 +273,16 @@ label {
         background-color: $challengeBGHover;
         cursor: pointer;
     }
+}
+
+.challenge-image {
+    margin: $paddingTop/2;
+    &:hover {
+        cursor: pointer;
+    }
+}
+.challenge-image img {
+    margin: 10px;
 }
 
 .join-challenge-form input {
@@ -282,9 +315,18 @@ label {
 }
 
 //Image style
+.image-wrapper-outer {
+    width: 100%;
+    text-align: center;
+}
+
 .image-wrapper {
-    float: left;
+    display: inline-block;
     position: relative;
+    @extend .box-shadow;
+    //-webkit-box-shadow: 0px 0px 10px 5px rgba(25,25,25,0.75);
+    //-moz-box-shadow: 0px 0px 10px 5px rgba(25,25,25,0.75);
+    //box-shadow: 0px 0px 10px 5px rgba(25,25,25,0.75);
     &:hover .image-overlay {
         display: block;
     }
@@ -295,8 +337,27 @@ label {
     bottom:0;
     left:0;
     width: 100%;
-    background-color: rgba(25,25,25,0.5);
+    background-color: rgba(25,25,25,0.4);
     display: none;
+    padding: 20px;
+}
+
+.image-wrapper img {
+    max-height: calc(100vh - #{$paddingTop}*2);
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.left-image-info {
+    @media screen and (min-width: $phabletres) {
+        text-align: left;
+    }
+}
+
+.right-image-info {
+    @media screen and (min-width: $phabletres) {
+        text-align: right;
+    }
 }
 
 //Vertical align container only for 100% screen height

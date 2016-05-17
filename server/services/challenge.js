@@ -43,6 +43,12 @@ function getChallengeImages(req, res, next) {
  * */
 function createChallenge(req, res, next) {
 
+    if (req.body.title.toLowerCase() === "create") {
+        return res.status(401).send({
+            message: "That name is not allowed!"
+        })
+    }
+
     var searchChallenge = {
         lcTitle: req.body.title.toLowerCase()
     };

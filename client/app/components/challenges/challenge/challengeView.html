@@ -21,8 +21,8 @@
         <div class="dropdown">
             <a><i class="fa fa-sort" aria-hidden="true"></i>Sort</a>
             <div class="dropdown-content">
-                <a class="dd-item" ng-click="sortByVotes()">Votes</a>
-                <a class="dd-item" ng-click="sortByDate()">Date</a>
+                <a class="dd-item" ng-click="sortByVotes()"><i class="fa fa-hand-spock-o"></i> Votes</a>
+                <a class="dd-item" ng-click="sortByDate()"><i class="fa fa-calendar"></i> Date</a>
             </div>
         </div> |
         <!--Leaderboard-->
@@ -41,26 +41,60 @@
         </div>
 
     </div>
+
     <div class="row">
         <div class="medium-12 columns">
-            <div ng-click="toImage(image)" ng-repeat="image in images" class="row challenge">
+            <div ng-click="toImage(image)" ng-repeat="image in images" class="row challenge-image">
                 <div class="medium-12 columns">
 
-                    <img ng-src="{{image.fileInfo.path}}" alt="">
-                    <p>
-                    <div ng-if="isAuthenticated()">
-                        <a ng-if="!hasVoted(image)" ng-click="imageVote(image); $event.stopPropagation();"><i class="fa fa-hand-spock-o voteBtn"></i></a>
-                        <a ng-if="hasVoted(image)" ng-click="imageUnVote(image); $event.stopPropagation();" class="hasVoted"><i class="fa fa-hand-spock-o voteBtn"></i></a>
-                        {{image.stats.votes.length}}
+                    <div class="image-wrapper-outer">
+                        <div class="image-wrapper">
+
+                            <div class="row">
+                                <div class="medium-12 columns">
+                                    <img ng-src="{{image.fileInfo.path}}" alt="{{image.description}}">
+                                </div>
+                            </div>
+                            <div class="image-overlay">
+                                <div class="row">
+                                    <div class="medium-6 columns left-image-info">
+                                        <h4>{{image.title}}</h4>
+                                        <div ng-if="isAuthenticated()">
+                                            <a ng-if="!hasVoted(image)" ng-click="imageVote(image); $event.stopPropagation();"><i class="fa fa-hand-spock-o voteBtn"></i></a>
+                                            <a ng-if="hasVoted(image)" ng-click="imageUnVote(image); $event.stopPropagation();" class="hasVoted"><i class="fa fa-hand-spock-o voteBtn"></i></a>
+                                            {{image.stats.votes.length}}
+                                        </div>
+                                        <div ng-if="!isAuthenticated()">
+                                            <i class="fa fa-hand-spock-o upvoteBtn"></i>
+                                            {{image.stats.votes.length}}
+                                        </div>
+                                        </p>
+                                        <p>{{image.description}}</p>
+                                    </div>
+                                    <div class="medium-6 columns right-image-info">
+                                        <p><i class="fa fa-copyright"></i>{{image.uploadedBy.name}}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
-                    <div ng-if="!isAuthenticated()">
-                        <i class="fa fa-hand-spock-o upvoteBtn"></i>
-                        {{image.stats.votes.length}}
-                    </div>
-                    </p>
-                    <p>{{image.title}}</p>
-                    <p>{{image.description}}</p>
-                    <p>Uploaded by: {{image.uploadedBy.name}}</p>
+
+                    <!--<img ng-src="{{image.fileInfo.path}}" alt="">-->
+                    <!--<p>-->
+                    <!--<div ng-if="isAuthenticated()">-->
+                        <!--<a ng-if="!hasVoted(image)" ng-click="imageVote(image); $event.stopPropagation();"><i class="fa fa-hand-spock-o voteBtn"></i></a>-->
+                        <!--<a ng-if="hasVoted(image)" ng-click="imageUnVote(image); $event.stopPropagation();" class="hasVoted"><i class="fa fa-hand-spock-o voteBtn"></i></a>-->
+                        <!--{{image.stats.votes.length}}-->
+                    <!--</div>-->
+                    <!--<div ng-if="!isAuthenticated()">-->
+                        <!--<i class="fa fa-hand-spock-o upvoteBtn"></i>-->
+                        <!--{{image.stats.votes.length}}-->
+                    <!--</div>-->
+                    <!--</p>-->
+                    <!--<p>{{image.title}}</p>-->
+                    <!--<p>{{image.description}}</p>-->
+                    <!--<p>Uploaded by: {{image.uploadedBy.name}}</p>-->
 
                 </div>
             </div>

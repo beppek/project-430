@@ -1,6 +1,15 @@
 <div ng-controller="homeController">
     <div class="toolbar">
-        ShutterSnappy
+        ShutterSnappy |
+        <span ng-if="isAuthenticated()"> <a ui-sref="createChallenge"><i class="fa fa-plus" aria-hidden="true"></i> Create</a> |</span>
+        <div class="dropdown">
+            <a><i class="fa fa-sort"></i> Sort</a>
+            <div class="dropdown-content">
+                <a class="dd-item" ng-click="sortByVotes()"><i class="fa fa-hand-spock-o"></i> Votes</a>
+                <a class="dd-item" ng-click="sortByContributions()"><i class="fa fa-picture-o"></i> Contributions</a>
+                <a class="dd-item" ng-click="sortByDate()"><i class="fa fa-calendar"></i> Date</a>
+            </div>
+        </div>
     </div>
     <div class="row">
         <div class="medium-12 columns">

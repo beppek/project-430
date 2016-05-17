@@ -13,6 +13,8 @@ module.exports = angular.module("shutterSnappy")
                 return $state.current.url;
             };
 
+            $scope.toggle = false;
+
             $scope.name = nameService.name;
 
         }]);

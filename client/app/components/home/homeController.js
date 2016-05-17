@@ -7,11 +7,23 @@
 
 //TODO: Actually do something useful
 module.exports = angular.module("shutterSnappy")
-    .controller("homeController", ["$scope", "$log", "nameService", "challenges", "$state",
-        function($scope, $log, nameService, challenges, $state) {
+    .controller("homeController", ["$scope", "$log", "nameService", "challenges", "$state", "$auth", "challengeService", "sortService",
+        function($scope, $log, nameService, challenges, $state, $auth, challengeService, sortService) {
 
             $scope.name = nameService.name;
 
+            /**
+             * Check if authenticated
+             * */
+            $scope.isAuthenticated = function() {
+                return $auth.isAuthenticated();
+            };
+
+            var payload = $auth.getPayload();
+
+            /**
+             * Get list of challenges
+             * */
             challenges.listAll()
                 .success(function(res) {
                     $scope.challenges = res;
@@ -20,6 +32,9 @@ module.exports = angular.module("shutterSnappy")
                     callout("warning", "Something went wrong", err.message);
                 });
 
+            /**
+             * Go to challenge
+             * */
             $scope.toChallenge = function(challenge) {
 
                 var uriTitle = encodeURIComponent(challenge.lcTitle);
@@ -29,14 +44,87 @@ module.exports = angular.module("shutterSnappy")
                 })
             };
 
+            /**
+             * Check if user has voted
+             * */
+            $scope.hasVoted = function(challenge) {
+                if (payload) {
+                    if (challenge.stats.votes.indexOf(payload.sub) === -1) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                } else {
+                    return true;
+                }
+            };
+
+            /**
+             * Vote
+             * */
+            $scope.vote = function(challenge) {
+
+                if (payload) {
+                    challenge.stats.votes.push(payload.sub);
+
+                    challengeService.vote({
+                        challengeId: challenge._id,
+                        userId: payload.sub
+                    }).success(function(res) {
+                        challenge.stats.votes = res;
+                    }).error(function(err) {
+                        callout("warning", "Something went wrong!", err.message);
+                    });
+                }
+
+            };
+
+            /**
+             * Unvote
+             * */
+            $scope.unVote = function(challenge) {
+                if (payload) {
+                    var i = challenge.stats.votes.indexOf(payload.sub);
+
+                    if (i > -1) {
+                        challenge.stats.votes.splice(i, 1);
+                    }
+
+                    challengeService.unVote({
+                        challengeId: challenge._id,
+                        userId: payload.sub
+                    }).success(function(res) {
+                        challenge.stats.votes = res;
+                    }).error(function(err) {
+                        callout("warning", "Something went wrong!", err.message);
+                    });
+                }
+
+            };
+
+            /**
+             * Sort by votes
+             * */
+            $scope.sortByVotes = function() {
+                $scope.challenges = sortService.byVotes($scope.challenges);
+            };
+
+            /**
+             * Sort by contributions
+             * */
+            $scope.sortByContributions = function() {
+                $scope.challenges = sortService.byContributions($scope.challenges);
+            };
+
+            /**
+             * Sort by date
+             * */
+            $scope.sortByDate = function() {
+                $scope.challenges = sortService.byDate($scope.challenges);
+            };
+
             $scope.$watch("name", function() {
                 nameService.name = $scope.name;
             });
-
-            $scope.rules = [
-                {rulename: "Must be 5 characters"},
-                {rulename: "Must not be used elsewhere"},
-                {rulename: "Must be cool"}
-            ];
 
         }]);

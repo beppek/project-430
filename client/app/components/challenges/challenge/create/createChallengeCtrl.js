@@ -36,7 +36,7 @@ module.exports = angular.module("shutterSnappy")
                         var uriTitle = encodeURIComponent(res.lcTitle);
 
                         callout("success", "Challenge Accepted!", "You successfully created the " + res.title + " challenge.");
-                        $state.go("challenge-title", {
+                        $state.go("joinChallenge", {
                             title: uriTitle
                         });
                     })
