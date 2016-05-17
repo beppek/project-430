@@ -16,10 +16,11 @@ var fileService = require("../services/fileService");
  * */
 router.post("/image/delete", checkAuth.forDelete, image.deleteImg, fileService.deleteImg);
 
+//TODO Rewrite to use challenge title
 /**
  * Gets image
  * */
-router.route("/image/:challengeId/:imageId")
+router.route("/image/:imageId")
     .get(image.fetch);
 
 module.exports = router;

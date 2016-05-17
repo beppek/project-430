@@ -15,32 +15,31 @@ module.exports = angular.module("shutterSnappy")
             challengeService.get($stateParams.challenge)
                 .success(function(res) {
                     $scope.challenge = res;
+
+                    //Get the images and sort
+                    challengeService.getImages($scope.challenge._id)
+                        .success(function(res) {
+
+                            var images = res;
+
+                            images.sort(function(a, b) {
+                                if (a.stats.votes.length > b.stats.votes.length) {
+                                    return -1;
+                                }
+
+                                if (a.stats.votes.length < b.stats.votes.length) {
+                                    return 1;
+                                }
+
+                                return 0
+                            });
+
+                            $scope.top10 = images.slice(0, 10);
+
+                        });
+
                 })
                 .error(function(err) {
-
-                });
-
-            /**
-             * Get images for challenge and sorts after vote count
-             * */
-            challengeService.getImages($stateParams.challenge)
-                .success(function(res) {
-
-                    var images = res;
-
-                    images.sort(function(a, b) {
-                        if (a.stats.votes.length > b.stats.votes.length) {
-                            return -1;
-                        }
-
-                        if (a.stats.votes.length < b.stats.votes.length) {
-                            return 1;
-                        }
-
-                        return 0
-                    });
-
-                    $scope.top10 = images.slice(0, 10);
 
                 });
 
@@ -48,8 +47,11 @@ module.exports = angular.module("shutterSnappy")
              * Go to challenge
              * */
             $scope.toChallenge = function(challenge) {
-                $state.go("challenge-id", {
-                    id: challenge._id
+
+                var uriTitle = encodeURIComponent(challenge.lcTitle);
+
+                $state.go("challenge-title", {
+                    title: uriTitle
                 })
             };
 
@@ -58,7 +60,7 @@ module.exports = angular.module("shutterSnappy")
              * */
             $scope.toImage = function(image) {
                 $state.go("image", {
-                    challengeId: $stateParams.challenge,
+                    challengeTitle: $stateParams.challenge,
                     imageId: image._id
                 })
             }

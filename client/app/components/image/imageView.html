@@ -7,26 +7,36 @@
     <div ng-if="image" class="row">
         <div class="medium-12 columns">
 
-            <img ng-src="{{image.fileInfo.path}}" alt="{{image.description}}">
-            <div class="imgOverlay">
-                <h4>{{image.title}}</h4>
-                <p>
-                <div ng-if="isAuthenticated()">
-                    <a ng-if="!hasVoted(image)" ng-click="vote()"><i class="fa fa-hand-spock-o voteBtn"></i></a>
-                    <a ng-if="hasVoted(image)" ng-click="unVote()" class="hasVoted"><i class="fa fa-hand-spock-o voteBtn"></i></a>
-                    {{image.stats.votes.length}}
-                </div>
-                <div ng-if="!isAuthenticated()">
-                    <i class="fa fa-hand-spock-o upvoteBtn"></i>
-                    {{image.stats.votes.length}}
-                </div>
-                </p>
-                <p>{{image.description}}</p>
-                <p><i class="fa fa-copyright"></i>{{image.uploadedBy.name}}</p>
-                <p><i class="fa fa-calendar"></i> {{image.dateCreated}}</p>
-                <p>Challenge: <a ng-click="toChallenge(challenge)">{{challenge.title}}</a></p>
-                <div ng-if="isCreator()">
-                    <button ng-click="deleteImage(image)" class="button alert"><i class="fa fa-trash"></i>Delete</button>
+            <div class="v-align-container">
+                <div class="v-align-inner">
+
+                    <div class="image-wrapper">
+
+                        <img ng-src="{{image.fileInfo.path}}" alt="{{image.description}}">
+                        <div class="image-overlay">
+                            <h4>{{image.title}}</h4>
+                            <p>
+                            <div ng-if="isAuthenticated()">
+                                <a ng-if="!hasVoted(image)" ng-click="vote()"><i class="fa fa-hand-spock-o voteBtn"></i></a>
+                                <a ng-if="hasVoted(image)" ng-click="unVote()" class="hasVoted"><i class="fa fa-hand-spock-o voteBtn"></i></a>
+                                {{image.stats.votes.length}}
+                            </div>
+                            <div ng-if="!isAuthenticated()">
+                                <i class="fa fa-hand-spock-o upvoteBtn"></i>
+                                {{image.stats.votes.length}}
+                            </div>
+                            </p>
+                            <p>{{image.description}}</p>
+                            <p><i class="fa fa-copyright"></i>{{image.uploadedBy.name}}</p>
+                            <p><i class="fa fa-calendar"></i> {{image.dateCreated}}</p>
+                            <p>Challenge: <a ng-click="toChallenge(challenge)">{{challenge.title}}</a></p>
+                            <div ng-if="isCreator()">
+                                <button ng-click="deleteImage(image)" class="button alert"><i class="fa fa-trash"></i>Delete</button>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
 

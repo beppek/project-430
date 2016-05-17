@@ -22,10 +22,10 @@ module.exports = angular.module("shutterSnappy")
 
             $scope.toChallenge = function(challenge) {
 
-                var uriEncodedId = encodeURIComponent(challenge._id);
+                var uriTitle = encodeURIComponent(challenge.lcTitle);
 
-                $state.go("challenge-id", {
-                    id: uriEncodedId
+                $state.go("challenge-title", {
+                    title: uriTitle
                 })
             };
 

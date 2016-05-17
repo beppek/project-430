@@ -17,7 +17,7 @@ module.exports = angular.module("shutterSnappy")
             /**
              * Get challenge
              * */
-            challengeService.get(decodeURIComponent($stateParams.id))
+            challengeService.get($stateParams.title)
                 .success(function(challenge) {
                     $scope.challenge = challenge;
                 })
@@ -30,10 +30,10 @@ module.exports = angular.module("shutterSnappy")
              * */
             $scope.toChallenge = function(challenge) {
 
-                var uriEncodedId = encodeURIComponent(challenge._id);
+                var uriTitle = encodeURIComponent(challenge.lcTitle);
 
-                $state.go("challenge-id", {
-                    id: uriEncodedId
+                $state.go("challenge-title", {
+                    title: uriTitle
                 })
             };
 
@@ -69,7 +69,7 @@ module.exports = angular.module("shutterSnappy")
                     userId: userService.getId(),
                     title: $scope.title,
                     description: $scope.description,
-                    challengeId: $stateParams.id
+                    challengeId: $scope.challenge._id
                 };
 
                 Upload.upload({
@@ -83,18 +83,19 @@ module.exports = angular.module("shutterSnappy")
                     callout("success", "Challenge Accepted!", "You successfully uploaded " + res.config.data.file.name);
 
                     $state.go("image", {
-                        challengeId: res.data.challenge,
+                        challengeTitle: $stateParams.title,
                         imageId: res.data._id
                     });
                 },
 
                 function(err) {
-                    console.log("Error status: " + err.status);
+                    callout("warning", "Something went wrong!", "Error status: " + err.status);
                 },
 
                 function(evt) {
                     var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
                     console.log("Progress: " + progressPercentage + "% " + evt.config.data.file.name);
+                    $scope.progress = progressPercentage;
                 });
 
             };

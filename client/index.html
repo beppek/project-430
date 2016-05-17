@@ -22,7 +22,7 @@
             <form ng-submit="submit()" name="signin" class="signin-form" novalidate>
                 <div class="row align-center">
                     <div class="medium-12 columns">
-                        <h3><i class="fi-torso"></i>Sign In</h3>
+                        <h3><i class="fa fa-user"></i>Sign In</h3>
                     </div>
                 </div>
                 <div class="row align-center">
@@ -39,9 +39,9 @@
                 </div>
                 <div class="row align-center">
                     <div class="medium-12 columns">
-                        <button ng-disabled="signin.$invalid" type="submit" class="secondary hollow button" data-close>Sign in</button>
-                        <button type="button" class="hollow button" ng-click="authenticate('google')" data-close><i class="fi-social-google-plus"></i> Google</button>
-                        <button type="button" class="hollow button" ng-click="authenticate('facebook')" data-close><i class="fi-social-facebook"></i> Facebook</button>
+                        <button ng-disabled="signin.$invalid" type="submit" class="secondary hollow button" data-close><i class="fa fa-sign-in"></i> Sign in</button>
+                        <button type="button" class="hollow button" ng-click="authenticate('google')" data-close><i class="fa fa-google-plus"></i> Google</button>
+                        <button type="button" class="hollow button" ng-click="authenticate('facebook')" data-close><i class="fa fa-facebook-official"></i> Facebook</button>
                     </div>
                 </div>
 
@@ -62,18 +62,18 @@
         <div ng-controller="menuCtrl">
             <div class="menu-wrapper menu-closed" id="menu">
                 <ul class="vertical menu">
-                    <li><a ui-sref="home" ui-sref-active="active"><i class="fi-home"></i>Home</a></li>
-                    <li><a ui-sref="challenges" ui-sref-active="active"><i class="fi-camera"></i>Challenges</a></li>
+                    <li><a ui-sref="home" ui-sref-active="active"><i class="fa fa-home"></i>Home</a></li>
+                    <li><a ui-sref="challenges" ui-sref-active="active"><i class="fa fa-camera-retro"></i>Challenges</a></li>
                     <!--<li><a ui-sref="leaderboards" ui-sref-active="active"><i class="fi-results-demographics"></i>Leaderboards</a></li>-->
-                    <li ng-if="!isAuthenticated()"><a ui-sref="signup" ui-sref-active="active"><i class="fi-torso"></i>Sign up</a></li>
-                    <li ng-if="isAuthenticated()"><a ui-sref="signout" ui-sref-active="active"><i class="fi-torso"></i>Sign out</a></li>
-                    <li><a ui-sref="about" ui-sref-active="active"><i class="fi-info"></i>About</a></li>
+                    <li ng-if="!isAuthenticated()"><a ui-sref="signup" ui-sref-active="active"><i class="fa fa-user-plus"></i>Sign up</a></li>
+                    <li ng-if="isAuthenticated()"><a ui-sref="signout" ui-sref-active="active"><i class="fa fa-sign-out"></i>Sign out</a></li>
+                    <li><a ui-sref="about" ui-sref-active="active"><i class="fa fa-info-circle"></i>About</a></li>
                 </ul>
             </div>
 
             <div class="menu-buttons">
-                <button ng-if="!isAuthenticated() && currentPage() !== '/signin'" type="button" class="secondary hollow button menu-btn" data-open="signinModal"><i class="fi-torso"></i> Sign In/Up</button>
-                <!--<button ng-if="isAuthenticated()" ui-sref="upload" type="button" class="secondary hollow button menu-btn"><i class="fi-torso"></i>{{ name }}</button>-->
+                <button ng-if="!isAuthenticated() && currentPage() !== '/signin'" type="button" class="secondary hollow button menu-btn" data-open="signinModal"><i class="fa fa-user"></i> Sign In/Up</button>
+                <!--<button ng-if="isAuthenticated()" ui-sref="upload" type="button" class="secondary hollow button menu-btn"><i class="fa fa-user"></i>{{ name }}</button>-->
                 <button type="button" class="secondary hollow button menu-btn" id="menu-button"><i class="fa fa-bars" aria-hidden="true"></i></button>
             </div>
         </div>
@@ -102,7 +102,8 @@
         <!--Load in Scripts-->
         <script src="libs/js/vendor/jquery-2.2.3.min.js"></script>
         <script src="libs/js/vendor/foundation.min.js"></script>
-        <script src="assets/js/bundle.min.js"></script>
+        <!--TODO: Production use min-->
+        <script src="assets/js/bundle.js"></script>
     </div>
 </body>
 </html>

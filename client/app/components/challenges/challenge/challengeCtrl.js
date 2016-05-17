@@ -6,24 +6,30 @@
 
 "use strict";
 
-/**
- * Exports the controller
- * */
 module.exports = angular.module("shutterSnappy")
     .controller("challengeCtrl", ["$scope", "$auth", "challengeService", "callout", "$state", "$stateParams", "$http", "imageService", "sortService",
         function($scope, $auth, challengeService, callout, $state, $stateParams, $http, imageService, sortService) {
 
-            var challengeId = $stateParams.id;
             var payload = $auth.getPayload();
 
             /**
-             * Get images for challenge
+             * Get the challenge
              * */
-            $http.get("/challenge/" + challengeId)
-                .success(function(res) {
+            challengeService.get($stateParams.title)
+                .success(function(challenge) {
+                    $scope.challenge = challenge;
 
-                    $scope.images = sortService.byDate(res);
+                    //Get images
+                    challengeService.getImages(challenge._id)
+                        .success(function(res) {
 
+                            $scope.images = sortService.byDate(res);
+
+                        });
+
+                })
+                .error(function(err) {
+                    callout("warning", "Something went wrong", err.message);
                 });
 
             /**
@@ -34,7 +40,7 @@ module.exports = angular.module("shutterSnappy")
                 var imageId = encodeURIComponent(image._id);
 
                 $state.go("image", {
-                    challengeId: challengeId,
+                    challengeTitle: $stateParams.title,
                     imageId: imageId
                 })
             };
@@ -55,23 +61,14 @@ module.exports = angular.module("shutterSnappy")
             };
 
             /**
-             * Get the challenge
-             * */
-            challengeService.get(decodeURIComponent($stateParams.id))
-                .success(function(challenge) {
-
-                    $scope.challenge = challenge;
-                })
-                .error(function(err) {
-                    callout("warning", "Something went wrong", err.message);
-                });
-
-            /**
              * Join challenge function
              * */
             $scope.joinChallenge = function() {
+
+                var uriTitle = encodeURIComponent($scope.challenge.lcTitle);
+
                 $state.go("joinChallenge", {
-                    id: $stateParams.id
+                    title: uriTitle
                 })
             };
 
@@ -177,7 +174,7 @@ module.exports = angular.module("shutterSnappy")
              * */
             $scope.gotoLeaderboard = function(challenge) {
                 $state.go("leaderboard", {
-                    challenge: challenge._id
+                    challenge: challenge.lcTitle
                 })
             };
 

@@ -58,18 +58,18 @@ module.exports = angular.module("shutterSnappy")
                 templateUrl: "app/components/challenges/challenge/create/createChallengeView.html",
                 controller: "createChallengeCtrl"
             })
-            .state("challenge-id", {
-                url: "/challenge/:id",
-                templateUrl: "app/components/challenges/challenge/challengeView.html",
-                controller: "challengeCtrl"
-            })
             .state("joinChallenge", {
-                url: "/challenge/:id/join",
+                url: "/challenge/:title/upload",
                 templateUrl: "app/components/challenges/challenge/join/joinChallengeView.html",
                 controller: "joinChallengeCtrl"
             })
+            .state("challenge-title", {
+                url: "/challenge/:title",
+                templateUrl: "app/components/challenges/challenge/challengeView.html",
+                controller: "challengeCtrl"
+            })
             .state("image", {
-                url: "/image/:challengeId/:imageId",
+                url: "/image/:challengeTitle/:imageId",
                 templateUrl: "app/components/image/imageView.html",
                 controller: "imageCtrl"
             })

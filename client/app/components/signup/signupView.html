@@ -1,53 +1,61 @@
 <div ng-controller="signupCtrl">
-    <!--<div class="row signup">-->
-    <div class="medium-12 columns">
-
-        <form ng-submit="submit()" name="signup" class="signin-form" novalidate>
-            <div class="row align-center">
-                <div class="medium-6 columns">
-                    <h3><i class="fi-torso"></i> Sign up</h3>
-                </div>
-            </div>
-            <div class="row align-center">
-                <div class="medium-6 columns">
-                    <p>Tired of constantly creating new accounts? Just sign up using your already existing account on Google</p>
-                    <button type="button" class="hollow button" ng-click="authenticate('google')" data-close><i class="fi-social-google-plus"></i> Google</button>
-                    <button type="button" class="hollow button" ng-click="authenticate('facebook')" data-close><i class="fi-social-facebook"></i> Facebook</button>
-                </div>
-            </div>
-            <div class="row align-center">
-                <div class="medium-6 columns">
-                    <input name="email" ng-model="email" type="email" placeholder="Email" required>
-                    <p class="help-block" ng-show="signup.email.$dirty && signup.email.$invalid">Please enter valid email address</p>
-                </div>
-            </div>
-            <div class="row align-center">
-                <div class="medium-6 columns">
-                    <input name="displayName" ng-model="displayName" type="text" placeholder="Full Name" required>
-                </div>
-            </div>
-            <div class="row align-center">
-                <div class="medium-6 columns">
-                    <input name="password" ng-model="password" type="password" placeholder="Password" required>
-                </div>
-            </div>
-            <div class="row align-center">
-                <div class="medium-6 columns">
-                    <input name="password_confirm" ng-model="password_confirm" type="password" placeholder="Confirm password" validate-equals="password">
-                </div>
-            </div>
-            <div class="row align-center">
-                <div class="medium-6 columns">
-                    <p class="help-block" ng-show="signup.password_confirm.$dirty && signup.password_confirm.$invalid">Passwords must match</p>
-                </div>
-            </div>
-            <div class="row align-center">
-                <div class="medium-6 columns">
-                    <button ng-disabled="signup.$invalid" type="submit" class="secondary hollow button">Sign up</button>
-                </div>
-            </div>
-        </form>
-
+    <div class="toolbar">
+        <a ui-sref="home">ShutterSnappy</a> | Sign Up
     </div>
-    <!--</div>-->
+    <div class="v-align-container">
+        <div class="v-align-inner">
+            <div class="medium-12 columns">
+
+                <form ng-submit="submit()" name="signup" class="signin-form" novalidate>
+
+                    <div class="row">
+                        <div class="medium-6 columns">
+                            <h3><i class="fa fa-user-plus"></i> Sign Up</h3>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="medium-6 columns">
+                            <p>Skip signing up. Just use your Google+ or Facebook account!</p>
+                            <button type="button" class="hollow button social-signin" ng-click="authenticate('google')" data-close><i class="fa fa-google-plus"></i> Google</button>
+                            <button type="button" class="hollow button social-signin" ng-click="authenticate('facebook')" data-close><i class="fa fa-facebook-official"></i> Facebook</button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="medium-6 columns">
+                            <input name="email" ng-model="email" type="email" placeholder="Email" required>
+                            <p class="help-block" ng-show="signup.email.$dirty && signup.email.$invalid">Please enter valid email address</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="medium-6 columns">
+                            <input name="displayName" ng-model="displayName" type="text" placeholder="Full Name" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="medium-6 columns">
+                            <input name="password" ng-model="password" type="password" placeholder="Password" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="medium-6 columns">
+                            <input name="password_confirm" ng-model="password_confirm" type="password" placeholder="Confirm password" validate-equals="password">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="medium-6 columns">
+                            <p class="help-block" ng-show="signup.password_confirm.$dirty && signup.password_confirm.$invalid">Passwords must match</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="medium-6 columns">
+                            <button ng-disabled="signup.$invalid" type="submit" class="secondary hollow button"><i class="fa fa-user-plus"></i> Sign up</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
 </div>

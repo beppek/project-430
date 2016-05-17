@@ -23,7 +23,7 @@ module.exports = angular.module("shutterSnappy")
              * */
             challenges.listAll()
                 .success(function(res) {
-                    $scope.challenges = sortService.byVotes(res);;
+                    $scope.challenges = sortService.byVotes(res);
                 })
                 .error(function(err) {
                     callout("warning", "Something went wrong", err.message);
@@ -34,10 +34,9 @@ module.exports = angular.module("shutterSnappy")
              * */
             $scope.toChallenge = function(challenge) {
 
-                var uriEncodedId = encodeURIComponent(challenge._id);
-
-                $state.go("challenge-id", {
-                    id: uriEncodedId
+                var uriTitle = encodeURIComponent(challenge.lcTitle);
+                $state.go("challenge-title", {
+                    title: uriTitle
                 })
             };
 

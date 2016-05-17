@@ -49,12 +49,16 @@ router.route("/challenge/upload")
  * */
 router.post("/challenge/delete", checkAuth.forDelete, challenge.deleteChallenge, fileService.deleteChallenge);
 
-router.route("/challenge/:id")
-    .get(challenge.getImages)
-    .post(function(req, res, next) {
+/**
+ * Gets the challenge
+ * */
+router.route("/challenge/:title")
+    .get(function(req, res, next) {
+
+        var decodedTitle = decodeURIComponent(req.params.title);
 
         var searchChallenge = {
-            _id: req.params.id
+            lcTitle: decodedTitle.toLowerCase()
         };
 
         Challenge.findOne(searchChallenge, function(err, challenge) {
@@ -70,5 +74,11 @@ router.route("/challenge/:id")
         });
 
     });
+
+/**
+ * Gets the images of the challenge
+ * */
+router.route("/challenge/:id")
+    .get(challenge.getImages);
 
 module.exports = router;

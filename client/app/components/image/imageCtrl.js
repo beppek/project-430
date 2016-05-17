@@ -8,7 +8,7 @@ module.exports = angular.module("shutterSnappy")
     .controller("imageCtrl", ["$scope", "callout", "$state", "$stateParams", "$http", "imageService", "$auth", "challengeService",
         function($scope, callout, $state, $stateParams, $http, imageService, $auth, challengeService) {
 
-            var challengeId = $stateParams.challengeId;
+            var challengeTitle = $stateParams.challengeTitle;
             var imageId = $stateParams.imageId;
             var payload = $auth.getPayload();
 
@@ -22,7 +22,7 @@ module.exports = angular.module("shutterSnappy")
             /**
              * Get the image and info
              * */
-            $http.get("/image/" + challengeId + "/" + imageId)
+            $http.get("/image/" + imageId)
                 .success(function(res) {
 
                     $scope.image = res;
@@ -37,7 +37,7 @@ module.exports = angular.module("shutterSnappy")
             /**
              * Get challenge
              * */
-            challengeService.get(challengeId)
+            challengeService.get(challengeTitle)
                 .success(function(res) {
                     $scope.challenge = res;
                 })
@@ -104,10 +104,10 @@ module.exports = angular.module("shutterSnappy")
              * */
             $scope.toChallenge = function(challenge) {
 
-                var uriEncodedId = encodeURIComponent(challenge._id);
+                var uriTitle = encodeURIComponent(challenge.lcTitle);
 
-                $state.go("challenge-id", {
-                    id: uriEncodedId
+                $state.go("challenge-title", {
+                    title: uriTitle
                 })
             };
 
@@ -116,7 +116,7 @@ module.exports = angular.module("shutterSnappy")
              * */
             $scope.deleteImage = function(image) {
                 var reqObj = {
-                    challengeId: challengeId,
+                    challengeId: image.challenge,
                     imageId: image._id,
                     fileName: image.fileInfo.fileName,
                     reqUserId: payload.sub,

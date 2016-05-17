@@ -13,8 +13,8 @@ module.exports = angular.module("shutterSnappy")
                 return $http.post("/challenge/create", challenge);
             };
 
-            this.get = function(id) {
-                return $http.post("/challenge/" + id);
+            this.get = function(title) {
+                return $http.get("/challenge/" + title);
             };
 
             this.vote = function(data) {

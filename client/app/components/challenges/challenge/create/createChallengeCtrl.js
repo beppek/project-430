@@ -33,11 +33,11 @@ module.exports = angular.module("shutterSnappy")
                 challengeService.save(challengeObj)
                     .success(function(res) {
 
-                        var uriEncodedId = encodeURIComponent(res._id);
+                        var uriTitle = encodeURIComponent(res.lcTitle);
 
                         callout("success", "Challenge Accepted!", "You successfully created the " + res.title + " challenge.");
-                        $state.go("challenge-id", {
-                            id: uriEncodedId
+                        $state.go("challenge-title", {
+                            title: uriTitle
                         });
                     })
                     .error(function(err) {
