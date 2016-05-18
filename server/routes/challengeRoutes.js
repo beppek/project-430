@@ -50,30 +50,22 @@ router.route("/challenge/upload")
 router.post("/challenge/delete", checkAuth.forDelete, challenge.deleteChallenge, fileService.deleteChallenge);
 
 /**
- * Gets the challenge
+ * POST to update
+ * */
+router.route("/challenge/update")
+    .post(checkAuth.forDelete, challenge.update);
+
+/**
+ * GET the challenge
  * */
 router.route("/challenge/:title")
-    .get(function(req, res, next) {
+    .get(challenge.getChallenge);
 
-        var decodedTitle = decodeURIComponent(req.params.title);
-
-        var searchChallenge = {
-            lcTitle: decodedTitle.toLowerCase()
-        };
-
-        Challenge.findOne(searchChallenge, function(err, challenge) {
-
-            if (err) {
-                return next(err);
-            }
-
-            if (challenge) {
-                return res.send(challenge);
-            }
-
-        });
-
-    });
+/**
+ * GET challenge for update
+ * */
+router.route("/challenge/:title/update")
+    .get(checkAuth.normal, challenge.getChallenge);
 
 /**
  * Gets the images of the challenge

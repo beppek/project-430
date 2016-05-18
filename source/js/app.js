@@ -53,6 +53,7 @@ require("../../client/app/components/challenges/challengesCtrl");
 require("../../client/app/components/challenges/challenge/create/createChallengeCtrl");
 require("../../client/app/components/challenges/challenge/challengeCtrl");
 require("../../client/app/components/challenges/challenge/join/joinChallengeCtrl");
+require("../../client/app/components/challenges/challenge/update/updateChallengeCtrl");
 
 //Image
 require("../../client/app/components/image/imageCtrl");

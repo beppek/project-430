@@ -143,9 +143,7 @@ module.exports = angular.module("shutterSnappy")
             /**
              * Go to update image
              * */
-            $scope.update = function(image) {
-
-                console.log(image._id);
+            $scope.updateImage = function(image) {
 
                 var uriTitle = encodeURIComponent($scope.challenge.lcTitle);
                 var uriId = encodeURIComponent(image._id);

@@ -118,7 +118,7 @@ app.use(function(err, req, res, next) {
 // 404 catch-all handler.
 app.use(function(req, res, next) {
 
-    res.status(404).render("errors/404");
+    res.status(404).send({message: "404 not found"});
 
 });
 

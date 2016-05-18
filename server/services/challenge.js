@@ -12,7 +12,9 @@ var Image = require("../models/Image");
 module.exports = {
     create: createChallenge,
     getImages: getChallengeImages,
-    deleteChallenge: deleteChallenge
+    deleteChallenge: deleteChallenge,
+    getChallenge: getChallenge,
+    update: updateChallenge
 };
 
 /**
@@ -180,5 +182,69 @@ function deleteChallenge(req, res, next) {
 
     });
 
+}
+
+/**
+ * Gets the challenge
+ * */
+function getChallenge(req, res, next) {
+
+    var decodedTitle = decodeURIComponent(req.params.title);
+
+    var searchChallenge = {
+        lcTitle: decodedTitle.toLowerCase()
+    };
+
+    Challenge.findOne(searchChallenge, function(err, challenge) {
+
+        if (err) {
+            return next(err);
+        }
+
+        if (challenge) {
+            return res.send(challenge);
+        }
+
+    });
+
+}
+
+/**
+ * Updates the challenge
+ * */
+function updateChallenge(req, res, next) {
+
+    var searchChallenge = {
+        _id: req.body.challengeId
+    };
+
+    Challenge.findOne(searchChallenge, function(err, challenge) {
+        if (err) {
+            return res.status(500).send({message: "Something went wrong"});
+        }
+
+        if (challenge) {
+
+            challenge.title = req.body.title;
+            challenge.description = req.body.description;
+
+            challenge.save(function(err) {
+                if (err) {
+                    return res.status(500).send({message: "Something went wrong"});
+                } else {
+
+                    return res.send("Image successfully updated!");
+
+                }
+
+            })
+
+        } else {
+
+            return res.status(404).send({message: "Image not found!"});
+
+        }
+
+    })
 }
 

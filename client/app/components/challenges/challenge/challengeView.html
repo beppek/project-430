@@ -34,7 +34,8 @@
                 <div class="dropdown-content">
                     <a ng-click="joinChallenge()" class="dd-item"><i class="fa fa-upload"></i> Upload</a>
                     <span ng-if="isCreator(challenge)">
-                        <a ng-click="deleteChallenge(challenge)" class="alert dd-item"><i class="fa fa-trash" aria-hidden="true"></i>Delete</a>
+                        <a ng-click="updateChallenge(challenge)" class="dd-item"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Update</a>
+                        <a ng-click="deleteChallenge(challenge)" class="dd-item"><i class="fa fa-trash" aria-hidden="true"></i>Delete</a>
                     </span>
                 </div>
             </div>
@@ -61,8 +62,8 @@
                                         <div class="image-title">
                                             <h4>{{image.title}}</h4>
                                             <div ng-if="isAuthenticated()">
-                                                <a ng-if="!hasVoted(image)" ng-click="vote()"><i class="fa fa-hand-spock-o voteBtn"></i></a>
-                                                <a ng-if="hasVoted(image)" ng-click="unVote()" class="hasVoted"><i class="fa fa-hand-spock-o voteBtn"></i></a>
+                                                <a ng-if="!hasVoted(image)" ng-click="vote(); $event.stopPropagation();"><i class="fa fa-hand-spock-o voteBtn"></i></a>
+                                                <a ng-if="hasVoted(image)" ng-click="unVote(); $event.stopPropagation();" class="hasVoted"><i class="fa fa-hand-spock-o voteBtn"></i></a>
                                                 {{image.stats.votes.length}}
                                             </div>
                                             <div ng-if="!isAuthenticated()">

@@ -217,6 +217,12 @@ module.exports = angular.module("shutterSnappy")
              * */
             $scope.isCreator = function(challenge) {
                 return challenge.createdBy.createdById === payload.sub;
-            }
+            };
+
+            $scope.updateChallenge = function(challenge) {
+                $state.go("challenge-update", {
+                    title: $stateParams.title
+                });
+            };
 
         }]);
