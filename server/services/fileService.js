@@ -28,6 +28,14 @@ function uploadFile(req, res) {
     var dest = destDir + "/" + fileName;
     var relPath = "./imgDB/" + imgData.challengeId + "/" + fileName;
 
+    var lcTitle = imgData.title.toLowerCase();
+
+    if (lcTitle === "create" || lcTitle === "update" || lcTitle === "read" || lcTitle === "delete") {
+        return res.status(401).send({
+            message: "That name is not allowed!"
+        })
+    }
+
     fs.mkdir(destDir, function(err) {
 
         if (err) {

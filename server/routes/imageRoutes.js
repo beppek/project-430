@@ -16,7 +16,18 @@ var fileService = require("../services/fileService");
  * */
 router.post("/image/delete", checkAuth.forDelete, image.deleteImg, fileService.deleteImg);
 
-//TODO Rewrite to use challenge title
+/**
+ * Updates image on POST
+ * */
+router.route("/image/update")
+    .post(checkAuth.forDelete, image.updateImg);
+
+/**
+ * Checks that user is authorized to update image then gets image
+ * */
+router.route("/image/update/:imageId")
+    .get(checkAuth.normal, image.fetch);
+
 /**
  * Gets image
  * */

@@ -28,6 +28,10 @@ module.exports = angular.module("shutterSnappy")
              * */
             this.deleteImg = function(data) {
                 return $http.post("/image/delete", data);
-            }
+            };
+            
+            this.update = function(data) {
+                return $http.post("/image/update", data);
+            };
 
         }]);

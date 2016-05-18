@@ -138,6 +138,22 @@ module.exports = angular.module("shutterSnappy")
              * */
             $scope.isCreator = function() {
                 return $scope.image.uploadedBy.userId === payload.sub;
-            }
+            };
+
+            /**
+             * Go to update image
+             * */
+            $scope.update = function(image) {
+
+                console.log(image._id);
+
+                var uriTitle = encodeURIComponent($scope.challenge.lcTitle);
+                var uriId = encodeURIComponent(image._id);
+
+                $state.go("image-update", {
+                    challengeTitle: uriTitle,
+                    imageId: uriId
+                })
+            };
 
         }]);

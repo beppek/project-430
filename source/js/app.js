@@ -56,6 +56,7 @@ require("../../client/app/components/challenges/challenge/join/joinChallengeCtrl
 
 //Image
 require("../../client/app/components/image/imageCtrl");
+require("../../client/app/components/image/update/updateImageCtrl");
 
 // Signup
 require("../../client/app/components/signup/signupCtrl");

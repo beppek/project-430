@@ -342,10 +342,19 @@ label {
     padding: 20px;
 }
 
+.image-overlay h4 {
+    margin: 0;
+}
+
 .image-wrapper img {
     max-height: calc(100vh - #{$paddingTop}*2);
     display: inline-block;
     margin: 0 auto;
+}
+
+.image-description {
+    font-size: 14px;
+    font-style: italic;
 }
 
 .left-image-info {

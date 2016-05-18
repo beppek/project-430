@@ -8,7 +8,8 @@ var User = require("../models/User");
 
 module.exports = {
     fetch: getImage,
-    deleteImg: deleteImage
+    deleteImg: deleteImage,
+    updateImg: updateImg
 };
 
 /**
@@ -76,5 +77,14 @@ function deleteImage(req, res, next) {
         next();
 
     })
+
+}
+
+/**
+ * Allows user to update image
+ * */
+function updateImg(req, res, next) {
+
+    console.log(req.body);
 
 }
