@@ -11,42 +11,48 @@
         <a ng-click="gotoLeaderboard(challenge)"><i class="fa fa-trophy" aria-hidden="true"></i></a></li></a>
 
     </div>
-    <div class="row">
-        <div class="medium-12 columns">
-            <h1>{{challenge.title}}</h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="medium-12 columns">
-            <p>{{challenge.description}}</p>
-        </div>
-    </div>
+    <div class="v-align-container">
+        <div class="v-align-inner">
 
-    <div class="row">
-        <div class="medium-12 columns">
-
-            <form ng-submit="submit()" name="joinChallenge" class="join-challenge-form" novalidate>
-                <div class="row align-center">
-                    <div class="medium-6 columns">
-                        <input name="title" ng-model="title" type="text" placeholder="Title" required>
-                        <textarea name="description" ng-model="description" placeholder="Description..." required></textarea>
-                    </div>
-                    <div class="medium-6 columns">
-                        <img ngf-thumbnail="image || '/assets/img/placeholder.png'">
-                    </div>
+            <div class="row">
+                <div class="medium-12 columns">
+                    <h1>{{challenge.title}}</h1>
                 </div>
-                <div class="row align-center">
-                    <div class="medium-4 columns">
-                        <div ngf-change="validateImage()" ngf-select ngf-drop ng-model="image" class="drop-zone" name="image" ngf-pattern="'image/jpeg'" ngf-accept="'image/jpeg'" ngf-max-size="1MB" ngf-min-height="100"><i class="fa fa-upload" aria-hidden="true"></i></div>
-                    </div>
-                    <div class="medium-8 columns">
-                        <button ng-disabled="joinChallenge.$invalid" type="submit" class="secondary hollow button save"><i class="fa fa-floppy-o"></i> Save</button>
-                    </div>
+            </div>
+            <div class="row">
+                <div class="medium-12 columns">
+                    <p>{{challenge.description}}</p>
                 </div>
-            </form>
+            </div>
 
+            <div class="row">
+                <div class="medium-12 columns">
+
+                    <form ng-submit="submit()" name="joinChallenge" class="join-challenge-form" novalidate>
+                        <div class="row align-center">
+                            <div class="medium-6 columns">
+                                <input name="title" ng-model="title" type="text" placeholder="Title" required>
+                                <input name="location" ng-model="location" type="text" placeholder="Add location (Optional)">
+                                <textarea name="description" ng-model="description" placeholder="Description..." required></textarea>
+                            </div>
+                            <div class="medium-6 columns">
+                                <img ngf-thumbnail="image || '/assets/img/placeholder.png'">
+                            </div>
+                        </div>
+                        <div class="row align-center">
+                            <div class="medium-4 columns">
+                                <div ngf-change="validateImage()" ngf-select ngf-drop ng-model="image" class="drop-zone" name="image" ngf-pattern="'image/jpeg'" ngf-accept="'image/jpeg'" ngf-max-size="1MB" ngf-min-height="100"><i class="fa fa-upload" aria-hidden="true"></i></div>
+                            </div>
+                            <div class="medium-8 columns">
+                                <button ng-disabled="joinChallenge.$invalid" type="submit" class="secondary hollow button save"><i class="fa fa-floppy-o"></i> Save</button>
+                            </div>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
 
         </div>
     </div>
-
 </div>

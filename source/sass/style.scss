@@ -310,6 +310,10 @@ label {
     @extend .all-forms;
 }
 
+.update-image-form {
+    @extend .all-forms;
+}
+
 .hasVoted {
     color: $hasVoted;
 }
@@ -352,9 +356,24 @@ label {
     margin: 0 auto;
 }
 
+.image-wrapper hr {
+    margin: 0;
+}
+
 .image-description {
     font-size: 14px;
     font-style: italic;
+    margin: 0;
+}
+
+.image-title h4, .image-title div {
+    display: inline;
+}
+.copyright {
+    font-size: 14px;
+    position: absolute;
+    right: 25px;
+    bottom: 0;
 }
 
 .left-image-info {

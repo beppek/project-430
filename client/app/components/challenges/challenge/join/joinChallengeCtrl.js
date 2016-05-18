@@ -69,6 +69,7 @@ module.exports = angular.module("shutterSnappy")
                     userId: userService.getId(),
                     title: $scope.title,
                     description: $scope.description,
+                    location: $scope.location,
                     challengeId: $scope.challenge._id
                 };
 

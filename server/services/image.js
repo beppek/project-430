@@ -85,6 +85,38 @@ function deleteImage(req, res, next) {
  * */
 function updateImg(req, res, next) {
 
-    console.log(req.body);
+    var searchImage = {
+        _id: req.body.imgId
+    };
+
+    Image.findOne(searchImage, function(err, image) {
+        if (err) {
+            return res.status(500).send({message: "Something went wrong"});
+        }
+
+        if (image) {
+            
+            image.title = req.body.title;
+            image.description = req.body.description;
+            image.location = req.body.location;
+
+            image.save(function(err) {
+                if (err) {
+                    return res.status(500).send({message: "Something went wrong"});
+                } else {
+
+                    return res.send("Image successfully updated!");
+
+                }
+
+            })
+            
+        } else {
+
+            return res.status(404).send({message: "Image not found!"});
+
+        }
+
+    })
 
 }

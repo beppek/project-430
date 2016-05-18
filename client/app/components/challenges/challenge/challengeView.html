@@ -58,20 +58,24 @@
                             <div class="image-overlay">
                                 <div class="row">
                                     <div class="medium-6 columns left-image-info">
-                                        <h4>{{image.title}}</h4>
-                                        <div ng-if="isAuthenticated()">
-                                            <a ng-if="!hasVoted(image)" ng-click="imageVote(image); $event.stopPropagation();"><i class="fa fa-hand-spock-o voteBtn"></i></a>
-                                            <a ng-if="hasVoted(image)" ng-click="imageUnVote(image); $event.stopPropagation();" class="hasVoted"><i class="fa fa-hand-spock-o voteBtn"></i></a>
-                                            {{image.stats.votes.length}}
+                                        <div class="image-title">
+                                            <h4>{{image.title}}</h4>
+                                            <div ng-if="isAuthenticated()">
+                                                <a ng-if="!hasVoted(image)" ng-click="vote()"><i class="fa fa-hand-spock-o voteBtn"></i></a>
+                                                <a ng-if="hasVoted(image)" ng-click="unVote()" class="hasVoted"><i class="fa fa-hand-spock-o voteBtn"></i></a>
+                                                {{image.stats.votes.length}}
+                                            </div>
+                                            <div ng-if="!isAuthenticated()">
+                                                <i class="fa fa-hand-spock-o upvoteBtn"></i>
+                                                {{image.stats.votes.length}}
+                                            </div>
                                         </div>
-                                        <div ng-if="!isAuthenticated()">
-                                            <i class="fa fa-hand-spock-o upvoteBtn"></i>
-                                            {{image.stats.votes.length}}
-                                        </div>
+                                        <p class="image-description">{{image.location}}</p>
+                                        <hr>
                                         <p class="image-description">{{image.description}}</p>
                                     </div>
                                     <div class="medium-6 columns right-image-info">
-                                        <p><i class="fa fa-copyright"></i>{{image.uploadedBy.name}}</p>
+                                        <p class="copyright"><i class="fa fa-copyright"></i>{{image.uploadedBy.name}}</p>
                                     </div>
                                 </div>
                             </div>

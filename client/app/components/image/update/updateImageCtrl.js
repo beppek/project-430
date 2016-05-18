@@ -9,9 +9,37 @@ module.exports = angular.module("shutterSnappy")
     .controller("updateImageCtrl", ["$scope", "callout", "$state", "$stateParams", "$http", "imageService", "$auth", "challengeService",
         function($scope, callout, $state, $stateParams, $http, imageService, $auth, challengeService) {
 
-            var challengeUriTitle = $stateParams.challengeTitle;
+            var challengeTitle = $stateParams.challengeTitle;
             var imageId = $stateParams.imageId;
             var payload = $auth.getPayload();
+
+            /**
+             * Update image
+             * */
+            $scope.submit = function() {
+
+                var formData = {
+                    reqUserId: payload.sub,
+                    creatorId: $scope.image.uploadedBy.userId,
+                    title: $scope.title,
+                    description: $scope.description,
+                    location: $scope.location,
+                    imgId: $scope.image._id
+                };
+
+                imageService.updateImg(formData)
+                    .success(function(res) {
+                        callout("success", "Done!", res);
+                        $state.go("image", {
+                            challengeTitle: challengeTitle,
+                            imageId: imageId
+                        })
+                    })
+                    .error(function(err) {
+                        callout("warning", "Couldn't save!" , err.message);
+                    });
+
+            };
 
             /**
              * Get the image and info
@@ -19,6 +47,9 @@ module.exports = angular.module("shutterSnappy")
             $http.get("/image/update/" + imageId)
                 .success(function(res) {
                     $scope.image = res;
+
+                    $scope.title = $scope.image.title;
+                    $scope.description = $scope.image.description;
 
                     if ($scope.image.uploadedBy.userId !== payload.sub) {
                         callout("warning", "Unauthorized!", "That's not your image!");
@@ -30,6 +61,29 @@ module.exports = angular.module("shutterSnappy")
                     callout("warning", "Something went wrong", err.message);
                     $state.go("challenges");
                 });
+
+            /**
+             * Get challenge
+             * */
+            challengeService.get(challengeTitle)
+                .success(function(res) {
+                    $scope.challenge = res;
+                })
+                .error(function(err) {
+
+                });
+
+            /**
+             * Go back to challenge
+             * */
+            $scope.toChallenge = function(challenge) {
+
+                var uriTitle = encodeURIComponent(challenge.lcTitle);
+
+                $state.go("challenge-title", {
+                    title: uriTitle
+                })
+            };
 
             /**
              * Delete image
@@ -51,22 +105,6 @@ module.exports = angular.module("shutterSnappy")
                     .error(function(err) {
                         callout("warning", "Something went wrong", err.message);
                     })
-
-            };
-
-            /**
-             * Update image
-             * */
-            $scope.update = function(image) {
-
-
-                imageService.update(updatedImage)
-                    .success(function(res) {
-                        console.log(res);
-                    })
-                    .error(function(err) {
-                        console.log(err);
-                    });
 
             };
 

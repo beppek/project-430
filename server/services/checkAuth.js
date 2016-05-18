@@ -51,7 +51,6 @@ function checkAuthNormal(req, res, next) {
 function checkAuthForDelete(req, res, next) {
 
     if (!req.header("Authorization")) {
-
         return res.status(401).send({
             message: "You are not authorized"
         });

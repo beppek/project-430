@@ -32,6 +32,11 @@ var ImageSchema = new mongoose.Schema({
         required: false,
         default: Date.now
     },
+    location: {
+        type: String,
+        required: false,
+        default: "N/A"
+    },
     fileInfo: {
         fileName: {
             type: String,

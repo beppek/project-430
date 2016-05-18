@@ -148,6 +148,7 @@ function uploadFile(req, res) {
                 uploadedBy: uploadedBy,
                 title: imgData.title,
                 description: imgData.description,
+                location: imgData.location || "N/A",
                 fileInfo: fileInfo,
                 challenge: imgData.challengeId
             });
