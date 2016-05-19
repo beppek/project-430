@@ -5,8 +5,8 @@ $toolbarColor: lighten(#0a0a0a, 5%);
 $menuBG: $toolbarColor;
 $textColor: #f0f0f0;
 $hasVoted: darken($textColor, 25%);
-$menuHover: lighten($menuBG, 25%);
-$active: lighten($menuBG, 15%);
+$menuHover: lighten($menuBG, 15%);
+$active: $modalBG;
 $challengeBG: lighten($mainBG, 15%);
 $challengeBGHover: lighten($mainBG, 25%);
 
@@ -104,13 +104,20 @@ label {
     position: absolute;
     min-width: 200px;
     background-color: $toolbarColor;
-    padding: 10px;
+    //padding: 10px;
     font-size: 13px;
     left:-20px;
     @extend .box-shadow;
 }
 
+.dropdown-content a {
+    &:hover {
+        background-color: $menuHover;
+    }
+}
+
 .dd-item {
+    padding: 0 10px;
     display: block;
 }
 
@@ -215,10 +222,10 @@ label {
         height: 15em;
     }
     @media screen and (max-width: $largeres) and (min-width: $smallres) {
-        height: 20em;
+        height: 15em;
     }
     @media screen and (max-width: $xlres) and (min-width: $largeres) {
-        height: 30em;
+        height: 20em;
     }
 }
 
@@ -285,10 +292,8 @@ label {
     margin: 10px;
 }
 
-.join-challenge-form input {
-    margin: 0;
-    border-radius: 0!important;
-    border: none;
+.join-challenge-form {
+    @extend .all-forms;
 }
 
 .drop-zone {

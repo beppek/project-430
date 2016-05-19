@@ -28,6 +28,9 @@ var sessionStore    = new RedisStore();
 var app             = express();
 var port            = process.env.PORT || 8000;
 
+var server          = http.Server(app);
+var io              = require("socket.io")(server);
+
 //CONFIG -------------------------------
 
 //Connect to database
@@ -36,9 +39,6 @@ mongoose.mongoDB();
 //body parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-// //Passport
-// app.use(passport.initialize());
 
 //TODO: Environment variables for session name and secret
 //TODO: Don't forget to secure Redis
@@ -51,13 +51,6 @@ app.use(session({
     resave: false,
     cookie: { secure: true }
 }));
-
-//Flash message, delete after display
-// app.use(function(req, res, next) {
-//     res.locals.flash = req.session.flash;
-//     delete req.session.flash;
-//     next();
-// });
 
 app.use(function(req, res, next) {
 
@@ -80,6 +73,13 @@ app.use("/", require("./server/routes/votingRoutes"));
 app.use("/", require("./server/routes/redirects.js"));
 app.use("/", require("./server/routes/challengeRoutes"));
 app.use("/", require("./server/routes/imageRoutes"));
+
+var sockets = require("./sockets/index");
+
+//Init socket.io
+io.on("connection", function(socket) {
+    sockets(socket);
+});
 
 //TODO: Actually display some sort of error pages
 // 400 handler.
@@ -123,7 +123,7 @@ app.use(function(req, res, next) {
 });
 
 //LAUNCH ----------------------------------
-app.listen(port, function() {
+server.listen(port, function() {
 
     console.log("Express started on http://localhost:" + port);
     console.log("Press ctrl+c to terminate");

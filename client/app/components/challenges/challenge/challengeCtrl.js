@@ -174,7 +174,7 @@ module.exports = angular.module("shutterSnappy")
              * */
             $scope.gotoLeaderboard = function(challenge) {
                 $state.go("leaderboard", {
-                    challenge: challenge.lcTitle
+                    challenge: $stateParams.title
                 })
             };
 
@@ -219,6 +219,9 @@ module.exports = angular.module("shutterSnappy")
                 return challenge.createdBy.createdById === payload.sub;
             };
 
+            /**
+             * Go to Update Challenge
+             * */
             $scope.updateChallenge = function(challenge) {
                 $state.go("challenge-update", {
                     title: $stateParams.title

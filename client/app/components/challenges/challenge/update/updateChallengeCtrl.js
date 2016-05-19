@@ -7,8 +7,8 @@
 "use strict";
 
 module.exports = angular.module("shutterSnappy")
-    .controller("updateChallengeCtrl", ["$scope", "$auth", "challengeService", "callout", "$state", "$stateParams", "$http", "imageService", "sortService",
-        function($scope, $auth, challengeService, callout, $state, $stateParams, $http, imageService, sortService) {
+    .controller("updateChallengeCtrl", ["$scope", "$auth", "challengeService", "callout", "$state", "$stateParams", "$http",
+        function($scope, $auth, challengeService, callout, $state, $stateParams, $http) {
 
             var payload = $auth.getPayload();
             var challengeTitle = decodeURIComponent($stateParams.title);

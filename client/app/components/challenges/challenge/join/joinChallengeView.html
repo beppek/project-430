@@ -5,7 +5,7 @@
         <div class="dropdown">
             <a><i class="fa fa-caret-down" aria-hidden="true"></i>Description</a>
             <div class="dropdown-content">
-                {{challenge.description}}
+                <p class="dd-item">{{challenge.description}}</p>
             </div>
         </div> |
         <a ng-click="gotoLeaderboard(challenge)"><i class="fa fa-trophy" aria-hidden="true"></i></a></li></a>
@@ -29,22 +29,27 @@
                 <div class="medium-12 columns">
 
                     <form ng-submit="submit()" name="joinChallenge" class="join-challenge-form" novalidate>
-                        <div class="row align-center">
+                        <div class="row">
                             <div class="medium-6 columns">
                                 <input name="title" ng-model="title" type="text" placeholder="Title" required>
-                                <input name="location" ng-model="location" type="text" placeholder="Add location (Optional)">
-                                <textarea name="description" ng-model="description" placeholder="Description..." required></textarea>
+                                <input name="location" ng-model="location" type="text" placeholder="Location, Country (Optional)">
+                                <textarea name="description" ng-model="description" placeholder="Give us a short description of your image" required></textarea>
                             </div>
                             <div class="medium-6 columns">
-                                <img ngf-thumbnail="image || '/assets/img/placeholder.png'">
-                            </div>
-                        </div>
-                        <div class="row align-center">
-                            <div class="medium-4 columns">
-                                <div ngf-change="validateImage()" ngf-select ngf-drop ng-model="image" class="drop-zone" name="image" ngf-pattern="'image/jpeg'" ngf-accept="'image/jpeg'" ngf-max-size="1MB" ngf-min-height="100"><i class="fa fa-upload" aria-hidden="true"></i></div>
-                            </div>
-                            <div class="medium-8 columns">
-                                <button ng-disabled="joinChallenge.$invalid" type="submit" class="secondary hollow button save"><i class="fa fa-floppy-o"></i> Save</button>
+                                <div class="row">
+                                    <div class="columns">
+                                        <div ngf-change="validateImage()" ngf-select ngf-drop ng-model="image" class="drop-zone" name="image" ngf-pattern="'image/jpeg'" ngf-accept="'image/jpeg'" ngf-max-size="1MB" ngf-min-height="100"><i class="fa fa-upload" aria-hidden="true"></i></div>
+                                    </div>
+                                    <div class="columns">
+                                        <img ngf-thumbnail="image || '/assets/img/placeholder.png'">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="columns">
+                                        <button ng-disabled="joinChallenge.$invalid" type="submit" class="secondary hollow button save"><i class="fa fa-floppy-o"></i> Save</button>
+                                        <p class="image-description">By clicking "Save" you guarantee that you are the copyright holder.</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </form>

@@ -50,6 +50,7 @@ module.exports = angular.module("shutterSnappy")
 
                     $scope.title = $scope.image.title;
                     $scope.description = $scope.image.description;
+                    $scope.location = $scope.image.location;
 
                     if ($scope.image.uploadedBy.userId !== payload.sub) {
                         callout("warning", "Unauthorized!", "That's not your image!");

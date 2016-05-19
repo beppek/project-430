@@ -47,11 +47,14 @@ label {
   position: absolute;
   min-width: 200px;
   background-color: #171717;
-  padding: 10px;
   font-size: 13px;
   left: -20px; }
 
+.dropdown-content a:hover {
+  background-color: #3d3d3d; }
+
 .dd-item {
+  padding: 0 10px;
   display: block; }
 
 .menu-wrapper {
@@ -83,10 +86,10 @@ label {
 .menu a {
   color: #f0f0f0; }
   .menu a:hover {
-    background-color: #575757; }
+    background-color: #3d3d3d; }
 
 .menu .active {
-  background-color: #3d3d3d; }
+  background-color: #233d4f; }
 
 .menu-buttons {
   z-index: 3;
@@ -117,36 +120,36 @@ label {
   color: #f0f0f0; }
 
 @media screen and (max-width: 760px) {
-  .all-forms, .signin-form, .challenge-form, .update-image-form {
+  .all-forms, .signin-form, .join-challenge-form, .challenge-form, .update-image-form {
     width: 320px; } }
 
-.all-forms p, .signin-form p, .challenge-form p, .update-image-form p {
+.all-forms p, .signin-form p, .join-challenge-form p, .challenge-form p, .update-image-form p {
   margin: 0; }
 
-.all-forms input, .signin-form input, .challenge-form input, .update-image-form input {
+.all-forms input, .signin-form input, .join-challenge-form input, .challenge-form input, .update-image-form input {
   margin: 0;
   border-radius: 0 !important;
   border: none; }
 
-.all-forms button, .signin-form button, .challenge-form button, .update-image-form button {
+.all-forms button, .signin-form button, .join-challenge-form button, .challenge-form button, .update-image-form button {
   margin-top: 15px; }
 
-.all-forms textarea, .signin-form textarea, .challenge-form textarea, .update-image-form textarea {
+.all-forms textarea, .signin-form textarea, .join-challenge-form textarea, .challenge-form textarea, .update-image-form textarea {
   resize: none;
   overflow: auto;
   border-radius: 0; }
   @media screen and (max-width: 760px) {
-    .all-forms textarea, .signin-form textarea, .challenge-form textarea, .update-image-form textarea {
+    .all-forms textarea, .signin-form textarea, .join-challenge-form textarea, .challenge-form textarea, .update-image-form textarea {
       height: 10em; } }
   @media screen and (max-width: 960px) and (min-width: 760px) {
-    .all-forms textarea, .signin-form textarea, .challenge-form textarea, .update-image-form textarea {
+    .all-forms textarea, .signin-form textarea, .join-challenge-form textarea, .challenge-form textarea, .update-image-form textarea {
       height: 15em; } }
   @media screen and (max-width: 1920px) and (min-width: 960px) {
-    .all-forms textarea, .signin-form textarea, .challenge-form textarea, .update-image-form textarea {
-      height: 20em; } }
+    .all-forms textarea, .signin-form textarea, .join-challenge-form textarea, .challenge-form textarea, .update-image-form textarea {
+      height: 15em; } }
   @media screen and (max-width: 2400px) and (min-width: 1920px) {
-    .all-forms textarea, .signin-form textarea, .challenge-form textarea, .update-image-form textarea {
-      height: 30em; } }
+    .all-forms textarea, .signin-form textarea, .join-challenge-form textarea, .challenge-form textarea, .update-image-form textarea {
+      height: 20em; } }
 
 .social-signin {
   margin-top: 0; }
@@ -188,11 +191,6 @@ label {
 
 .challenge-image img {
   margin: 10px; }
-
-.join-challenge-form input {
-  margin: 0;
-  border-radius: 0 !important;
-  border: none; }
 
 .drop-zone {
   width: 250px;

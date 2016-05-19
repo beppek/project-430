@@ -26,6 +26,7 @@ require("../../client/app/shared/services/sort");
 //Factories
 require("../../client/app/shared/services/authToken");
 require("../../client/app/shared/services/authInterceptor");
+require("../../client/app/shared/services/socket");
 
 // LOAD ROUTES
 require("../../client/app/app.routes.js");

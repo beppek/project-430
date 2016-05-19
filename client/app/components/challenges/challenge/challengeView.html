@@ -4,7 +4,7 @@
         <div class="dropdown">
             <a>{{challenge.title}}</a>
             <div class="dropdown-content">
-                {{challenge.description}}
+                <p class="dd-item">{{challenge.description}}</p>
             </div>
         </div> |
         <!--Votes-->
@@ -13,8 +13,8 @@
             {{challenge.stats.votes.length}} |
         </span>
         <span ng-if="isAuthenticated()">
-            <a ng-if="!hasVoted(challenge)" ng-click="vote(challenge); $event.stopPropagation();"><i class="fa fa-hand-spock-o voteBtn"></i></a>
-            <a ng-if="hasVoted(challenge)" ng-click="unVote(challenge); $event.stopPropagation();" class="hasVoted"><span><i class="fa fa-hand-spock-o voteBtn"></i></span></a>
+            <a ng-if="!hasVoted(challenge)" ng-click="vote(challenge);"><i class="fa fa-hand-spock-o voteBtn"></i></a>
+            <a ng-if="hasVoted(challenge)" ng-click="unVote(challenge);" class="hasVoted"><span><i class="fa fa-hand-spock-o voteBtn"></i></span></a>
             {{challenge.stats.votes.length}} |
         </span>
         <!--Sort-->
@@ -62,12 +62,12 @@
                                         <div class="image-title">
                                             <h4>{{image.title}}</h4>
                                             <div ng-if="isAuthenticated()">
-                                                <a ng-if="!hasVoted(image)" ng-click="vote(); $event.stopPropagation();"><i class="fa fa-hand-spock-o voteBtn"></i></a>
-                                                <a ng-if="hasVoted(image)" ng-click="unVote(); $event.stopPropagation();" class="hasVoted"><i class="fa fa-hand-spock-o voteBtn"></i></a>
+                                                <a ng-if="!hasVoted(image)" ng-click="imageVote(image); $event.stopPropagation();"><i class="fa fa-hand-spock-o voteBtn"></i></a>
+                                                <a ng-if="hasVoted(image)" ng-click="imageUnVote(image); $event.stopPropagation();" class="hasVoted"><i class="fa fa-hand-spock-o voteBtn"></i></a>
                                                 {{image.stats.votes.length}}
                                             </div>
                                             <div ng-if="!isAuthenticated()">
-                                                <i class="fa fa-hand-spock-o upvoteBtn"></i>
+                                                <i class="fa fa-hand-spock-o"></i>
                                                 {{image.stats.votes.length}}
                                             </div>
                                         </div>

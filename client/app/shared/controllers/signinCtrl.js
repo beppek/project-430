@@ -9,8 +9,8 @@
  *
  */
 module.exports = angular.module("shutterSnappy")
-    .controller("signinCtrl", ["$scope", "callout", "$state", "nameService", "$auth",
-        function($scope, callout, $state, nameService, $auth) {
+    .controller("signinCtrl", ["$scope", "callout", "$state", "nameService", "$auth", "socket",
+        function($scope, callout, $state, nameService, $auth, socket) {
 
             /**
              * Login on submit
@@ -23,6 +23,9 @@ module.exports = angular.module("shutterSnappy")
                 }).then(function(res) {
                     nameService.name = res.data.user.displayName;
                     callout("success", "Good to see you!", "Welcome back " + res.data.user.displayName);
+                    socket.emit("signin", {
+                        user: res.data.user.displayName
+                    });
                     checkState();
                 }).catch(handleError)
 
@@ -38,12 +41,22 @@ module.exports = angular.module("shutterSnappy")
 
                     nameService.name = res.data.user.displayName;
                     callout("success", "Good to see you!", "Welcome " + res.data.user.displayName + ", thanks for signing in with " + authProvider);
+                    socket.emit("signin", {
+                        user: res.data.user.displayName
+                    });
                     checkState();
 
                 }, handleError);
             };
 
-            
+            /**
+             * Socket listeners
+             * */
+            socket.on("signin", function(data) {
+                callout("success", "Signin by:", data.user);
+            });
+
+
             //TODO: Rewrite as service
             function handleError(err) {
                 console.log(err);
