@@ -23,7 +23,7 @@ module.exports = angular.module("shutterSnappy")
                 $auth.signup(newUser)
                     .then(function(res) {
                         nameService.name = res.data.user.displayName;
-                        callout("success", "Sweet!", res.data.user.displayName + ", welcome to ShutterSnappy!");
+                        callout("dark", "Sweet!", res.data.user.displayName + ", welcome to ShutterSnappy!");
                         $auth.login({
                             email: $scope.email,
                             password: $scope.password
@@ -44,7 +44,7 @@ module.exports = angular.module("shutterSnappy")
                     var authProvider = provider.charAt(0).toUpperCase() + provider.slice(1);
 
                     nameService.name = res.data.user.displayName;
-                    callout("success", "Sweet!", "Welcome " + res.data.user.displayName + ", thanks for using " + authProvider);
+                    callout("dark", "Sweet!", "Welcome " + res.data.user.displayName + ", thanks for using " + authProvider);
                     checkState();
 
                 }, handleError);

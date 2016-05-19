@@ -22,7 +22,7 @@ module.exports = angular.module("shutterSnappy")
                     password: $scope.password
                 }).then(function(res) {
                     nameService.name = res.data.user.displayName;
-                    callout("success", "Good to see you!", "Welcome back " + res.data.user.displayName);
+                    callout("dark", "Good to see you!", "Welcome back " + res.data.user.displayName);
                     socket.emit("signin", {
                         user: res.data.user.displayName
                     });
@@ -40,7 +40,7 @@ module.exports = angular.module("shutterSnappy")
                     var authProvider = provider.charAt(0).toUpperCase() + provider.slice(1);
 
                     nameService.name = res.data.user.displayName;
-                    callout("success", "Good to see you!", "Welcome " + res.data.user.displayName + ", thanks for signing in with " + authProvider);
+                    callout("dark", "Good to see you!", "Welcome " + res.data.user.displayName + ", thanks for signing in with " + authProvider);
                     socket.emit("signin", {
                         user: res.data.user.displayName
                     });
@@ -53,7 +53,7 @@ module.exports = angular.module("shutterSnappy")
              * Socket listeners
              * */
             socket.on("signin", function(data) {
-                callout("success", "Signin by:", data.user);
+                callout("dark", "Signin by:", data.user);
             });
 
 

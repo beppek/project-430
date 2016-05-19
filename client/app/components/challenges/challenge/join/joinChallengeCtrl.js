@@ -11,8 +11,8 @@
  * Exports the controller
  * */
 module.exports = angular.module("shutterSnappy")
-    .controller("joinChallengeCtrl", ["$scope", "callout", "$state", "$stateParams", "challengeService", "userService", "Upload",
-        function($scope, callout, $state, $stateParams, challengeService, userService, Upload) {
+    .controller("joinChallengeCtrl", ["$scope", "callout", "$state", "$stateParams", "challengeService", "userService", "Upload", "socket",
+        function($scope, callout, $state, $stateParams, challengeService, userService, Upload, socket) {
 
             /**
              * Get challenge
@@ -90,7 +90,14 @@ module.exports = angular.module("shutterSnappy")
                         imgData: formData
                     }
                 }).then(function(res) {
-                    callout("success", "Challenge Accepted!", "You successfully uploaded " + res.config.data.file.name);
+                    callout("dark", "Challenge Accepted!", "You successfully uploaded " + res.config.data.file.name);
+
+                    socket.emit("image:uploaded", {
+                        title: res.config.data.title,
+                        id: res.config.data._id,
+                        creator: res.config.data.uploadedBy.userId,
+                        challenge: $scope.challenge.title
+                    });
 
                     $state.go("image", {
                         challengeTitle: $stateParams.title,

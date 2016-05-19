@@ -6,8 +6,8 @@
 "use strict";
 
 module.exports = angular.module("shutterSnappy")
-    .controller("challengesCtrl", ["$scope", "$auth", "challenges", "callout", "$state", "challengeService", "sortService",
-        function($scope, $auth, challenges, callout, $state, challengeService, sortService) {
+    .controller("challengesCtrl", ["$scope", "$auth", "challenges", "callout", "$state", "challengeService", "sortService", "socket",
+        function($scope, $auth, challenges, callout, $state, challengeService, sortService, socket) {
 
             /**
              * Check if authenticated
@@ -67,6 +67,10 @@ module.exports = angular.module("shutterSnappy")
                         challengeId: challenge._id,
                         userId: payload.sub
                     }).success(function(res) {
+                        socket.emit("vote:challenge", {
+                            id: challenge._id,
+                            score: res
+                        });
                         challenge.stats.votes = res;
                     }).error(function(err) {
                         callout("warning", "Something went wrong!", err.message);
@@ -90,6 +94,10 @@ module.exports = angular.module("shutterSnappy")
                         challengeId: challenge._id,
                         userId: payload.sub
                     }).success(function(res) {
+                        socket.emit("unvote:challenge", {
+                            id: challenge._id,
+                            score: res
+                        });
                         challenge.stats.votes = res;
                     }).error(function(err) {
                         callout("warning", "Something went wrong!", err.message);
@@ -118,5 +126,32 @@ module.exports = angular.module("shutterSnappy")
             $scope.sortByDate = function() {
                 $scope.challenges = sortService.byDate($scope.challenges);
             };
+
+            /**
+             * Real time update of scores
+             * */
+            socket.on("vote:challenge", function(data) {
+
+                $scope.challenges.forEach(function(challenge) {
+
+                    if (data.id === challenge._id) {
+                        challenge.stats.votes = data.score;
+                    }
+
+                });
+
+            });
+
+            socket.on("unvote:challenge", function(data) {
+
+                $scope.challenges.forEach(function(challenge) {
+
+                    if (data.id === challenge._id) {
+                        challenge.stats.votes = data.score;
+                    }
+
+                });
+
+            });
 
         }]);

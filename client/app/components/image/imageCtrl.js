@@ -5,8 +5,8 @@
 "use strict";
 
 module.exports = angular.module("shutterSnappy")
-    .controller("imageCtrl", ["$scope", "callout", "$state", "$stateParams", "$http", "imageService", "$auth", "challengeService",
-        function($scope, callout, $state, $stateParams, $http, imageService, $auth, challengeService) {
+    .controller("imageCtrl", ["$scope", "callout", "$state", "$stateParams", "$http", "imageService", "$auth", "challengeService", "socket",
+        function($scope, callout, $state, $stateParams, $http, imageService, $auth, challengeService, socket) {
 
             var challengeTitle = $stateParams.challengeTitle;
             var imageId = $stateParams.imageId;
@@ -71,6 +71,10 @@ module.exports = angular.module("shutterSnappy")
                     imageId: $scope.image._id,
                     userId: payload.sub
                 }).success(function(res) {
+                    socket.emit("vote:image", {
+                        id: $scope.image._id,
+                        score: res
+                    });
                     $scope.image.stats.votes = res;
                 }).error(function(err) {
                     callout("warning", "Something went wrong!", err.message);
@@ -92,6 +96,10 @@ module.exports = angular.module("shutterSnappy")
                     imageId: $scope.image._id,
                     userId: payload.sub
                 }).success(function(res) {
+                    socket.emit("unvote:image", {
+                        id: $scope.image._id,
+                        score: res
+                    });
                     $scope.image.stats.votes = res;
                 }).error(function(err) {
                     callout("warning", "Something went wrong!", err.message);
@@ -126,7 +134,7 @@ module.exports = angular.module("shutterSnappy")
                 imageService.deleteImg(reqObj)
                     .success(function(res) {
                         $scope.toChallenge($scope.challenge);
-                        callout("success", "Gone!", res);
+                        callout("dark", "Gone!", res);
                     })
                     .error(function(err) {
                         callout("warning", "Something went wrong", err.message);
@@ -153,5 +161,20 @@ module.exports = angular.module("shutterSnappy")
                     imageId: uriId
                 })
             };
+
+            /**
+             * Real time update of scores
+             * */
+            socket.on("vote:image", function(data) {
+                if (data.id === $scope.image._id) {
+                    $scope.image.stats.votes = data.score;
+                }
+            });
+
+            socket.on("unvote:image", function(data) {
+                if (data.id === $scope.image._id) {
+                    $scope.image.stats.votes = data.score;
+                }
+            });
 
         }]);

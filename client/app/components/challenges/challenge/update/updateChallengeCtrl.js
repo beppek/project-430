@@ -7,8 +7,8 @@
 "use strict";
 
 module.exports = angular.module("shutterSnappy")
-    .controller("updateChallengeCtrl", ["$scope", "$auth", "challengeService", "callout", "$state", "$stateParams", "$http",
-        function($scope, $auth, challengeService, callout, $state, $stateParams, $http) {
+    .controller("updateChallengeCtrl", ["$scope", "$auth", "challengeService", "callout", "$state", "$stateParams", "$http", "socket",
+        function($scope, $auth, challengeService, callout, $state, $stateParams, $http, socket) {
 
             var payload = $auth.getPayload();
             var challengeTitle = decodeURIComponent($stateParams.title);
@@ -54,13 +54,20 @@ module.exports = angular.module("shutterSnappy")
 
                 challengeService.updateChallenge(formData)
                     .success(function(res) {
-                        callout("success", "Done!", res);
+                        callout("dark", "Done!", res);
+
+                        socket.emit("challenge:updated", {
+                            title: res.title,
+                            uriTitle: $stateParams.title,
+                            creator: res.createdBy.createdByName
+                        });
                         $state.go("challenge-title", {
                             title: $stateParams.title
-                        })
+                        });
+
                     })
                     .error(function(err) {
-                        callout("warning", "Couldn't save!" , err.message);
+                        callout("warning", "Couldn't save!", err.message);
                     });
 
             };
@@ -78,7 +85,7 @@ module.exports = angular.module("shutterSnappy")
                 challengeService.deleteChallenge(reqObj)
                     .success(function(res) {
                         $state.go("challenges");
-                        callout("success", "Gone!", res);
+                        callout("dark", "Gone!", res);
                     })
                     .error(function(err) {
                         callout("warning", "Something went wrong", err.message);

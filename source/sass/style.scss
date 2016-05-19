@@ -259,8 +259,9 @@ label {
 //Callout box
 .callout-box {
     position: absolute;
-    left: 15px;
-    top: $paddingTop;
+    right: $paddingTop / 2;
+    bottom: $paddingTop / 2;
+    border-radius: 0;
     @media screen and (max-width: $smallres) and (min-width: $phabletres) {
         max-width: 300px;
     }
@@ -271,6 +272,11 @@ label {
 }
 .callout-hidden {
     visibility: hidden;
+}
+
+.dark {
+    background-color: $menuBG;
+    color: $textColor;
 }
 
 //Challenges styles

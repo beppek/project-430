@@ -29,7 +29,7 @@ module.exports = angular.module("shutterSnappy")
 
                 imageService.updateImg(formData)
                     .success(function(res) {
-                        callout("success", "Done!", res);
+                        callout("dark", "Done!", res);
                         $state.go("image", {
                             challengeTitle: challengeTitle,
                             imageId: imageId
@@ -101,7 +101,7 @@ module.exports = angular.module("shutterSnappy")
                 imageService.deleteImg(reqObj)
                     .success(function(res) {
                         $scope.toChallenge($scope.challenge);
-                        callout("success", "Gone!", res);
+                        callout("dark", "Gone!", res);
                     })
                     .error(function(err) {
                         callout("warning", "Something went wrong", err.message);

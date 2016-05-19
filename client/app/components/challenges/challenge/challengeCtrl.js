@@ -7,8 +7,8 @@
 "use strict";
 
 module.exports = angular.module("shutterSnappy")
-    .controller("challengeCtrl", ["$scope", "$auth", "challengeService", "callout", "$state", "$stateParams", "$http", "imageService", "sortService",
-        function($scope, $auth, challengeService, callout, $state, $stateParams, $http, imageService, sortService) {
+    .controller("challengeCtrl", ["$scope", "$auth", "challengeService", "callout", "$state", "$stateParams", "$http", "imageService", "sortService", "socket",
+        function($scope, $auth, challengeService, callout, $state, $stateParams, $http, imageService, sortService, socket) {
 
             var payload = $auth.getPayload();
 
@@ -99,6 +99,10 @@ module.exports = angular.module("shutterSnappy")
                         challengeId: challenge._id,
                         userId: payload.sub
                     }).success(function(res) {
+                        socket.emit("vote:challenge", {
+                            id: challenge._id,
+                            score: res
+                        });
                         challenge.stats.votes = res;
                     }).error(function(err) {
                         callout("warning", "Something went wrong!", err.message);
@@ -122,6 +126,10 @@ module.exports = angular.module("shutterSnappy")
                         challengeId: challenge._id,
                         userId: payload.sub
                     }).success(function(res) {
+                        socket.emit("unvote:challenge", {
+                            id: challenge._id,
+                            score: res
+                        });
                         challenge.stats.votes = res;
                     }).error(function(err) {
                         callout("warning", "Something went wrong!", err.message);
@@ -141,6 +149,11 @@ module.exports = angular.module("shutterSnappy")
                     imageId: image._id,
                     userId: payload.sub
                 }).success(function(res) {
+                    socket.emit("vote:image", {
+                        id: image._id,
+                        challenge: $scope.challenge._id,
+                        score: res
+                    });
                     image.stats.votes = res;
                 }).error(function(err) {
                     callout("warning", "Something went wrong!", err.message);
@@ -162,6 +175,11 @@ module.exports = angular.module("shutterSnappy")
                     imageId: image._id,
                     userId: payload.sub
                 }).success(function(res) {
+                    socket.emit("unvote:image", {
+                        id: image._id,
+                        challenge: $scope.challenge._id,
+                        score: res
+                    });
                     image.stats.votes = res;
                 }).error(function(err) {
                     callout("warning", "Something went wrong!", err.message);
@@ -205,7 +223,7 @@ module.exports = angular.module("shutterSnappy")
                 challengeService.deleteChallenge(reqObj)
                     .success(function(res) {
                         $state.go("challenges");
-                        callout("success", "Gone!", res);
+                        callout("dark", "Gone!", res);
                     })
                     .error(function(err) {
                         callout("warning", "Something went wrong", err.message);
@@ -227,5 +245,44 @@ module.exports = angular.module("shutterSnappy")
                     title: $stateParams.title
                 });
             };
+
+            /**
+             * Real time update of scores
+             * */
+            socket.on("vote:challenge", function(data) {
+                if (data.id === $scope.challenge._id) {
+                    $scope.challenge.stats.votes = data.score;
+                }
+            });
+
+            socket.on("unvote:challenge", function(data) {
+                if (data.id === $scope.challenge._id) {
+                    $scope.challenge.stats.votes = data.score;
+                }
+            });
+
+            socket.on("vote:image", function(data) {
+
+                $scope.images.forEach(function(image) {
+
+                    if (data.id === image._id) {
+                        image.stats.votes = data.score;
+                    }
+
+                });
+
+            });
+
+            socket.on("unvote:image", function(data) {
+
+                $scope.images.forEach(function(image) {
+
+                    if (data.id === image._id) {
+                        image.stats.votes = data.score;
+                    }
+
+                });
+
+            });
 
         }]);

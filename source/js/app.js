@@ -38,6 +38,7 @@ require("../../client/app/shared/directives/validateEquals");
 require("../../client/app/shared/controllers/signinCtrl");
 require("../../client/app/shared/controllers/menuCtrl");
 require("../../client/app/shared/controllers/signoutCtrl");
+require("../../client/app/shared/controllers/notificationCtrl");
 
 // LOAD COMPONENTS
 // Home
