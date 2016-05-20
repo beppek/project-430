@@ -92,7 +92,7 @@ app.use(function(err, req, res, next) {
         return next(err);
     }
 
-    res.status(400).render("errors/400");
+    res.status(400).send({message:err});
 
 });
 
