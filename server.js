@@ -23,7 +23,12 @@ var mongoose        = require("./server/config/mongoose");
 var session         = require("express-session");
 var csurf           = require("csurf");
 var RedisStore      = require("connect-redis")(session);
-var sessionStore    = new RedisStore();
+if (process.env.NODE_ENV === "production") {
+    var sessionStore    = new RedisStore({pass: process.env.REDISAUTH});
+}
+else {
+    var sessionStore    = new RedisStore();
+}
 
 var app             = express();
 var port            = process.env.PORT || 8000;
