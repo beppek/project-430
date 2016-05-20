@@ -6,8 +6,8 @@
 "use strict";
 
 module.exports = angular.module("shutterSnappy")
-    .controller("updateImageCtrl", ["$scope", "callout", "$state", "$stateParams", "$http", "imageService", "$auth", "challengeService",
-        function($scope, callout, $state, $stateParams, $http, imageService, $auth, challengeService) {
+    .controller("updateImageCtrl", ["$scope", "callout", "$state", "$stateParams", "$http", "imageService", "$auth", "challengeService", "socket",
+        function($scope, callout, $state, $stateParams, $http, imageService, $auth, challengeService, socket) {
 
             var challengeTitle = $stateParams.challengeTitle;
             var imageId = $stateParams.imageId;
@@ -36,7 +36,7 @@ module.exports = angular.module("shutterSnappy")
                         })
                     })
                     .error(function(err) {
-                        callout("warning", "Couldn't save!" , err.message);
+                        callout("warning", "Couldn't save!", err.message);
                     });
 
             };
@@ -100,6 +100,10 @@ module.exports = angular.module("shutterSnappy")
 
                 imageService.deleteImg(reqObj)
                     .success(function(res) {
+                        socket.emit("image:deleted", {
+                            challenge: $scope.challenge.title,
+                            imageId: image._id
+                        });
                         $scope.toChallenge($scope.challenge);
                         callout("dark", "Gone!", res);
                     })

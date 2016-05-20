@@ -1,5 +1,6 @@
 /**
- * Created by Beppe on 8/05/2016.
+ * Image service for backend
+ * @author beppek
  */
 
 var Image = require("../models/Image");
@@ -25,12 +26,14 @@ function getImage(req, res) {
 
     Image.findOne(searchImage, function(err, image) {
         if (err) {
-            throw err;
+            return res.status(500).send({message: "Internal error"});
         }
 
         if (image) {
-            res.send(image);
+            return res.send(image);
         }
+
+        return res.status(404).send({message: "Couldn't find image"});
 
     })
 
@@ -95,7 +98,7 @@ function updateImg(req, res, next) {
         }
 
         if (image) {
-            
+
             image.title = req.body.title;
             image.description = req.body.description;
             image.location = req.body.location;
@@ -110,7 +113,7 @@ function updateImg(req, res, next) {
                 }
 
             })
-            
+
         } else {
 
             return res.status(404).send({message: "Image not found!"});

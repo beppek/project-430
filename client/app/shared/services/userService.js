@@ -15,4 +15,8 @@ module.exports = angular.module("shutterSnappy")
                 return payload.sub;
             };
 
+            this.getUserName = function(id) {
+                return $http.get("/user/getname/" + id);
+            }
+
         }]);

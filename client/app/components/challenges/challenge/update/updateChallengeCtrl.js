@@ -57,9 +57,9 @@ module.exports = angular.module("shutterSnappy")
                         callout("dark", "Done!", res);
 
                         socket.emit("challenge:updated", {
-                            title: res.title,
+                            title: $scope.title,
                             uriTitle: $stateParams.title,
-                            creator: res.createdBy.createdByName
+                            creator: $scope.challenge.createdBy.createdByName
                         });
                         $state.go("challenge-title", {
                             title: $stateParams.title

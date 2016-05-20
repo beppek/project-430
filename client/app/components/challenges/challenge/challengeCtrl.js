@@ -285,4 +285,21 @@ module.exports = angular.module("shutterSnappy")
 
             });
 
+            socket.on("image:uploaded", function(data) {
+                if (data.challenge === $scope.challenge.title) {
+                    imageService.getImage(data.id)
+                        .success(function(res) {
+                            $scope.images.push(res);
+                        });
+                }
+            });
+
+            socket.on("image:deleted", function(data) {
+                if (data.challenge === $scope.challenge.title) {
+                    $scope.images = $scope.images.filter(function(image) {
+                        return image._id !== data.imageId
+                    })
+                }
+            });
+
         }]);

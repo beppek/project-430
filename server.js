@@ -73,6 +73,7 @@ app.use("/", require("./server/routes/votingRoutes"));
 app.use("/", require("./server/routes/redirects.js"));
 app.use("/", require("./server/routes/challengeRoutes"));
 app.use("/", require("./server/routes/imageRoutes"));
+app.use("/", require("./server/routes/userRoutes"));
 
 var sockets = require("./sockets/index");
 

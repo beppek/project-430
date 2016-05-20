@@ -21,7 +21,7 @@ module.exports = angular.module("shutterSnappy")
                 $timeout.cancel(calloutTimeout);
                 calloutTimeout = $timeout(function() {
                     $rootScope.callout.show = false;
-                }, timeout || 5000);
+                }, timeout || 3000);
             }
 
         }]);

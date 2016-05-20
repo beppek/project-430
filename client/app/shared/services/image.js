@@ -24,6 +24,13 @@ module.exports = angular.module("shutterSnappy")
             };
 
             /**
+             * Get image
+             * */
+            this.getImage = function(id) {
+                return $http.get("/image/" + id);
+            };
+
+            /**
              * Delete Image
              * */
             this.deleteImg = function(data) {

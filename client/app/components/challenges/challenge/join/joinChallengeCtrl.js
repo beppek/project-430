@@ -14,6 +14,8 @@ module.exports = angular.module("shutterSnappy")
     .controller("joinChallengeCtrl", ["$scope", "callout", "$state", "$stateParams", "challengeService", "userService", "Upload", "socket",
         function($scope, callout, $state, $stateParams, challengeService, userService, Upload, socket) {
 
+            var userId = userService.getId();
+
             /**
              * Get challenge
              * */
@@ -75,7 +77,7 @@ module.exports = angular.module("shutterSnappy")
             $scope.upload = function(file) {
 
                 var formData = {
-                    userId: userService.getId(),
+                    userId: userId,
                     title: $scope.title,
                     description: $scope.description,
                     location: $scope.location,
@@ -90,14 +92,20 @@ module.exports = angular.module("shutterSnappy")
                         imgData: formData
                     }
                 }).then(function(res) {
+
                     callout("dark", "Challenge Accepted!", "You successfully uploaded " + res.config.data.file.name);
 
-                    socket.emit("image:uploaded", {
-                        title: res.config.data.title,
-                        id: res.config.data._id,
-                        creator: res.config.data.uploadedBy.userId,
-                        challenge: $scope.challenge.title
-                    });
+                    var id = res.data._id;
+
+                    userService.getUserName(userId)
+                        .success(function(res) {
+                            socket.emit("image:uploaded", {
+                                title: $scope.title,
+                                id: id,
+                                creator: res,
+                                challenge: $scope.challenge.title
+                            });
+                        });
 
                     $state.go("image", {
                         challengeTitle: $stateParams.title,

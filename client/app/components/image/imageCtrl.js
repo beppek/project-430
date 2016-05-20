@@ -22,7 +22,7 @@ module.exports = angular.module("shutterSnappy")
             /**
              * Get the image and info
              * */
-            $http.get("/image/" + imageId)
+            imageService.getImage(imageId)
                 .success(function(res) {
 
                     $scope.image = res;
@@ -30,9 +30,13 @@ module.exports = angular.module("shutterSnappy")
 
                     $scope.image.dateCreated = dateCreated.toDateString();
 
-                }).error(function(err) {
-                    callout("warning", "Something went wrong", err.message);
-            });
+                })
+                .error(function(err) {
+                    callout("dark", "Something went wrong", err.message);
+                    $state.go("challenge-title", {
+                        title: challengeTitle
+                    })
+                });
 
             /**
              * Get challenge
@@ -133,6 +137,10 @@ module.exports = angular.module("shutterSnappy")
 
                 imageService.deleteImg(reqObj)
                     .success(function(res) {
+                        socket.emit("image:deleted", {
+                            challenge: $scope.challenge.title,
+                            imageId: image._id
+                        });
                         $scope.toChallenge($scope.challenge);
                         callout("dark", "Gone!", res);
                     })
@@ -174,6 +182,18 @@ module.exports = angular.module("shutterSnappy")
             socket.on("unvote:image", function(data) {
                 if (data.id === $scope.image._id) {
                     $scope.image.stats.votes = data.score;
+                }
+            });
+
+            /**
+             * If image is deleted while viewing take user back to challenge page
+             * */
+            socket.on("image:deleted", function(data) {
+                if (data.imageId === $scope.image._id) {
+                    callout("dark", "The image was deleted");
+                    $state.go("challenge-title", {
+                        title: $scope.challenge.title
+                    });
                 }
             });
 
