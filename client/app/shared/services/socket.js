@@ -8,7 +8,7 @@
 module.exports = angular.module("shutterSnappy")
     .factory("socket", ["$rootScope", function($rootScope) {
 
-        var socket = io.connect("http://localhost:8000");
+        var socket = io.connect("https://localhost:8000");
         return {
             on: function(eventName, callback) {
                 socket.on(eventName, function() {

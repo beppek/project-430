@@ -27,6 +27,7 @@ if (process.env.NODE_ENV === "production") {
     var sessionStore    = new RedisStore({pass: process.env.REDISAUTH});
 }
 else {
+    console.log("Development");
     var sessionStore    = new RedisStore();
 }
 
