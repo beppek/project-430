@@ -197,4 +197,14 @@ module.exports = angular.module("shutterSnappy")
                 }
             });
 
+            /**
+             * If challenge is deleted while viewing take user back to challenges page
+             * */
+            socket.on("challenge:deleted", function(data) {
+                if (data.challenge === decodeURIComponent(challengeTitle)) {
+                    callout("dark", "The challenge was deleted");
+                    $state.go("challenges");
+                }
+            });
+
         }]);

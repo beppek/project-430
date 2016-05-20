@@ -4,7 +4,7 @@
  * - Local
  * - Google+
  * - Facebook
- * TBD:
+ * TODO:
  * - Instagram
  *
  */
@@ -23,9 +23,6 @@ module.exports = angular.module("shutterSnappy")
                 }).then(function(res) {
                     nameService.name = res.data.user.displayName;
                     callout("dark", "Good to see you!", "Welcome back " + res.data.user.displayName);
-                    socket.emit("signin", {
-                        user: res.data.user.displayName
-                    });
                     checkState();
                 }).catch(handleError)
 

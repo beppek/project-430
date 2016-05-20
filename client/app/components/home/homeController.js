@@ -162,4 +162,20 @@ module.exports = angular.module("shutterSnappy")
 
             });
 
+            /**
+             * Real time update of new and deleted challenges
+             * */
+            socket.on("challenge:created", function(data) {
+                challengeService.get(data.title)
+                    .success(function(res) {
+                        $scope.challenges.push(res);
+                    });
+            });
+
+            socket.on("challenge:deleted", function(data) {
+                $scope.challenges = $scope.challenges.filter(function(challenge) {
+                    return challenge.lcTitle !== data.challenge
+                })
+            });
+
         }]);

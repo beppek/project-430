@@ -29,7 +29,8 @@ module.exports = angular.module("shutterSnappy")
 
                 })
                 .error(function(err) {
-                    callout("warning", "Something went wrong", err.message);
+                    callout("dark", "Something went wrong", err.message);
+                    $state.go("challenges");
                 });
 
             /**
@@ -222,6 +223,9 @@ module.exports = angular.module("shutterSnappy")
 
                 challengeService.deleteChallenge(reqObj)
                     .success(function(res) {
+                        socket.emit("challenge:deleted", {
+                            challenge: $scope.challenge.lcTitle
+                        });
                         $state.go("challenges");
                         callout("dark", "Gone!", res);
                     })
@@ -285,6 +289,9 @@ module.exports = angular.module("shutterSnappy")
 
             });
 
+            /**
+             * Real time update of new and deleted images
+             * */
             socket.on("image:uploaded", function(data) {
                 if (data.challenge === $scope.challenge.title) {
                     imageService.getImage(data.id)
@@ -299,6 +306,16 @@ module.exports = angular.module("shutterSnappy")
                     $scope.images = $scope.images.filter(function(image) {
                         return image._id !== data.imageId
                     })
+                }
+            });
+
+            /**
+             * If challenge is deleted while viewing take user back to challenges page
+             * */
+            socket.on("challenge:deleted", function(data) {
+                if (data.challenge === $scope.challenge.lcTitle) {
+                    callout("dark", "The challenge was deleted");
+                    $state.go("challenges");
                 }
             });
 

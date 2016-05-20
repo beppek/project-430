@@ -205,6 +205,8 @@ function getChallenge(req, res, next) {
             return res.send(challenge);
         }
 
+        return res.status(404).send({message: "Call Sherlock! The challenge is missing!"})
+
     });
 
 }

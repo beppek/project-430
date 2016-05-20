@@ -49,7 +49,7 @@ module.exports = angular.module("shutterSnappy")
                         
                     })
                     .error(function(err) {
-                        callout("warning", "Challenge Not Accepted!", err.message);
+                        callout("dark", "Challenge Not Accepted!", err.message);
                     });
 
             };

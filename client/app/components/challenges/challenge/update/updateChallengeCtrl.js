@@ -84,6 +84,9 @@ module.exports = angular.module("shutterSnappy")
 
                 challengeService.deleteChallenge(reqObj)
                     .success(function(res) {
+                        socket.emit("challenge:deleted", {
+                            challenge: $scope.challenge.lcTitle
+                        });
                         $state.go("challenges");
                         callout("dark", "Gone!", res);
                     })
