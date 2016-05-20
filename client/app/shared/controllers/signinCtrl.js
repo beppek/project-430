@@ -22,7 +22,7 @@ module.exports = angular.module("shutterSnappy")
                     password: $scope.password
                 }).then(function(res) {
                     nameService.name = res.data.user.displayName;
-                    callout("dark", "Good to see you!", "Welcome back " + res.data.user.displayName);
+                    callout("dark", "Good to see you!", "Welcome " + res.data.user.displayName);
                     checkState();
                 }).catch(handleError)
 

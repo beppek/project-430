@@ -10,6 +10,7 @@
     "test": "mocha",
     "test-coverage": "mocha test --require blanket --reporter html-cov > coverage.html",
     "minify-js": "uglifyjs client/assets/js/bundle.js --output client/assets/js/bundle.min.js",
+    "production": "npm run build && npm run minify-js && pm2 start server.js",
     "build": "browserify -t browserify-ngannotate source/js/app.js -o client/assets/js/bundle.js ",
     "serve": "nodemon --watch server.js server"
   },

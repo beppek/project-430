@@ -64,7 +64,9 @@ app.use(function(req, res, next) {
 
 //Static content
 //TODO: Use enginx in production
-app.use(express.static(path.join(__dirname, "client")));
+if (process.env.NODE_ENV !== "production") {
+    app.use(express.static(path.join(__dirname, "client")));
+}
 
 //Routes
 app.use("/", require("./server/routes/home.js"));
