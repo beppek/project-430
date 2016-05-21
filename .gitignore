@@ -9,3 +9,4 @@ bundle.min.js
 coverage.html
 secrets.js
 client/imgDB/*
+secrets

@@ -14,7 +14,7 @@
 //Requires
 var path            = require("path");
 var fs              = require("fs");
-var http            = require("http");
+var https            = require("https");
 
 var express         = require("express");
 var bodyParser      = require("body-parser");
@@ -34,8 +34,8 @@ else {
 var app             = express();
 var port            = process.env.PORT || 8000;
 
-var server          = http.Server(app);
-var io              = require("socket.io")(server);
+// var server          = http.Server(app);
+// var io              = require("socket.io")(server);
 
 //CONFIG -------------------------------
 
@@ -132,6 +132,11 @@ app.use(function(req, res, next) {
 });
 
 //LAUNCH ----------------------------------
+var server = https.createServer({
+    key: fs.readFileSync("./secrets/config/sslcerts/shuttersnappy.com.key"),
+    cert: fs.readFileSync("./secrets/config/sslcerts/shuttersnappy.com.crt")
+}, app);
+var io = require("socket.io")(server);
 server.listen(port, function() {
 
     console.log("Express started on http://localhost:" + port);
