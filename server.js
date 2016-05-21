@@ -55,8 +55,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //TODO: Don't forget to secure Redis
 //session
 app.use(session({
-    name: "sniplykicksass",
-    secret: "say purpose turn blanket",
+    name: process.env.SESSIONNAME,
+    secret: process.env.COOKIESECRET,
     store: sessionStore,
     saveUninitialized: true,
     resave: false,
