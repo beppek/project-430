@@ -6,7 +6,7 @@
   "scripts": {
     "watch-css": "nodemon -e scss -x \"npm run build-css\"",
     "build-css": "node-sass --include-path scss source/sass/style.scss client/assets/css/style.css",
-    "start": "npm run build && npm run serve",
+    "start": "npm run build && npm run minify-js && npm run serve",
     "test": "mocha",
     "test-coverage": "mocha test --require blanket --reporter html-cov > coverage.html",
     "minify-js": "uglifyjs client/assets/js/bundle.js --output client/assets/js/bundle.min.js",
