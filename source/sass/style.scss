@@ -229,6 +229,11 @@ label {
     }
 }
 
+.all-forms select {
+    border-radius: 0;
+    margin: 0;
+}
+
 .signin-form {
     @extend .all-forms;
 }

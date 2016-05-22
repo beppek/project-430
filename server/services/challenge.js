@@ -45,6 +45,8 @@ function getChallengeImages(req, res, next) {
  * */
 function createChallenge(req, res, next) {
 
+    console.log(req.body.category);
+
     var lcTitle = req.body.title.toLowerCase();
 
     if (lcTitle === "create" || lcTitle === "update" || lcTitle === "read" || lcTitle === "delete") {
@@ -99,7 +101,8 @@ function createChallenge(req, res, next) {
             createdBy: createdBy,
             title: req.body.title,
             lcTitle: req.body.title.toLowerCase(),
-            description: req.body.description
+            description: req.body.description,
+            category: req.body.category
         });
 
         newChallenge.save(function(err) {
@@ -220,6 +223,10 @@ function updateChallenge(req, res, next) {
         _id: req.body.challengeId
     };
 
+    var searchImage = {
+        challenge: req.body.challengeId
+    };
+
     Challenge.findOne(searchChallenge, function(err, challenge) {
         if (err) {
             return res.status(500).send({message: "Something went wrong"});
@@ -229,21 +236,43 @@ function updateChallenge(req, res, next) {
 
             challenge.title = req.body.title;
             challenge.description = req.body.description;
+            challenge.category.id = req.body.category.id;
+            challenge.category.name = req.body.category.name;
+
+            Image.find(searchImage, function(err, images) {
+                if (err) {
+                    next(err);
+                }
+
+                images.forEach(function(image) {
+
+                    image.category = req.body.category;
+
+                    image.save(function(err) {
+                        if (err) {
+                            next(err);
+                        }
+
+                    });
+
+                });
+
+            });
 
             challenge.save(function(err) {
                 if (err) {
                     return res.status(500).send({message: "Something went wrong"});
                 } else {
 
-                    return res.send("Image successfully updated!");
+                    return res.send("Challenge successfully updated!");
 
                 }
 
-            })
+            });
 
         } else {
 
-            return res.status(404).send({message: "Image not found!"});
+            return res.status(404).send({message: "Challenge not found!"});
 
         }
 

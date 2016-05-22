@@ -27,6 +27,16 @@ var ImageSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    category: {
+        id: {
+            type: String,
+            required: true
+        },
+        name: {
+            type: String,
+            required: true
+        }
+    },
     dateCreated: {
         type: Date,
         required: false,

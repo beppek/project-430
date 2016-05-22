@@ -150,7 +150,8 @@ function uploadFile(req, res) {
                 description: imgData.description,
                 location: imgData.location || "N/A",
                 fileInfo: fileInfo,
-                challenge: imgData.challengeId
+                challenge: imgData.challengeId,
+                category: imgData.category
             });
 
             newImage.save(function(err) {

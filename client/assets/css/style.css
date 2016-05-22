@@ -151,6 +151,10 @@ label {
     .all-forms textarea, .signin-form textarea, .join-challenge-form textarea, .challenge-form textarea, .update-image-form textarea {
       height: 20em; } }
 
+.all-forms select, .signin-form select, .join-challenge-form select, .challenge-form select, .update-image-form select {
+  border-radius: 0;
+  margin: 0; }
+
 .social-signin {
   margin-top: 0; }
 

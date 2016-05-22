@@ -76,12 +76,18 @@ module.exports = angular.module("shutterSnappy")
              * */
             $scope.upload = function(file) {
 
+                var categoryObj = {
+                    id: $scope.challenge.category.id,
+                    name: $scope.challenge.category.name
+                };
+
                 var formData = {
                     userId: userId,
                     title: $scope.title,
                     description: $scope.description,
                     location: $scope.location,
-                    challengeId: $scope.challenge._id
+                    challengeId: $scope.challenge._id,
+                    category: categoryObj
                 };
 
                 Upload.upload({

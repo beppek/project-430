@@ -24,6 +24,28 @@ module.exports = angular.module("shutterSnappy")
                     $scope.title = $scope.challenge.title;
                     $scope.description = $scope.challenge.description;
 
+                    $scope.data = {
+                        availableOptions: [
+                            {id: "1", name: "People & Portrait"},
+                            {id: "2", name: "Landscape & Rural"},
+                            {id: "3", name: "Cityscape & Urban"},
+                            {id: "4", name: "Travel"},
+                            {id: "5", name: "Black & White"},
+                            {id: "6", name: "Sports"},
+                            {id: "7", name: "Action"},
+                            {id: "8", name: "HDR"},
+                            {id: "9", name: "Photoshop"},
+                            {id: "10", name: "Architecture"},
+                            {id: "11", name: "Food & Drink"},
+                            {id: "12", name: "Macro"},
+                            {id: "13", name: "Nature"},
+                            {id: "14", name: "Night"},
+                            {id: "15", name: "Art"},
+                            {id: "16", name: "Miscellaneous"}
+                        ],
+                        selectedOption: {id: $scope.challenge.category.id, name: $scope.challenge.category.name}
+                    };
+
                     if ($scope.challenge.createdBy.createdById !== payload.sub) {
                         callout("warning", "Unauthorized!", "That's not your challenge!");
                         $state.go("challenge-title", {
@@ -44,12 +66,18 @@ module.exports = angular.module("shutterSnappy")
              * */
             $scope.submit = function() {
 
+                var categoryObj = {
+                    id: $scope.data.selectedOption.id,
+                    name: $scope.data.selectedOption.name
+                };
+
                 var formData = {
                     reqUserId: payload.sub,
                     creatorId: $scope.challenge.createdBy.createdById,
                     title: $scope.title,
                     description: $scope.description,
-                    challengeId: $scope.challenge._id
+                    challengeId: $scope.challenge._id,
+                    category: categoryObj
                 };
 
                 challengeService.updateChallenge(formData)

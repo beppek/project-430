@@ -25,6 +25,29 @@
                                     <div class="row">
                                         <div class="columns">
                                             <input name="title" ng-model="title" type="text" placeholder="{{challenge.title}}" required>
+                                            <!--<select ng-model="category" name="category" id="category" required>-->
+                                                <!--<option value="">&#45;&#45; Select Category &#45;&#45;</option>-->
+                                                <!--<option value="People & Portrait">People & Portrait</option>-->
+                                                <!--<option value="Landscape & Rural">Landscape & Rural</option>-->
+                                                <!--<option value="Cityscape & Urban">Cityscape & Urban</option>-->
+                                                <!--<option value="Travel">Travel</option>-->
+                                                <!--<option value="Black & White">Black & White</option>-->
+                                                <!--<option value="Sports">Sports</option>-->
+                                                <!--<option value="Action">Action</option>-->
+                                                <!--<option value="HDR">HDR</option>-->
+                                                <!--<option value="Photoshop">Photoshop</option>-->
+                                                <!--<option value="Architecture">Architecture</option>-->
+                                                <!--<option value="Food & Drink">Food & Drink</option>-->
+                                                <!--<option value="Macro">Macro</option>-->
+                                                <!--<option value="Nature">Nature</option>-->
+                                                <!--<option value="night">Night Photography</option>-->
+                                                <!--<option value="Art">Art</option>-->
+                                                <!--<option value="Fashion">Fashion</option>-->
+                                                <!--<option value="Miscellaneous">Miscellaneous</option>-->
+                                            <!--</select>-->
+                                            <select name="category" id="category" ng-options="option.name for option in data.availableOptions track by option.id" ng-model="data.selectedOption">
+
+                                            </select>
                                             <textarea name="description" ng-model="description"></textarea>
                                         </div>
                                     </div>
