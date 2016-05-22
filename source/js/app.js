@@ -65,31 +65,31 @@ require("../../client/app/components/image/update/updateImageCtrl");
 require("../../client/app/components/signup/signupCtrl");
 
 // LOAD OWN JS MODULES
-var toggleNav = require("./toggleNav");
+// var toggleNav = require("./toggleNav");
 
 // Add listeners
-$(document).ready(function() {
-
-    //Initialize foundation
-    $(document).foundation();
-
-    var nav = $("#menu");
-
-    //Toggle menu on click
-    $("#menu-button").click(function(event) {
-
-        event.preventDefault();
-        toggleNav.toggle();
-    });
-
-    //Close menu when clicked outside
-    $(".main-content").click(function(event) {
-
-        if (!$(nav).is(event.target)) {
-            if (!$(nav).hasClass("menu-closed")) {
-                toggleNav.toggle();
-            }
-        }
-    });
-
-});
+// $(document).ready(function() {
+//
+//     //Initialize foundation
+//     $(document).foundation();
+//
+//     var nav = $("#menu");
+//
+//     //Toggle menu on click
+//     $("#menu-button").click(function(event) {
+//
+//         event.preventDefault();
+//         toggleNav.toggle();
+//     });
+//
+//     //Close menu when clicked outside
+//     $(".main-content").click(function(event) {
+//
+//         if (!$(nav).is(event.target)) {
+//             if (!$(nav).hasClass("menu-closed")) {
+//                 toggleNav.toggle();
+//             }
+//         }
+//     });
+//
+// });

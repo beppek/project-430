@@ -45,8 +45,6 @@ function getChallengeImages(req, res, next) {
  * */
 function createChallenge(req, res, next) {
 
-    console.log(req.body.category);
-
     var lcTitle = req.body.title.toLowerCase();
 
     if (lcTitle === "create" || lcTitle === "update" || lcTitle === "read" || lcTitle === "delete") {
