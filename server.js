@@ -52,17 +52,28 @@ mongoose.mongoDB();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//TODO: Environment variables for session name and secret
-//TODO: Don't forget to secure Redis
-//session
-app.use(session({
-    name: process.env.SESSIONNAME,
-    secret: process.env.COOKIESECRET,
-    store: sessionStore,
-    saveUninitialized: true,
-    resave: false,
-    cookie: { secure: true }
-}));
+if (process.env.NODE_ENV === "production") {
+    //session
+    app.use(session({
+        name: process.env.SESSIONNAME,
+        secret: process.env.COOKIESECRET,
+        store: sessionStore,
+        saveUninitialized: true,
+        resave: false,
+        cookie: { secure: true }
+    }));
+}
+else {
+    //session
+    app.use(session({
+        name: "sniplykicksass",
+        secret: "say purpose turn blanket",
+        store: sessionStore,
+        saveUninitialized: true,
+        resave: false,
+        cookie: { secure: true }
+    }));
+}
 
 app.use(function(req, res, next) {
 

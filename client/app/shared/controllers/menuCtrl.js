@@ -15,14 +15,16 @@ module.exports = angular.module("shutterSnappy")
 
             $scope.isOpen = false;
 
-            $scope.toggleNav = function() {
+            $scope.toggleNav = function($event) {
 
+                $event.stopPropagation();
                 $scope.isOpen = !$scope.isOpen;
 
             };
 
             $document.on("click", function(event) {
                 if (event.target.id !== "menu" && event.target.id !== "menu-button") {
+                    event.stopPropagation();
                     $scope.$apply($scope.isOpen = false);
                 }
             });
