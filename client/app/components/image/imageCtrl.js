@@ -5,8 +5,8 @@
 "use strict";
 
 module.exports = angular.module("shutterSnappy")
-    .controller("imageCtrl", ["$scope", "callout", "$state", "$stateParams", "$http", "imageService", "$auth", "challengeService", "socket",
-        function($scope, callout, $state, $stateParams, $http, imageService, $auth, challengeService, socket) {
+    .controller("imageCtrl", ["$scope", "callout", "$state", "$stateParams", "$http", "imageService", "$auth", "challengeService", "socket", "$rootScope",
+        function($scope, callout, $state, $stateParams, $http, imageService, $auth, challengeService, socket, $rootScope) {
 
             var challengeTitle = $stateParams.challengeTitle;
             var imageId = $stateParams.imageId;
@@ -26,9 +26,12 @@ module.exports = angular.module("shutterSnappy")
                 .success(function(res) {
 
                     $scope.image = res;
+
                     var dateCreated = new Date($scope.image.dateCreated);
 
                     $scope.image.dateCreated = dateCreated.toDateString();
+
+                    $rootScope.image = $scope.image;
 
                 })
                 .error(function(err) {

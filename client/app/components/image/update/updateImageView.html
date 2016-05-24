@@ -2,16 +2,7 @@
     <div class="page-wrapper">
 
         <div class="toolbar">
-            {{image.title}}
-            <div class="inline-block">
-                <!--Tools-->
-                <div class="dropdown">
-                    | <a><i class="fa fa-cogs" aria-hidden="true"></i> Tools</a>
-                    <div class="dropdown-content">
-                        <a class="dd-item" ng-click="deleteImage(image)"><i class="fa fa-trash"></i>Delete</a>
-                    </div>
-                </div>
-            </div>
+            {{image.title}} <i class="fa fa-pencil-square-o"></i>
         </div>
         <div class="row">
             <div class="medium-12 columns">
@@ -24,14 +15,16 @@
                                 <form ng-submit="submit()" name="updateImage" class="update-image-form" novalidate>
                                     <div class="row">
                                         <div class="columns">
-                                            <input name="title" ng-model="title" type="text" placeholder="{{image.title}}" required>
+                                            <p>{{image.title}}</p>
+                                            <!--<input name="title" ng-model="title" type="text" placeholder="{{image.title}}" required>-->
                                             <input name="location" ng-model="location" type="text" placeholder="{{image.location}}">
                                             <textarea name="description" ng-model="description"></textarea>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="columns">
-                                            <button ng-disabled="updateImage.$invalid" type="submit" class="secondary hollow button save"><i class="fa fa-floppy-o"></i> Save</button>
+                                            <button ng-disabled="updateImage.$invalid" type="submit" class="primary hollow button save"><i class="fa fa-floppy-o"></i> Save</button>
+                                            <button class="alert hollow button" ng-click="toImage()" type="button"><i class="fa fa-times"></i> Cancel</button>
                                         </div>
                                     </div>
                                 </form>

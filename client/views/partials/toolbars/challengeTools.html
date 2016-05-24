@@ -1,0 +1,7 @@
+<ul class="vertical menu">
+    <li><a ng-click="gotoLeaderboard()"><i class="fa fa-trophy" aria-hidden="true"></i> Leaderboards</a></li>
+    <li ng-if="isAuthenticated()"><a ng-click="joinChallenge()"><i class="fa fa-upload"></i> Upload</a></li>
+    <li ng-if="isChallengeCreator()"><a ng-click="updateChallenge()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Update</a></li>
+    <li ng-if="isChallengeCreator()"><a ng-click="deleteChallenge()"><i class="fa fa-trash" aria-hidden="true"></i>Delete</a></li>
+</ul>
+<hr class="menu-hr">

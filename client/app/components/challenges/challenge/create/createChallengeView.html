@@ -1,29 +1,30 @@
 <div ng-controller="createChallengeCtrl" class="">
     <div class="toolbar">
-        Create a new challenge |
-        <div class="dropdown">
-            <a>Tooltips</a>
-            <div class="dropdown-content">
-                <ul>
-                    <li>Title must be unique</li>
-                    <li>Be descriptive! Remember that other people need to know what the challenge is about</li>
-                    <li>Set restrictions. For example:
-                        <ul>
-                            <li>Must be black and white</li>
-                            <li>Must be taken with smartphone</li>
-                            <li>Must use flash</li>
-                        </ul>
-                    </li>
-                </ul>
-                <p>... and don't forget to upload an image yourself</p>
-            </div>
-        </div>
+        New Challenge <i class="fa fa-plus"></i>
     </div>
     <div class="row">
         <div class="medium-12 columns">
 
             <div class="v-align-container">
                 <div class="v-align-inner">
+                    <div class="dropdown">
+                        <a>Show Tooltips <i class="fa fa-caret-down"></i></a>
+                        <div class="dropdown-content">
+                            <ul>
+                                <li>Title must be unique</li>
+                                <li>Be descriptive</li>
+                                <li>Set restrictions. For example:
+                                    <ul>
+                                        <li>Must be black and white</li>
+                                        <li>Must be taken with smartphone</li>
+                                        <li>Must use flash</li>
+                                        <li>... or whatever you fee like</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <p class="image-description">... and don't forget to upload an image yourself</p>
+                        </div>
+                    </div>
                     <form ng-submit="submit()" name="createChallenge" class="challenge-form" novalidate>
                         <div class="row">
                             <div class="medium-6 columns">
@@ -46,7 +47,8 @@
                         </div>
                         <div class="row">
                             <div class="medium-6 columns">
-                                <button ng-disabled="createChallenge.$invalid" type="submit" class="secondary hollow button save"><i class="fa fa-floppy-o"></i> Save</button>
+                                <button ng-disabled="createChallenge.$invalid" type="submit" class="primary hollow button save"><i class="fa fa-plus"></i> Add Challenge</button>
+                                <button class="alert hollow button" type="button" ui-sref="challenges"><i class="fa fa-times"></i> Cancel</button>
                             </div>
                         </div>
                     </form>

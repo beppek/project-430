@@ -1,13 +1,18 @@
 <!-- Menu -->
 <div ng-controller="menuCtrl">
     <div ng-class="['menu-wrapper', {'menu-closed': !isOpen, 'menu-open': isOpen}]" id="menu" outside-click="hideSideMenu()">
+        <ng-include src=tools()></ng-include>
         <ul class="vertical menu">
-            <li><a ui-sref="home" ui-sref-active="active"><i class="fa fa-home"></i>Home</a></li>
-            <li><a ui-sref="challenges" ui-sref-active="active"><i class="fa fa-camera-retro"></i>Challenges</a></li>
-            <li ng-if="!isAuthenticated()"><a ui-sref="signin" ui-sref-active="active"><i class="fa fa-user"></i>Sign in</a></li>
-            <li ng-if="!isAuthenticated()"><a ui-sref="signup" ui-sref-active="active"><i class="fa fa-user-plus"></i>Sign up</a></li>
-            <li ng-if="isAuthenticated()"><a ui-sref="signout" ui-sref-active="active"><i class="fa fa-sign-out"></i>Sign out</a></li>
-            <li><a ui-sref="about" ui-sref-active="active"><i class="fa fa-info-circle"></i>About</a></li>
+            <!--<li><a ui-sref="home" ui-sref-active="active"><i class="fa fa-home"></i> Home</a></li>-->
+            <li><a ui-sref="challenges" ui-sref-active="active"><i class="fa fa-camera-retro"></i> Challenges</a></li>
+            <li><a ui-sref="about" ui-sref-active="active"><i class="fa fa-info-circle"></i> About</a></li>
+            <!--<li ng-if="isAuthenticated() && showChallengesTools()"><a ui-sref="createChallenge"><i class="fa fa-plus" aria-hidden="true"></i> Create Challenge</a></li>-->
+        </ul>
+        <hr class="menu-hr">
+        <ul class="vertical menu">
+            <li ng-if="!isAuthenticated()"><a ui-sref="signin" ui-sref-active="active"><i class="fa fa-user"></i> Sign in</a></li>
+            <li ng-if="!isAuthenticated()"><a ui-sref="signup" ui-sref-active="active"><i class="fa fa-user-plus"></i> Sign up</a></li>
+            <li ng-if="isAuthenticated()"><a ui-sref="signout" ui-sref-active="active"><i class="fa fa-sign-out"></i> Sign out</a></li>
         </ul>
     </div>
 

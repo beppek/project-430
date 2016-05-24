@@ -1,14 +1,7 @@
 <div ng-controller="joinChallengeCtrl" class="">
     <div ng-if="challenge" class="toolbar">
 
-        <a ng-click="toChallenge(challenge)">{{challenge.title}}</a> |
-        <div class="dropdown">
-            <a><i class="fa fa-caret-down" aria-hidden="true"></i>Description</a>
-            <div class="dropdown-content">
-                <p class="dd-item">{{challenge.description}}</p>
-            </div>
-        </div> |
-        <a ng-click="gotoLeaderboard(challenge)"><i class="fa fa-trophy" aria-hidden="true"></i></a></li></a>
+        <a ng-click="toChallenge(challenge)">{{challenge.title}}</a> <i class="fa fa-upload"></i>
 
     </div>
     <div class="v-align-container">
@@ -38,7 +31,10 @@
                             <div class="medium-6 columns">
                                 <div class="row">
                                     <div class="columns">
-                                        <div ngf-change="validateImage()" ngf-select ngf-drop ng-model="image" class="drop-zone" name="image" ngf-pattern="'image/jpeg'" ngf-accept="'image/jpeg'" ngf-max-size="1MB" ngf-min-height="100"><i class="fa fa-upload" aria-hidden="true"></i></div>
+                                        <div ngf-change="validateImage()" ngf-select ngf-drop ng-model="image" class="drop-zone"
+                                             name="image" ngf-pattern="'image/jpeg'" ngf-accept="'image/jpeg'" ngf-max-size="1MB"
+                                             ngf-min-height="100" required><i class="fa fa-upload" aria-hidden="true"></i>
+                                            <p class="image-description">Must be smaller than 1MB</p></div>
                                     </div>
                                     <div class="columns">
                                         <img ngf-thumbnail="image || '/assets/img/placeholder.png'">

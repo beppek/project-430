@@ -1,0 +1,5 @@
+<ul class="vertical menu">
+    <li ng-if="isImageCreator()"><a  ng-click="updateImage()"><i class="fa fa-pencil-square-o"></i>Update</a></li>
+    <li ng-if="isImageCreator()"><a ng-click="deleteImage()"><i class="fa fa-trash"></i>Delete</a></li>
+</ul>
+<hr ng-if="isImageCreator()" class="menu-hr">

@@ -79,10 +79,18 @@ module.exports = angular.module("shutterSnappy")
              * */
             $scope.toChallenge = function(challenge) {
 
-                var uriTitle = encodeURIComponent(challenge.lcTitle);
-
                 $state.go("challenge-title", {
-                    title: uriTitle
+                    title: challengeTitle
+                })
+            };
+
+            /**
+             * Go back to image
+             * */
+            $scope.toImage = function() {
+                $state.go("image", {
+                    challengeTitle: challengeTitle,
+                    imageId: imageId
                 })
             };
 

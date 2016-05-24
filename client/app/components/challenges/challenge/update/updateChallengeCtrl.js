@@ -124,6 +124,15 @@ module.exports = angular.module("shutterSnappy")
             };
 
             /**
+             * Go back to challenge
+             * */
+            $scope.toChallenge = function() {
+                $state.go("challenge-title", {
+                    title: $stateParams.title
+                });
+            };
+
+            /**
              * Checks if current user is creator of challenge
              * */
             $scope.isCreator = function(challenge) {
