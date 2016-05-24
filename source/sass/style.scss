@@ -123,7 +123,7 @@ label {
 
 //Menu Styles
 .menu-wrapper {
-    padding-top: $paddingTop;
+    padding-top: $paddingTop*1.5;
     background-color: $menuBG;
     height: 100vh;
     width: 220px;
@@ -156,7 +156,10 @@ label {
 }
 .menu-hr {
     margin: 0;
+    border-color: $modalBG;
 }
+
+
 
 .menu .active {
     background-color: $active;
@@ -192,6 +195,7 @@ label {
 .menu-heading {
     color: $textColor;
     margin: 0;
+    font-size: 18px;
 }
 
 //Sign in modal

@@ -101,29 +101,6 @@ module.exports = angular.module("shutterSnappy")
             };
 
             /**
-             * Deletes challenge
-             * */
-            $scope.deleteChallenge = function(challenge) {
-                var reqObj = {
-                    challengeId: challenge._id,
-                    reqUserId: payload.sub,
-                    creatorId: challenge.createdBy.createdById
-                };
-
-                challengeService.deleteChallenge(reqObj)
-                    .success(function(res) {
-                        socket.emit("challenge:deleted", {
-                            challenge: $scope.challenge.lcTitle
-                        });
-                        $state.go("challenges");
-                        callout("dark", "Gone!", res);
-                    })
-                    .error(function(err) {
-                        callout("warning", "Something went wrong", err.message);
-                    })
-            };
-
-            /**
              * Go back to challenge
              * */
             $scope.toChallenge = function() {

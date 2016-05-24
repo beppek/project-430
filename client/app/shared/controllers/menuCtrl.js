@@ -40,7 +40,6 @@ module.exports = angular.module("shutterSnappy")
              * Load tools based on page
              * */
             $scope.tools = function() {
-                console.log($state.current.name);
 
                 switch ($state.current.name) {
                     case "home":
@@ -196,7 +195,5 @@ module.exports = angular.module("shutterSnappy")
                     });
 
             };
-
-            $scope.toggle = false;
 
         }]);

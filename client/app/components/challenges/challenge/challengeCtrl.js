@@ -62,18 +62,6 @@ module.exports = angular.module("shutterSnappy")
                 $scope.userId = payload.sub;
             };
 
-            // /**
-            //  * Join challenge function
-            //  * */
-            // $scope.joinChallenge = function() {
-            //
-            //     var uriTitle = encodeURIComponent($scope.challenge.lcTitle);
-            //
-            //     $state.go("joinChallenge", {
-            //         title: uriTitle
-            //     })
-            // };
-
             /**
              * Check if user has voted
              * */
@@ -203,44 +191,12 @@ module.exports = angular.module("shutterSnappy")
                 $scope.images = sortService.byDate($scope.images);
             };
 
-            // /**
-            //  * Deletes challenge
-            //  * */
-            // $scope.deleteChallenge = function(challenge) {
-            //     var reqObj = {
-            //         challengeId: challenge._id,
-            //         reqUserId: payload.sub,
-            //         creatorId: challenge.createdBy.createdById
-            //     };
-            //
-            //     challengeService.deleteChallenge(reqObj)
-            //         .success(function(res) {
-            //             socket.emit("challenge:deleted", {
-            //                 challenge: $scope.challenge.lcTitle
-            //             });
-            //             $state.go("challenges");
-            //             callout("dark", "Gone!", res);
-            //         })
-            //         .error(function(err) {
-            //             callout("warning", "Something went wrong", err.message);
-            //         })
-            // };
-
             /**
              * Checks if current user is creator of challenge
              * */
             $scope.isCreator = function(challenge) {
                 return challenge.createdBy.createdById === payload.sub;
             };
-
-            // /**
-            //  * Go to Update Challenge
-            //  * */
-            // $scope.updateChallenge = function(challenge) {
-            //     $state.go("challenge-update", {
-            //         title: $stateParams.title
-            //     });
-            // };
 
             /**
              * Real time update of scores

@@ -10,8 +10,6 @@ module.exports = angular.module("shutterSnappy")
     .controller("homeController", ["$scope", "$log", "nameService", "challenges", "$state", "$auth", "challengeService", "sortService", "socket",
         function($scope, $log, nameService, challenges, $state, $auth, challengeService, sortService, socket) {
 
-            $scope.name = nameService.name;
-
             /**
              * Check if authenticated
              * */
