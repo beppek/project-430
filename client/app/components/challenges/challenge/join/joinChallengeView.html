@@ -7,50 +7,53 @@
     <div class="v-align-container">
         <div class="v-align-inner">
 
-            <div class="row">
-                <div class="medium-12 columns">
-                    <h1>{{challenge.title}}</h1>
-                </div>
-            </div>
-            <div class="row">
-                <div class="medium-12 columns">
-                    <p>{{challenge.description}}</p>
+            <div class="row align-center">
+                <div class="medium-10 small-8 columns">
+                    <h4>{{challenge.title}}</h4>
+                    <div class="dropdown">
+                        <a>Show challenge description <i class="fa fa-caret-down"></i></a>
+                        <div class="dropdown-content">
+                            <p class="image-description">{{challenge.description}}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="medium-12 columns">
+            <div class="row align-center">
+                <div class="medium-10 small-8 columns">
 
                     <form ng-submit="submit()" name="joinChallenge" class="join-challenge-form" novalidate>
                         <div class="row">
-                            <div class="medium-6 columns">
+                            <div class="medium-6 small-8 columns">
                                 <input name="title" ng-model="title" type="text" placeholder="Title" required>
                                 <input name="location" ng-model="location" type="text" placeholder="Location, Country (Optional)">
                                 <textarea name="description" ng-model="description" placeholder="Give us a short description of your image" required></textarea>
                             </div>
-                            <div class="medium-6 columns">
-                                <div class="row">
-                                    <div class="columns">
-                                        <div ngf-change="validateImage()" ngf-select ngf-drop ng-model="image" class="drop-zone"
-                                             name="image" ngf-pattern="'image/jpeg'" ngf-accept="'image/jpeg'" ngf-max-size="1MB"
-                                             ngf-min-height="100" required><i class="fa fa-upload" aria-hidden="true"></i>
-                                            <p class="image-description">Must be smaller than 1MB</p></div>
-                                    </div>
-                                    <div class="columns">
-                                        <img ngf-thumbnail="image || '/assets/img/placeholder.png'">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="columns">
-                                        <button ng-disabled="joinChallenge.$invalid" type="submit" class="secondary hollow button save"><i class="fa fa-floppy-o"></i> Save</button>
-                                        <p class="image-description">By clicking "Save" you guarantee that you are the copyright holder.</p>
+                            <div class="medium-6 small-8 columns">
+                                <div class="columns">
+                                    <img ngf-thumbnail="image || '/assets/img/placeholder.png'"><br>
+                                    <div ngf-change="validateImage()" ngf-select ngf-drop ng-model="image" class="drop-zone"
+                                         name="image" ngf-pattern="'image/jpeg'" ngf-accept="'image/jpeg'" ngf-max-size="1MB"
+                                         ngf-min-height="100" required><i class="fa fa-upload" aria-hidden="true"></i>
+                                        <p class="image-description">Must be smaller than 1MB</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="columns">
+                                <input required type="checkbox" name="copyrightConfirm"> I confirm that I am the copyright holder.
+                                <br>
+                                <button ng-disabled="joinChallenge.$invalid" type="submit" class="secondary hollow button save"><i class="fa fa-floppy-o"></i> Save</button>
+                            </div>
+                        </div>
                     </form>
-                    <div class="progress" role="progressbar" tabindex="0" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-meter" style="width: {{progress}}%;"></div>
+                    <div class="row align-center">
+                        <div class="columns">
+                            <div class="progress" role="progressbar" tabindex="0" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-meter" style="width: {{progress}}%;"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
