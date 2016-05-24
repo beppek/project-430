@@ -89,32 +89,40 @@ module.exports = angular.module("shutterSnappy")
                 return $rootScope.challenge.createdBy.createdById === userService.getId();
             };
 
+            $scope.isConfirmed = function(value) {
+                console.log(value + " from controller");
+            };
+
             /**
              * Deletes challenge
              * */
             $scope.deleteChallenge = function() {
 
-                challengeService.get($stateParams.title)
-                    .success(function(res) {
-                        $scope.challenge = res;
-                        var reqObj = {
-                            challengeId: res._id,
-                            reqUserId: userService.getId(),
-                            creatorId: res.createdBy.createdById
-                        };
+                // if (confirm("Are you sure you want to delete the challenge?")) {
 
-                        challengeService.deleteChallenge(reqObj)
-                            .success(function(res) {
-                                socket.emit("challenge:deleted", {
-                                    challenge: $scope.challenge.lcTitle
-                                });
-                                $state.go("challenges");
-                                callout("dark", "Gone!", res);
-                            })
-                            .error(function(err) {
-                                callout("warning", "Something went wrong", err.message);
-                            })
-                    });
+                    challengeService.get($stateParams.title)
+                        .success(function(res) {
+                            $scope.challenge = res;
+                            var reqObj = {
+                                challengeId: res._id,
+                                reqUserId: userService.getId(),
+                                creatorId: res.createdBy.createdById
+                            };
+
+                            challengeService.deleteChallenge(reqObj)
+                                .success(function(res) {
+                                    socket.emit("challenge:deleted", {
+                                        challenge: $scope.challenge.lcTitle
+                                    });
+                                    $state.go("challenges");
+                                    callout("dark", "Gone!", res);
+                                })
+                                .error(function(err) {
+                                    callout("warning", "Something went wrong", err.message);
+                                })
+                        });
+
+                // }
 
             };
 
@@ -161,39 +169,43 @@ module.exports = angular.module("shutterSnappy")
              * */
             $scope.deleteImage = function() {
 
-                challengeService.get($stateParams.challengeTitle)
-                    .success(function(res) {
-                        $scope.challenge = res;
-                    });
+                // if (confirm("Are you sure you want to delete this image?")) {
 
-                imageService.getImage($stateParams.imageId)
-                    .success(function(res) {
-                        var reqObj = {
-                            challengeId: res.challenge,
-                            imageId: res._id,
-                            fileName: res.fileInfo.fileName,
-                            reqUserId: userService.getId(),
-                            creatorId: res.uploadedBy.userId
-                        };
+                    challengeService.get($stateParams.challengeTitle)
+                        .success(function(res) {
+                            $scope.challenge = res;
+                        });
 
-                        imageService.deleteImg(reqObj)
-                            .success(function(res) {
-                                socket.emit("image:deleted", {
-                                    challenge: $scope.challenge.title,
-                                    imageId: reqObj.imageId
+                    imageService.getImage($stateParams.imageId)
+                        .success(function(res) {
+                            var reqObj = {
+                                challengeId: res.challenge,
+                                imageId: res._id,
+                                fileName: res.fileInfo.fileName,
+                                reqUserId: userService.getId(),
+                                creatorId: res.uploadedBy.userId
+                            };
+
+                            imageService.deleteImg(reqObj)
+                                .success(function(res) {
+                                    socket.emit("image:deleted", {
+                                        challenge: $scope.challenge.title,
+                                        imageId: reqObj.imageId
+                                    });
+                                    $scope.toChallenge($scope.challenge);
+                                    callout("dark", "Gone!", res);
+                                })
+                                .error(function(err) {
+                                    callout("dark", "Something went wrong", err.message);
                                 });
-                                $scope.toChallenge($scope.challenge);
-                                callout("dark", "Gone!", res);
-                            })
-                            .error(function(err) {
-                                callout("dark", "Something went wrong", err.message);
-                            });
 
-                    })
-                    .error(function(err) {
-                        callout("dark", err.message || err);
-                    });
+                        })
+                        .error(function(err) {
+                            callout("dark", err.message || err);
+                        });
 
-            };
+                }
+
+            // };
 
         }]);

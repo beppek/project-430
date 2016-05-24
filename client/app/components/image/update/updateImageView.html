@@ -4,21 +4,26 @@
         <div class="toolbar">
             {{image.title}} <i class="fa fa-pencil-square-o"></i>
         </div>
-        <div class="row">
-            <div class="medium-12 columns">
+        <div class="row align-center">
+            <div class="medium-8 columns">
 
                 <div class="v-align-container">
                     <div class="v-align-inner">
+
+                        <div class="row">
+                            <div class="medium-2 small-3 columns">
+                                <img ng-src="{{image.fileInfo.path}}" alt="{{image.title}}">
+                            </div>
+                        </div>
 
                         <div class="row">
                             <div class="columns">
                                 <form ng-submit="submit()" name="updateImage" class="update-image-form" novalidate>
                                     <div class="row">
                                         <div class="columns">
-                                            <p>{{image.title}}</p>
-                                            <!--<input name="title" ng-model="title" type="text" placeholder="{{image.title}}" required>-->
-                                            <input name="location" ng-model="location" type="text" placeholder="{{image.location}}">
-                                            <textarea name="description" ng-model="description"></textarea>
+                                            <input name="title" ng-model="title" type="text" placeholder="{{image.title}}" required disabled>
+                                            <input name="location" ng-model="location" type="text" placeholder="Where was the picture taken?">
+                                            <textarea name="description" ng-model="description" placeholder="Describe your image here..."></textarea>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -28,9 +33,6 @@
                                         </div>
                                     </div>
                                 </form>
-                            </div>
-                            <div class="medium-3 columns">
-                                <img ng-src="{{image.fileInfo.path}}" alt="{{image.title}}">
                             </div>
                         </div>
 

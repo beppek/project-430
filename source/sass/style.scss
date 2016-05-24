@@ -154,6 +154,11 @@ label {
         background-color: $menuHover;
     }
 }
+
+.menu i {
+    width: 25px;
+}
+
 .menu-hr {
     margin: 0;
     border-color: $modalBG;
