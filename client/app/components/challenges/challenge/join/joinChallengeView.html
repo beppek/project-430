@@ -7,8 +7,8 @@
     <div class="v-align-container">
         <div class="v-align-inner">
 
-            <div class="row align-center">
-                <div class="medium-10 small-8 columns">
+            <div ng-hide="isUploading" class="row align-center">
+                <div class="medium-10 small-10 columns">
                     <h4>{{challenge.title}}</h4>
                     <div class="dropdown">
                         <a>Show challenge description <i class="fa fa-caret-down"></i></a>
@@ -20,36 +20,46 @@
             </div>
 
             <div class="row align-center">
-                <div class="medium-10 small-8 columns">
+                <div class="medium-10 small-12 columns">
 
-                    <form ng-submit="submit()" name="joinChallenge" class="join-challenge-form" novalidate>
-                        <div class="row">
-                            <div class="medium-6 small-8 columns">
+                    <form ng-hide="isUploading" ng-submit="submit()" name="joinChallenge" class="join-challenge-form" novalidate>
+                        <div class="row align-center">
+                            <div class="medium-6 small-12 columns">
                                 <input name="title" ng-model="title" type="text" placeholder="Title" required>
                                 <input name="location" ng-model="location" type="text" placeholder="Location, Country (Optional)">
                                 <textarea name="description" ng-model="description" placeholder="Give us a short description of your image" required></textarea>
                             </div>
-                            <div class="medium-6 small-8 columns">
+                            <div class="medium-6 small-12 columns">
                                 <div class="columns">
-                                    <img ngf-thumbnail="image || '/assets/img/placeholder.png'"><br>
+                                    <img class="img-thumbnail" ngf-thumbnail="image || '/assets/img/placeholder.png'"><br>
                                     <div ngf-change="validateImage()" ngf-select ngf-drop ng-model="image" class="drop-zone"
                                          name="image" ngf-pattern="'image/jpeg'" ngf-accept="'image/jpeg'" ngf-max-size="1MB"
                                          ngf-min-height="100" required><i class="fa fa-upload" aria-hidden="true"></i>
-                                        <p class="image-description">Must be smaller than 1MB</p>
+                                        <p class="image-description hide-for-small-only">
+                                            Max size: 1MB <br>
+                                            Click to browse <br>
+                                            or drag and drop <br>
+                                            files here.
+                                        </p>
+                                        <p class="show-for-small-only image-description">
+                                            Max size: 1MB <br>
+                                            Tap to choose file
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row align-center">
                             <div class="columns">
-                                <input required type="checkbox" name="copyrightConfirm"> I confirm that I am the copyright holder.
+                                <input type="checkbox" ng-model="copyrightHolder" name="copyrightConfirm" required> I am the copyright holder.
                                 <br>
-                                <button ng-disabled="joinChallenge.$invalid" type="submit" class="secondary hollow button save"><i class="fa fa-floppy-o"></i> Save</button>
+                                <button ng-disabled="joinChallenge.$invalid" type="submit" class="secondary hollow button save"><i class="fa fa-plus"></i> Add to Challenge</button>
                             </div>
                         </div>
                     </form>
-                    <div class="row align-center">
+                    <div ng-show="isUploading" class="row align-center">
                         <div class="columns">
+                            <p>Progres:</p>
                             <div class="progress" role="progressbar" tabindex="0" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
                                 <div class="progress-meter" style="width: {{progress}}%;"></div>
                             </div>

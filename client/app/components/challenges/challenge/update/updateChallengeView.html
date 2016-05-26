@@ -14,7 +14,7 @@
                                 <form ng-submit="submit()" name="updateImage" class="update-image-form" novalidate>
                                     <div class="row">
                                         <div class="columns">
-                                            <p>{{challenge.title}}</p>
+                                            <input name="title" ng-model="title" type="text" placeholder="{{challenge.title}}" disabled>
                                             <select name="category" id="category"
                                                     ng-options="option.name for option in data.availableOptions track by option.id"
                                                     ng-model="data.selectedOption" required>

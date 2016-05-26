@@ -16,6 +16,8 @@ module.exports = angular.module("shutterSnappy")
 
             var userId = userService.getId();
 
+            $scope.isUploading = false;
+
             /**
              * Get challenge
              * */
@@ -43,6 +45,8 @@ module.exports = angular.module("shutterSnappy")
              * Save image
              * */
             $scope.submit = function() {
+
+                $scope.isUploading = true;
 
                 if ($scope.joinChallenge.image.$valid && $scope.image) {
 

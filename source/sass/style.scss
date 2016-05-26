@@ -13,7 +13,7 @@ $challengeBGHover: lighten($mainBG, 25%);
 
 $tinyres: 320px;
 $mobileres: 480px;
-$phabletres: 760px;
+$phabletres: 639px;
 $smallres: 960px;
 $mediumres: 1200px;
 $largeres: 1920px;
@@ -103,12 +103,16 @@ label {
 .dropdown-content {
     display: none;
     position: absolute;
-    min-width: 200px;
+    min-width: 150px;
     background-color: $toolbarColor;
-    //padding: 10px;
     font-size: 13px;
-    left:-20px;
+    left:-10px;
     @extend .box-shadow;
+    line-height: 35px;
+}
+
+.dropdown-content i {
+    width: 20px;
 }
 
 .dropdown-content a {
@@ -211,8 +215,15 @@ label {
 }
 
 .all-forms {
+    margin: 0 auto;
     @media screen and (max-width: $phabletres) {
         width: 320px;
+    }
+    @media screen and (max-width: $mobileres) {
+        width: 250px;
+    }
+    @media screen and (max-width: $tinyres) {
+        width: 220px;
     }
 }
 
@@ -306,6 +317,7 @@ label {
 //Challenges styles
 .challenge {
     background-color: $challengeBG;
+    border-bottom: solid 5px $mainBG;
     &:hover {
         background-color: $challengeBGHover;
         cursor: pointer;
@@ -331,17 +343,29 @@ label {
     @extend .all-forms;
 }
 
+.img-thumbnail {
+    @media screen and (max-width: $phabletres) {
+        width: 80px;
+        margin: 0;
+    }
+}
+
 .drop-zone {
     width: 200px;
-    height: 200px;
+    height: 150px;
     border: 5px dashed;
-    margin-bottom: 15px;
-    font-size: 80px;
+    font-size: 30px;
     color: $challengeBGHover;
     text-align: center;
-    //line-height: 180px;
     &:hover {
         cursor: pointer;
+    }
+    @media screen and (max-width: $phabletres) {
+        line-height: 80px;
+        margin: 15px auto;
+    }
+    @media screen and (min-width: $phabletres) {
+        margin: 15px 0;
     }
 }
 
@@ -373,9 +397,6 @@ label {
     display: inline-block;
     position: relative;
     @extend .box-shadow;
-    //-webkit-box-shadow: 0px 0px 10px 5px rgba(25,25,25,0.75);
-    //-moz-box-shadow: 0px 0px 10px 5px rgba(25,25,25,0.75);
-    //box-shadow: 0px 0px 10px 5px rgba(25,25,25,0.75);
     &:hover .image-overlay {
         display: block;
     }
@@ -389,6 +410,13 @@ label {
     background-color: rgba(25,25,25,0.4);
     display: none;
     padding: 20px;
+    @media screen and (max-width: $phabletres) {
+        position: relative;
+        display: block;
+        margin: 0;
+        text-align: left;
+        padding: 0;
+    }
 }
 
 .image-overlay h4 {
@@ -419,6 +447,11 @@ label {
     position: absolute;
     right: 25px;
     bottom: 0;
+    @media screen and (max-width: $phabletres) {
+        right: 0;
+        top: -18px;
+        font-size: 12px;
+    }
 }
 
 .left-image-info {
