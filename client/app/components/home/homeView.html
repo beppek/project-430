@@ -10,17 +10,17 @@
             </div>
         </div>
     </div>
-    <div class="row align-center">
+    <div ng-show="!isAuthenticated()" class="row align-center">
         <div class="columns">
             <div class="v-align-container">
                 <div class="v-align-inner">
                     <h1 class="main-heading">ShutterSnappy</h1>
-                    <img ng-show="!isAuthenticated()" class="main-logo" src="assets/img/logo.png" alt="Logo image">
+                    <img class="main-logo" src="assets/img/logo.png" alt="Logo image">
                 </div>
             </div>
         </div>
     </div>
-    <div class="row align-center signup-home">
+    <div ng-show="!isAuthenticated()" class="row align-center signup-home">
         <div class="columns">
             <div ng-controller="signupCtrl">
                 <div class="v-align-container">
