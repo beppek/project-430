@@ -58,8 +58,8 @@ module.exports = angular.module("shutterSnappy")
             //TODO: Service
             function checkState() {
 
-                if ($state.current.url === "/signup" || $state.current.url === "/signin") {
-                    $state.go("home");
+                if ($state.current.url === "/signup" || $state.current.url === "/signin" || $state.current.name === "home") {
+                    $state.go("challenges");
                 }
 
             }
