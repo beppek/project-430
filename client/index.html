@@ -21,95 +21,25 @@
 
         </div>
 
-        <!--Sign In modal-->
-        <div ng-controller="signinCtrl" class="medium reveal" id="signinModal" data-reveal data-animation-in="slide-in-down" data-animation-out="slide-out-up">
-
-            <form ng-submit="submit()" name="signin" class="signin-form" novalidate>
-                <div class="row align-center">
-                    <div class="medium-12 columns">
-                        <h3><i class="fa fa-user"></i>Sign In</h3>
-                    </div>
-                </div>
-                <div class="row align-center">
-                    <div class="medium-12 columns">
-                        <input name="email" ng-model="email" type="email" placeholder="Email" required>
-                        <p class="help-block" ng-show="signin.email.$dirty && signin.email.$invalid">Please enter valid email address</p>
-                    </div>
-
-                </div>
-                <div class="row align-center">
-                    <div class="medium-12 columns">
-                        <input name="password" ng-model="password" type="password" placeholder="Password" required>
-                    </div>
-                </div>
-                <div class="row align-center">
-                    <div class="medium-12 columns">
-                        <button ng-disabled="signin.$invalid" type="submit" class="secondary hollow button" data-close><i class="fa fa-sign-in"></i> Sign in</button>
-                        <button type="button" class="hollow button" ng-click="authenticate('google')" data-close><i class="fa fa-google-plus"></i> Google</button>
-                        <button type="button" class="hollow button" ng-click="authenticate('facebook')" data-close><i class="fa fa-facebook-official"></i> Facebook</button>
-                    </div>
-                </div>
-
-                <div class="row align-center">
-                    <div class="medium-12 columns">
-                        <p>Not yet a member? <a ui-sref="signup" data-close aria-label="Close modal">Sign up now</a> to start improving your photography - it is absolutely free!</p>
-                    </div>
-                </div>
-
-            </form>
-
-            <button class="close-button close-menu-btn" data-close aria-label="Close modal" type="button">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-
-        <!-- Menu -->
-        <!--<div ng-controller="menuCtrl">-->
-            <!--<div class="menu-wrapper menu-closed" id="menu">-->
-                <!--<ul class="vertical menu">-->
-                    <!--<li><a ui-sref="home" ui-sref-active="active"><i class="fa fa-home"></i>Home</a></li>-->
-                    <!--<li><a ui-sref="challenges" ui-sref-active="active"><i class="fa fa-camera-retro"></i>Challenges</a></li>-->
-                    <!--&lt;!&ndash;<li><a ui-sref="leaderboards" ui-sref-active="active"><i class="fi-results-demographics"></i>Leaderboards</a></li>&ndash;&gt;-->
-                    <!--<li ng-if="!isAuthenticated()"><a ui-sref="signin" ui-sref-active="active"><i class="fa fa-user"></i>Sign in</a></li>-->
-                    <!--<li ng-if="!isAuthenticated()"><a ui-sref="signup" ui-sref-active="active"><i class="fa fa-user-plus"></i>Sign up</a></li>-->
-                    <!--<li ng-if="isAuthenticated()"><a ui-sref="signout" ui-sref-active="active"><i class="fa fa-sign-out"></i>Sign out</a></li>-->
-                    <!--<li><a ui-sref="about" ui-sref-active="active"><i class="fa fa-info-circle"></i>About</a></li>-->
-                <!--</ul>-->
-            <!--</div>-->
-
-            <!--<div class="menu-buttons">-->
-                <!--<button ng-if="!isAuthenticated() && currentPage() !== '/signin'" type="button" class="menu-btn" data-open="signinModal"><i class="fa fa-user"></i> Sign In/Up</button>-->
-                <!--&lt;!&ndash;<button ng-if="isAuthenticated()" ui-sref="upload" type="button" class="secondary hollow button menu-btn"><i class="fa fa-user"></i>{{ name }}</button>&ndash;&gt;-->
-                <!--<button type="button" class="menu-btn" id="menu-button"><i id="menu-icon" class="fa fa-bars" aria-hidden="true"></i></button>-->
-            <!--</div>-->
-        <!--</div>-->
-
         <div class="content-wrapper">
 
-            <!--<div class="main-content">-->
+            <!-- Page content -->
+            <div class="row">
+                <div class="columns">
 
-                <!-- Page content -->
-                <div class="row">
-                    <div class="columns">
-
-                        <div class="ui-view-container">
-                            <div class="main-content" ui-view autoscroll="true"></div>
-                        </div>
-
+                    <div class="ui-view-container">
+                        <div class="main-content" ui-view autoscroll="true"></div>
                     </div>
 
                 </div>
 
-                <!--Alert service-->
-                <div ng-include="'views/partials/callout.html'"></div>
-            <!--</div>-->
+            </div>
+
+            <!--Alert service-->
+            <div ng-include="'views/partials/callout.html'"></div>
         </div>
 
-        <!--Load in Scripts-->
-        <!--<script src="libs/js/vendor/jquery-2.2.3.min.js"></script>-->
-        <!--<script src="libs/js/vendor/foundation.min.js"></script>-->
         <script src="/socket.io/socket.io.js"></script>
-        <!--TODO: Production use min-->
         <script src="assets/js/bundle.min.js"></script>
     </div>
 </body>

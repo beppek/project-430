@@ -12,27 +12,75 @@
     </div>
     <div class="row align-center">
         <div class="columns">
-            <img ng-show="!isAuthenticated()" class="main-logo" src="assets/img/logo.png" alt="Logo image">
-            <!--<div ng-click="toChallenge(challenge)" ng-repeat="challenge in challenges" class="row challenge">-->
-                <!--<div class="medium-12 columns">-->
+            <div class="v-align-container">
+                <div class="v-align-inner">
+                    <h1 class="main-heading">ShutterSnappy</h1>
+                    <img ng-show="!isAuthenticated()" class="main-logo" src="assets/img/logo.png" alt="Logo image">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row align-center signup-home">
+        <div class="columns">
+            <div ng-controller="signupCtrl">
+                <div class="v-align-container">
+                    <div class="v-align-inner">
+                        <div class="columns">
 
-                    <!--<h3>{{challenge.title}}</h3>-->
-                    <!--<p class="image-description">{{challenge.category.name}}</p>-->
-                    <!--<p>{{challenge.description}}</p>-->
-                    <!--<div ng-if="isAuthenticated()">-->
-                        <!--<a ng-if="!hasVoted(challenge)" ng-click="vote(challenge); $event.stopPropagation();"><i class="fa fa-hand-spock-o voteBtn"></i></a>-->
-                        <!--<a ng-if="hasVoted(challenge)" ng-click="unVote(challenge); $event.stopPropagation();" class="hasVoted"><i class="fa fa-hand-spock-o voteBtn"></i></a>-->
-                        <!--{{challenge.stats.votes.length}}-->
-                    <!--</div>-->
-                    <!--<div ng-if="!isAuthenticated()">-->
-                        <!--<i class="fa fa-hand-spock-o"></i>-->
-                        <!--{{challenge.stats.votes.length}}-->
-                    <!--</div>-->
-                    <!--<p><i class="fa fa-picture-o"></i> {{challenge.stats.contributions.length}}</p>-->
-                    <!--<p class="image-description">Created by: {{challenge.createdBy.createdByName}}</p>-->
+                            <form ng-submit="submit()" name="signup" class="signin-form" novalidate>
 
-                <!--</div>-->
-            <!--</div>-->
+                                <div class="row align-center">
+                                    <div class="medium-6 columns">
+                                        <h3><i class="fa fa-user-plus"></i> Sign Up</h3>
+                                    </div>
+                                </div>
+
+                                <div class="row align-center">
+                                    <div class="medium-6 columns">
+                                        <p>Skip signing up. Just use your Google+ or Facebook account!</p>
+                                        <button type="button" class="hollow button social-signin" ng-click="authenticate('google')" data-close><i class="fa fa-google-plus"></i> Google</button>
+                                        <button type="button" class="hollow button social-signin" ng-click="authenticate('facebook')" data-close><i class="fa fa-facebook-official"></i> Facebook</button>
+                                    </div>
+                                </div>
+
+                                <div class="row align-center">
+                                    <div class="medium-6 columns">
+                                        <input name="email" ng-model="email" type="email" placeholder="Email" required>
+                                        <p class="help-block" ng-show="signup.email.$dirty && signup.email.$invalid">Please enter valid email address</p>
+                                    </div>
+                                </div>
+                                <div class="row align-center">
+                                    <div class="medium-6 columns">
+                                        <input name="displayName" ng-model="displayName" type="text" placeholder="Full Name" required>
+                                    </div>
+                                </div>
+                                <div class="row align-center">
+                                    <div class="medium-6 columns">
+                                        <input name="password" ng-model="password" type="password" placeholder="Password" required>
+                                    </div>
+                                </div>
+                                <div class="row align-center">
+                                    <div class="medium-6 columns">
+                                        <input name="password_confirm" ng-model="password_confirm" type="password" placeholder="Confirm password" validate-equals="password">
+                                    </div>
+                                </div>
+                                <div class="row align-center">
+                                    <div class="medium-6 columns">
+                                        <p class="help-block" ng-show="signup.password_confirm.$dirty && signup.password_confirm.$invalid">Passwords must match</p>
+                                    </div>
+                                </div>
+                                <div class="row align-center">
+                                    <div class="medium-6 columns">
+                                        <button ng-disabled="signup.$invalid" type="submit" class="secondary hollow button"><i class="fa fa-user-plus"></i> Sign up</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

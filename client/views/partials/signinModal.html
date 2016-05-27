@@ -1,0 +1,41 @@
+<!--Sign In modal-->
+<div ng-controller="signinCtrl" class="medium reveal" id="signinModal" data-reveal data-animation-in="slide-in-down" data-animation-out="slide-out-up">
+
+    <form ng-submit="submit()" name="signin" class="signin-form" novalidate>
+        <div class="row align-center">
+            <div class="medium-12 columns">
+                <h3><i class="fa fa-user"></i>Sign In</h3>
+            </div>
+        </div>
+        <div class="row align-center">
+            <div class="medium-12 columns">
+                <input name="email" ng-model="email" type="email" placeholder="Email" required>
+                <p class="help-block" ng-show="signin.email.$dirty && signin.email.$invalid">Please enter valid email address</p>
+            </div>
+
+        </div>
+        <div class="row align-center">
+            <div class="medium-12 columns">
+                <input name="password" ng-model="password" type="password" placeholder="Password" required>
+            </div>
+        </div>
+        <div class="row align-center">
+            <div class="medium-12 columns">
+                <button ng-disabled="signin.$invalid" type="submit" class="secondary hollow button" data-close><i class="fa fa-sign-in"></i> Sign in</button>
+                <button type="button" class="hollow button" ng-click="authenticate('google')" data-close><i class="fa fa-google-plus"></i> Google</button>
+                <button type="button" class="hollow button" ng-click="authenticate('facebook')" data-close><i class="fa fa-facebook-official"></i> Facebook</button>
+            </div>
+        </div>
+
+        <div class="row align-center">
+            <div class="medium-12 columns">
+                <p>Not yet a member? <a ui-sref="signup" data-close aria-label="Close modal">Sign up now</a> to start improving your photography - it is absolutely free!</p>
+            </div>
+        </div>
+
+    </form>
+
+    <button class="close-button close-menu-btn" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>

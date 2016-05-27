@@ -19,8 +19,35 @@ label {
 
 .main-logo {
   display: block;
-  margin: 25px auto;
-  max-height: calc(100vh - 50px * 2); }
+  margin: 0 auto; }
+  @media screen and (min-width: 2400px) {
+    .main-logo {
+      max-height: calc(100vh - 180px - 50px*2); } }
+  @media screen and (max-width: 1920px) and (min-width: 639px) {
+    .main-logo {
+      max-height: calc(100vh - 160px - 50px*2); } }
+  @media screen and (max-width: 639px) and (min-width: 480px) {
+    .main-logo {
+      max-height: calc(100vh - 120px - 50px*2); } }
+  @media screen and (max-width: 480px) and (min-width: 320px) {
+    .main-logo {
+      max-height: calc(100vh - 80px - 50px*2); } }
+
+.main-heading {
+  text-align: center;
+  margin: 0; }
+  @media screen and (min-width: 2400px) {
+    .main-heading {
+      font-size: 90px; } }
+  @media screen and (max-width: 1920px) and (min-width: 639px) {
+    .main-heading {
+      font-size: 80px; } }
+  @media screen and (max-width: 639px) and (min-width: 480px) {
+    .main-heading {
+      font-size: 60px; } }
+  @media screen and (max-width: 480px) and (min-width: 320px) {
+    .main-heading {
+      font-size: 40px; } }
 
 .top-left-logo {
   position: fixed;
@@ -197,6 +224,11 @@ label {
   padding-top: 50px;
   background-color: #1f1f1f;
   min-height: calc(100vh - 50px); }
+
+.signup-home {
+  background-color: #233d4f;
+  width: 100%;
+  margin: 0; }
 
 .callout-box {
   position: fixed;

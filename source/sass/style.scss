@@ -71,8 +71,37 @@ label {
 
 .main-logo {
     display: block;
-    margin: ($paddingTop/2) auto;
-    max-height: calc(100vh - #{$paddingTop} * 2);
+    margin: 0 auto;
+    @media screen and (min-width: $xlres) {
+        max-height: calc(100vh - 180px - #{$paddingTop}*2);
+    }
+    @media screen and (max-width: $largeres) and (min-width: $phabletres) {
+        max-height: calc(100vh - 160px - #{$paddingTop}*2);
+    }
+    @media screen and (max-width: $phabletres) and (min-width: $mobileres) {
+        max-height: calc(100vh - 120px - #{$paddingTop}*2);
+    }
+    @media screen and (max-width: $mobileres) and (min-width: $tinyres) {
+        max-height: calc(100vh - 80px - #{$paddingTop}*2);
+    }
+
+}
+
+.main-heading {
+    text-align: center;
+    margin: 0;
+    @media screen and (min-width: $xlres) {
+        font-size: 90px;
+    }
+    @media screen and (max-width: $largeres) and (min-width: $phabletres) {
+        font-size: 80px;
+    }
+    @media screen and (max-width: $phabletres) and (min-width: $mobileres) {
+        font-size: 60px;
+    }
+    @media screen and (max-width: $mobileres) and (min-width: $tinyres) {
+        font-size: 40px;
+    }
 }
 
 .top-left-logo {
@@ -293,6 +322,13 @@ label {
     min-height: calc(100vh - #{$paddingTop});
 }
 
+//Landing page styles
+.signup-home {
+    background-color: $modalBG;
+    width: 100%;
+    margin: 0;
+}
+
 //Signup
 .signup {
     //@include vertical-align();
@@ -338,9 +374,6 @@ label {
 
 .challenge-image {
     margin: $paddingTop/2;
-    //&:hover {
-    //    cursor: pointer;
-    //}
 }
 .challenge-image img {
     margin: 10px;
