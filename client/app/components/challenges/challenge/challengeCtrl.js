@@ -181,14 +181,26 @@ module.exports = angular.module("shutterSnappy")
              * Sort by votes
              * */
             $scope.sortByVotes = function() {
-                $scope.images = sortService.byVotes($scope.images);
+                if ($scope.sortedBy !== "mostVoted") {
+                    $scope.images = sortService.byVotes($scope.images);
+                    $scope.sortedBy = "mostVoted";
+                } else {
+                    $scope.images = sortService.byVotes($scope.images).reverse();
+                    $scope.sortedBy = "leastVoted";
+                }
             };
 
             /**
              * Sort by date
              * */
             $scope.sortByDate = function() {
-                $scope.images = sortService.byDate($scope.images);
+                if ($scope.sortedBy !== "oldest") {
+                    $scope.images = sortService.byDate($scope.images).reverse();
+                    $scope.sortedBy = "oldest";
+                } else {
+                    $scope.images = sortService.byDate($scope.images);
+                    $scope.sortedBy = "newest";
+                }
             };
 
             /**

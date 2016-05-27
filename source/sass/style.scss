@@ -4,7 +4,8 @@ $modalBG: #233d4f;
 $toolbarColor: lighten(#0a0a0a, 5%);
 $menuBG: $toolbarColor;
 $textColor: #f0f0f0;
-$hasVoted: darken($textColor, 25%);
+$darkerText: darken($textColor, 25%);
+$hasVoted: $darkerText;
 $menuHover: lighten($menuBG, 15%);
 $active: $modalBG;
 $challengeBG: lighten($mainBG, 15%);
@@ -66,6 +67,12 @@ label {
 
 .logoImg {
     width: 100px;
+}
+
+.main-logo {
+    display: block;
+    margin: ($paddingTop/2) auto;
+    max-height: calc(100vh - #{$paddingTop} * 2);
 }
 
 .top-left-logo {
@@ -331,9 +338,9 @@ label {
 
 .challenge-image {
     margin: $paddingTop/2;
-    &:hover {
-        cursor: pointer;
-    }
+    //&:hover {
+    //    cursor: pointer;
+    //}
 }
 .challenge-image img {
     margin: 10px;
@@ -463,6 +470,12 @@ label {
 .right-image-info {
     @media screen and (min-width: $phabletres) {
         text-align: right;
+    }
+}
+
+.clickable {
+    &:hover {
+        cursor: pointer;
     }
 }
 

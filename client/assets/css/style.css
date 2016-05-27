@@ -17,6 +17,11 @@ label {
 .logoImg {
   width: 100px; }
 
+.main-logo {
+  display: block;
+  margin: 25px auto;
+  max-height: calc(100vh - 50px * 2); }
+
 .top-left-logo {
   position: fixed;
   top: 0;
@@ -225,8 +230,6 @@ label {
 
 .challenge-image {
   margin: 25px; }
-  .challenge-image:hover {
-    cursor: pointer; }
 
 .challenge-image img {
   margin: 10px; }
@@ -323,6 +326,9 @@ label {
 @media screen and (min-width: 639px) {
   .right-image-info {
     text-align: right; } }
+
+.clickable:hover {
+  cursor: pointer; }
 
 .v-align-container {
   height: calc(100vh - 50px);

@@ -10,28 +10,29 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="medium-12 columns">
-            <div ng-click="toChallenge(challenge)" ng-repeat="challenge in challenges" class="row challenge">
-                <div class="medium-12 columns">
+    <div class="row align-center">
+        <div class="columns">
+            <img ng-show="!isAuthenticated()" class="main-logo" src="assets/img/logo.png" alt="Logo image">
+            <!--<div ng-click="toChallenge(challenge)" ng-repeat="challenge in challenges" class="row challenge">-->
+                <!--<div class="medium-12 columns">-->
 
-                    <h3>{{challenge.title}}</h3>
-                    <p class="image-description">{{challenge.category.name}}</p>
-                    <p>{{challenge.description}}</p>
-                    <div ng-if="isAuthenticated()">
-                        <a ng-if="!hasVoted(challenge)" ng-click="vote(challenge); $event.stopPropagation();"><i class="fa fa-hand-spock-o voteBtn"></i></a>
-                        <a ng-if="hasVoted(challenge)" ng-click="unVote(challenge); $event.stopPropagation();" class="hasVoted"><i class="fa fa-hand-spock-o voteBtn"></i></a>
-                        {{challenge.stats.votes.length}}
-                    </div>
-                    <div ng-if="!isAuthenticated()">
-                        <i class="fa fa-hand-spock-o"></i>
-                        {{challenge.stats.votes.length}}
-                    </div>
-                    <p><i class="fa fa-picture-o"></i> {{challenge.stats.contributions.length}}</p>
-                    <p class="image-description">Created by: {{challenge.createdBy.createdByName}}</p>
+                    <!--<h3>{{challenge.title}}</h3>-->
+                    <!--<p class="image-description">{{challenge.category.name}}</p>-->
+                    <!--<p>{{challenge.description}}</p>-->
+                    <!--<div ng-if="isAuthenticated()">-->
+                        <!--<a ng-if="!hasVoted(challenge)" ng-click="vote(challenge); $event.stopPropagation();"><i class="fa fa-hand-spock-o voteBtn"></i></a>-->
+                        <!--<a ng-if="hasVoted(challenge)" ng-click="unVote(challenge); $event.stopPropagation();" class="hasVoted"><i class="fa fa-hand-spock-o voteBtn"></i></a>-->
+                        <!--{{challenge.stats.votes.length}}-->
+                    <!--</div>-->
+                    <!--<div ng-if="!isAuthenticated()">-->
+                        <!--<i class="fa fa-hand-spock-o"></i>-->
+                        <!--{{challenge.stats.votes.length}}-->
+                    <!--</div>-->
+                    <!--<p><i class="fa fa-picture-o"></i> {{challenge.stats.contributions.length}}</p>-->
+                    <!--<p class="image-description">Created by: {{challenge.createdBy.createdByName}}</p>-->
 
-                </div>
-            </div>
+                <!--</div>-->
+            <!--</div>-->
         </div>
     </div>
 </div>

@@ -23,11 +23,11 @@
 
     <div class="row">
         <div class="medium-12 columns">
-            <div ng-click="toImage(image)" ng-repeat="image in images" class="row challenge-image">
+            <div ng-repeat="image in images" class="row challenge-image">
                 <div class="medium-12 columns">
 
                     <div class="image-wrapper-outer">
-                        <div class="image-wrapper">
+                        <div ng-click="toImage(image)" class="image-wrapper clickable">
 
                             <div class="row">
                                 <div class="medium-12 columns">

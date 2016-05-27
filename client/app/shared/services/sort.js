@@ -75,6 +75,6 @@ module.exports = angular.module("shutterSnappy")
                 });
 
                 return sortedArray;
-            }
+            };
 
         }]);
