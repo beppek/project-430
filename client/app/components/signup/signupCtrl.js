@@ -50,12 +50,10 @@ module.exports = angular.module("shutterSnappy")
                 }, handleError);
             };
 
-            //TODO: Service
             function handleError(err) {
                 callout("warning", "Oops!", err.data.message);
             }
 
-            //TODO: Service
             function checkState() {
 
                 if ($state.current.url === "/signup" || $state.current.url === "/signin" || $state.current.name === "home") {

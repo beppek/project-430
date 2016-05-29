@@ -3,7 +3,7 @@
  * Starting point of the application
  *
  * @author BeppeK
- * @version 0.0.1
+ * @version 0.1.0
  *
 
  * */
@@ -86,7 +86,6 @@ app.use(function(req, res, next) {
 });
 
 //Static content
-//TODO: Use enginx in production
 // if (process.env.NODE_ENV !== "production") {
 app.use(express.static(path.join(__dirname, "client")));
 // }
@@ -126,7 +125,9 @@ app.use(function(err, req, res, next) {
         return next(err);
     }
 
-    res.status(500).render("errors/500");
+    res.status(500).send({
+        message:err
+    });
 
 });
 
@@ -137,7 +138,7 @@ app.use(function(err, req, res, next) {
         return next(err);
     }
 
-    res.status(403).render("errors/403");
+    res.status(403).send({message:err});
 
 });
 

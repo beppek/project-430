@@ -87,23 +87,6 @@ label {
 
 }
 
-.main-heading {
-    text-align: center;
-    margin: 0;
-    @media screen and (min-width: $xlres) {
-        font-size: 90px;
-    }
-    @media screen and (max-width: $largeres) and (min-width: $phabletres) {
-        font-size: 80px;
-    }
-    @media screen and (max-width: $phabletres) and (min-width: $mobileres) {
-        font-size: 60px;
-    }
-    @media screen and (max-width: $mobileres) and (min-width: $tinyres) {
-        font-size: 40px;
-    }
-}
-
 .top-left-logo {
     position: fixed;
     top: 0;
@@ -252,6 +235,7 @@ label {
 
 .all-forms {
     margin: 0 auto;
+    white-space: normal;
     @media screen and (max-width: $phabletres) {
         width: 320px;
     }
@@ -327,6 +311,63 @@ label {
     background-color: $modalBG;
     width: 100%;
     margin: 0;
+    @media screen and (max-width: $smallres) {
+        padding: $paddingTop 0;
+    }
+}
+
+.all-forms .button {
+    @media screen and (max-width: $mobileres) {
+        padding: 8px;
+    }
+}
+
+.main-heading {
+    text-align: center;
+    margin: 0;
+    @media screen and (min-width: $xlres) {
+        font-size: 90px;
+    }
+    @media screen and (max-width: $largeres) and (min-width: $phabletres) {
+        font-size: 80px;
+    }
+    @media screen and (max-width: $phabletres) and (min-width: $mobileres) {
+        font-size: 50px;
+    }
+    @media screen and (max-width: $mobileres) and (min-width: $tinyres) {
+        font-size: 30px;
+    }
+}
+
+.main-heading img {
+    @media screen and (max-width: $smallres) and (min-width: $phabletres) {
+        width: 90px;
+    }
+    @media screen and (max-width: $phabletres) and (min-width: $mobileres) {
+        width: 70px;
+    }
+    @media screen and (max-width: $mobileres) and (min-width: $tinyres) {
+        width: 60px;
+    }
+    @media screen and (max-width: $tinyres) {
+        width: 50px;
+    }
+}
+
+.hero-img {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.hero-text {
+    text-align: center;
+    font-size: 20px;
+    @media screen and (max-width: $mobileres) and (min-width: $tinyres) {
+        font-size: 18px;
+    }
+    @media screen and (max-width: $tinyres) {
+        font-size: 15px;
+    }
 }
 
 //Signup
@@ -549,24 +590,15 @@ label {
 }
 [ui-view].ng-leave {
     opacity: 1;
-    //-webkit-transform: translate3d(0,0,0);
-    //-moz-transform: translate3d(0,0,0);
-    //transform: translate3d(0,0,0);
 }
 [ui-leave].ng-leave-active {
     opacity: 0;
 }
 [ui-view].ng-enter {
     opacity: 0;
-    //-webkit-transform: scale3d(0.96, 0.96, 0.96);
-    //-moz-transform: scale3d(0.96, 0.96, 0.96);
-    //transform: scale3d(0.96, 0.96, 0.96);
 }
 [ui-view].ng-enter-active {
     opacity: 1;
-    //-webkit-transform: scale3d(1,1,1);
-    //-moz-transform: scale3d(1,1,1);
-    //transform: scale3d(1,1,1);
 }
 
 //Foundation built in classes override

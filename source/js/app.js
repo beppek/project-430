@@ -33,6 +33,7 @@ require("../../client/app/app.routes.js");
 
 //Directives
 require("../../client/app/shared/directives/validateEquals");
+require("../../client/app/shared/directives/bgImg");
 
 //Controllers
 require("../../client/app/shared/controllers/signinCtrl");

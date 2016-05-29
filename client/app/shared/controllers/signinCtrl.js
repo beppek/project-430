@@ -53,17 +53,13 @@ module.exports = angular.module("shutterSnappy")
                 callout("dark", "Signin by:", data.user);
             });
 
-
-            //TODO: Rewrite as service
             function handleError(err) {
-                console.log(err);
                 callout("warning", "Oops!", err.data.message);
                 if ($state.current.url !== "signin") {
                     $state.go("signin");
                 }
             }
 
-            //TODO: Rewrite as service
             function checkState() {
 
                 if ($state.current.url === "/signup" || $state.current.url === "/signin" || $state.current.name === "home") {

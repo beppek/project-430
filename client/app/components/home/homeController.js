@@ -21,6 +21,30 @@ module.exports = angular.module("shutterSnappy")
                 return $auth.isAuthenticated();
             };
 
+            var bgImages = [
+                "camera1",
+                "aurora1",
+                "camera2",
+                "map1",
+                "camera3",
+                "map2",
+                "man1",
+                "camera4",
+                "stars1",
+                "forest1",
+                "frost1",
+                "bench1",
+                "mountains1",
+                "kids1",
+                "flower1",
+                "map3",
+                "mountains2",
+                "child1",
+                "sunset1"
+            ];
+
+            $scope.backgroundImage = bgImages[Math.floor(Math.random() * bgImages.length)];
+
             // var payload = $auth.getPayload();
 
             // /**

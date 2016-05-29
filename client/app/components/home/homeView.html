@@ -1,26 +1,26 @@
 <div ng-controller="homeController">
     <div class="toolbar">
-        ShutterSnappy |
-        <div class="dropdown">
-            <a><i class="fa fa-sort"></i> Sort</a>
-            <div class="dropdown-content">
-                <a class="dd-item" ng-click="sortByVotes()"><i class="fa fa-hand-spock-o"></i> Votes</a>
-                <a class="dd-item" ng-click="sortByContributions()"><i class="fa fa-picture-o"></i> Contributions</a>
-                <a class="dd-item" ng-click="sortByDate()"><i class="fa fa-calendar"></i> Date</a>
-            </div>
-        </div>
+        ShutterSnappy
     </div>
-    <div ng-show="!isAuthenticated()" class="row align-center">
+    <div ng-show="!isAuthenticated()" bg-img="{{backgroundImage}}" class="align-center hero-img">
         <div class="columns">
             <div class="v-align-container">
                 <div class="v-align-inner">
-                    <h1 class="main-heading">ShutterSnappy</h1>
-                    <img class="main-logo" src="assets/img/logo.png" alt="Logo image">
+                    <div class="columns">
+
+                    </div>
+                    <div class="columns">
+
+                    </div>
+                    <h1 class="main-heading"><img src="assets/img/logo-min.png" alt="Logo Image">ShutterSnappy</h1>
+                    <div class="hero-text">
+                        <p>Improve your photography today</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div ng-show="!isAuthenticated()" class="row align-center signup-home">
+    <div ng-show="!isAuthenticated()" class="align-center signup-home">
         <div class="columns">
             <div ng-controller="signupCtrl">
                 <div class="v-align-container">
@@ -71,7 +71,7 @@
                                 </div>
                                 <div class="row align-center">
                                     <div class="medium-6 columns">
-                                        <button ng-disabled="signup.$invalid" type="submit" class="secondary hollow button"><i class="fa fa-user-plus"></i> Sign up</button>
+                                        <button ng-disabled="signup.$invalid" type="submit" class="primary hollow button"><i class="fa fa-user-plus"></i> Sign up</button>
                                     </div>
                                 </div>
                             </form>
