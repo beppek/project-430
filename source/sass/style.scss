@@ -311,9 +311,9 @@ label {
     background-color: $modalBG;
     width: 100%;
     margin: 0;
-    @media screen and (max-width: $smallres) {
-        padding: calc(#{$paddingTop}/2) 0;
-    }
+    //@media screen and (max-width: $smallres) {
+    //    padding: calc(#{$paddingTop}/2) 0;
+    //}
 }
 
 .all-forms .button {
