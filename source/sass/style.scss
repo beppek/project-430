@@ -312,7 +312,7 @@ label {
     width: 100%;
     margin: 0;
     @media screen and (max-width: $smallres) {
-        padding: $paddingTop 0;
+        padding: calc(#{$paddingTop}/2) 0;
     }
 }
 
@@ -354,7 +354,7 @@ label {
     }
 }
 
-.hero-img {
+.background-image {
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -362,6 +362,7 @@ label {
 .hero-text {
     text-align: center;
     font-size: 20px;
+    white-space: normal;
     @media screen and (max-width: $mobileres) and (min-width: $tinyres) {
         font-size: 18px;
     }

@@ -43,7 +43,8 @@ module.exports = angular.module("shutterSnappy")
                 "sunset1"
             ];
 
-            $scope.backgroundImage = bgImages[Math.floor(Math.random() * bgImages.length)];
+            $scope.backgroundImage1 = bgImages[Math.floor(Math.random() * bgImages.length)];
+            $scope.backgroundImage2 = bgImages[Math.floor(Math.random() * bgImages.length)];
 
             // var payload = $auth.getPayload();
 
