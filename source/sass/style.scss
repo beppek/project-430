@@ -112,6 +112,7 @@ label {
 }
 
 .dropdown {
+    white-space: normal;
     display: inline-block;
     position: relative;
     &:hover .dropdown-content{

@@ -7,8 +7,8 @@
 
 //TODO: Actually do something useful
 module.exports = angular.module("shutterSnappy")
-    .controller("homeController", ["$scope", "$log", "nameService", "challenges", "$state", "$auth", "challengeService", "sortService", "socket",
-        function($scope, $log, nameService, challenges, $state, $auth, challengeService, sortService, socket) {
+    .controller("homeController", ["$scope", "$log", "nameService", "challenges", "$state", "$auth",
+        function($scope, $log, nameService, challenges, $state, $auth) {
 
             if ($auth.isAuthenticated()) {
                 $state.go("challenges");
@@ -47,5 +47,5 @@ module.exports = angular.module("shutterSnappy")
             do {
                 $scope.backgroundImage2 = bgImages[Math.floor(Math.random() * bgImages.length)];
             } while ($scope.backgroundImage1 === $scope.backgroundImage2);
-            
+
         }]);

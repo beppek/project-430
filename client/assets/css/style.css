@@ -54,6 +54,7 @@ label {
   padding-left: 50px; }
 
 .dropdown {
+  white-space: normal;
   display: inline-block;
   position: relative; }
   .dropdown:hover .dropdown-content {
