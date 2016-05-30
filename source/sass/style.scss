@@ -211,6 +211,12 @@ button {
     right: 5px;
     position: fixed;
 }
+
+.signin-button {
+    @media screen and (max-width: $phabletres) {
+        font-size: 15px!important;
+    }
+}
 .menu-btn {
     color: $textColor;
     line-height: $paddingTop - 2px;

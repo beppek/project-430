@@ -15,7 +15,7 @@
     </div>
 
     <div class="menu-buttons">
-        <button ng-if="!isAuthenticated() && currentPage() !== '/signin'" type="button" class="menu-btn hide-for-small-only" ui-sref="signin"><i class="fa fa-user"></i> Sign In</button>
-        <button ng-click="toggleNav($event)" type="button" class="menu-btn" id="menu-button"><i id="menu-icon" ng-class="['fa', {'fa-bars': !isOpen, 'fa-times': isOpen}]" aria-hidden="true"></i></button>
+        <button ng-if="!isAuthenticated() && currentPage() !== '/signin'" type="button" class="menu-btn signin-button" ui-sref="signin"><i class="fa fa-user"></i> Sign In</button>
+        <button ng-if="isAuthenticated()" ng-click="toggleNav($event)" type="button" class="menu-btn" id="menu-button"><i id="menu-icon" ng-class="['fa', {'fa-bars': !isOpen, 'fa-times': isOpen}]" aria-hidden="true"></i></button>
     </div>
 </div>
