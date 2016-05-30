@@ -7,10 +7,6 @@
 
 module.exports = function(socket) {
 
-    socket.on("signin", function(data) {
-        socket.broadcast.emit("signin", data);
-    });
-
     /**
      * Challenge Events
      * */

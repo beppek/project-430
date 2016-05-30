@@ -9,7 +9,7 @@
 
             <div ng-hide="isUploading" class="row align-center">
                 <div class="medium-10 small-10 columns">
-                    <h4>{{challenge.title}}</h4>
+                    <p class="menu-heading">You're uploading to: {{challenge.title}}</p>
                     <div class="dropdown">
                         <a>Show challenge description <i class="fa fa-caret-down"></i></a>
                         <div class="dropdown-content">
@@ -31,19 +31,19 @@
                             </div>
                             <div class="medium-6 small-12 columns">
                                 <div class="columns">
-                                    <img class="img-thumbnail" ngf-thumbnail="image || '/assets/img/placeholder.png'"><br>
+                                    <img class="img-thumbnail" ng-model="thumbnail" ngf-thumbnail="image || '/assets/img/placeholder.png'"><br>
                                     <div ngf-change="validateImage()" ngf-select ngf-drop ng-model="image" class="drop-zone"
-                                         name="image" ngf-pattern="'image/jpeg'" ngf-accept="'image/jpeg'" ngf-max-size="1MB"
-                                         ngf-min-height="100" required><i class="fa fa-upload" aria-hidden="true"></i>
+                                         name="image" ngf-pattern="'image/jpeg'" ngf-accept="'image/jpeg'"
+                                         ngf-before-model-change="beforeChange()"
+                                         ngf-min-height="100" ngf-fix-orientation="true" ngf-capture="'camera'"
+                                         ngf-validate-after-resize="true" ngf-resize="{width: 1600, height: 900, quality: .8, type: 'image/jpeg'}"
+                                         ngf-resize-if="resizeCondition($file, $width, $height)" ngf-max-size="1MB" required>
+                                        <i class="fa fa-upload" aria-hidden="true"></i>
                                         <p class="image-description hide-for-small-only">
-                                            Max size: 1MB <br>
-                                            Click to browse <br>
-                                            or drag and drop <br>
-                                            files here.
+                                            Upload/Drop files here.
                                         </p>
                                         <p class="show-for-small-only image-description">
-                                            Max size: 1MB <br>
-                                            Tap to choose file
+                                            Select file/take picture
                                         </p>
                                     </div>
                                 </div>

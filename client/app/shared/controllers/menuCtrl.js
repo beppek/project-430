@@ -204,7 +204,7 @@ module.exports = angular.module("shutterSnappy")
                             callout("dark", err.message || err);
                         });
 
-                }
+                };
 
             // };
 

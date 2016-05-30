@@ -24,6 +24,8 @@ $topLeftLogoWidth: 50px;
 
 $paddingTop: 50px;
 
+@import url(https://fonts.googleapis.com/css?family=Abril+Fatface);
+
 //mixins
 @mixin vertical-align {
     position: relative;
@@ -51,10 +53,19 @@ body, html {
     height: 100%;
     margin: 0;
     background-color: $mainBG;
+    font-family: 'Abril Fatface', cursive;
 }
 
 label {
     color: $textColor;
+}
+
+h1, h2, h3, h4, h5, h6, p, a, label, .menu-buttons {
+    font-family: 'Abril Fatface', Georgia, cursive;
+}
+
+button {
+    //font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .inline-block {
@@ -445,6 +456,7 @@ label {
         margin: 15px auto;
     }
     @media screen and (min-width: $phabletres) {
+        line-height: 80px;
         margin: 15px 0;
     }
 }

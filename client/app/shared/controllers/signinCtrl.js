@@ -38,23 +38,13 @@ module.exports = angular.module("shutterSnappy")
 
                     nameService.name = res.data.user.displayName;
                     callout("dark", "Good to see you!", "Welcome " + res.data.user.displayName + ", thanks for signing in with " + authProvider);
-                    socket.emit("signin", {
-                        user: res.data.user.displayName
-                    });
                     checkState();
 
                 }, handleError);
             };
 
-            /**
-             * Socket listeners
-             * */
-            socket.on("signin", function(data) {
-                callout("dark", "Signin by:", data.user);
-            });
-
             function handleError(err) {
-                callout("warning", "Oops!", err.data.message);
+                callout("dark", "Oops!", err.data.message);
                 if ($state.current.url !== "signin") {
                     $state.go("signin");
                 }

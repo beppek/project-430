@@ -61,9 +61,23 @@ module.exports = angular.module("shutterSnappy")
             $scope.validateImage = function() {
 
                 if ($scope.joinChallenge.image.$error.maxSize) {
-                    callout("warning", "Image size too big.", "Must be less than 1mb");
+                    callout("dark", "Image size too big.", "Must be less than 1mb");
                 }
 
+                if ($scope.joinChallenge.image.$error.pattern) {
+                    callout("dark", "Wrong file type.", "Must be jpeg.");
+                }
+
+            };
+
+            $scope.resizeCondition = function(file, width, height) {
+                if (width > 1600 || height > 900 || file.size > 1000000) {
+                    return true;
+                }
+            };
+
+            $scope.beforeChange = function() {
+                callout("dark", "Processing...");
             };
 
             /**
