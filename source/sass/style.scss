@@ -10,7 +10,7 @@ $menuHover: lighten($menuBG, 15%);
 $active: $modalBG;
 $challengeBG: lighten($mainBG, 15%);
 $challengeBGHover: lighten($mainBG, 25%);
-
+$hover: #0b97c4;
 
 $tinyres: 320px;
 $mobileres: 480px;
@@ -43,7 +43,7 @@ $paddingTop: 50px;
 }
 
 .testColor {
-    //color: #;
+    color: #0b97c4;
 }
 
 //Begin styles
@@ -70,6 +70,15 @@ button {
 
 .inline-block {
     display: inline-block;
+}
+
+.centered {
+    text-align: center;
+}
+
+.no-margin, .no-padding {
+    margin: 0;
+    padding: 0;
 }
 
 //Site wrapper
@@ -213,9 +222,7 @@ button {
 }
 
 .signin-button {
-    @media screen and (max-width: $phabletres) {
-        font-size: 15px!important;
-    }
+    font-size: 16px!important;
 }
 .menu-btn {
     color: $textColor;
@@ -243,6 +250,24 @@ button {
     color: $textColor;
     margin: 0;
     font-size: 18px;
+}
+
+.footer {
+    padding: 20px 10px;
+    background-color: $challengeBG;
+    width: 100%;
+}
+
+.footer a {
+    color: $textColor;
+    margin-right: 25px;
+    &:hover {
+        color: $hover;
+    }
+}
+
+.footer i {
+    width: 25px;
 }
 
 //Sign in modal
@@ -292,7 +317,7 @@ button {
     @media screen and (max-width: $largeres) and (min-width: $smallres) {
         height: 15em;
     }
-    @media screen and (max-width: $xlres) and (min-width: $largeres) {
+    @media screen and (min-width: $largeres) {
         height: 20em;
     }
 }
@@ -300,6 +325,23 @@ button {
 .all-forms select {
     border-radius: 0;
     margin: 0;
+}
+
+.form-wrapper {
+    background-color: rgba(25,25,25,0.5);
+    padding: 100px 0;
+    @media screen and (max-width: $phabletres) {
+        padding: 10px;
+    }
+    @media screen and (max-width: $smallres) and (min-width: $phabletres) {
+        padding: 20px 0;
+    }
+    @media screen and (max-width: $largeres) and (min-width: $smallres) {
+        padding: 50px 0;
+    }
+    @media screen and (min-width: $largeres) {
+        padding: 100px 0;
+    }
 }
 
 .signin-form {
@@ -384,11 +426,6 @@ button {
     @media screen and (max-width: $tinyres) {
         font-size: 15px;
     }
-}
-
-//Signup
-.signup {
-    //@include vertical-align();
 }
 
 //Callout box
@@ -575,6 +612,10 @@ button {
     height: calc(100vh - #{$paddingTop});
     white-space: nowrap;
     width:100%;
+}
+
+.v-align-container p {
+    white-space: normal;
 }
 .v-align-container:before {
     content: "";

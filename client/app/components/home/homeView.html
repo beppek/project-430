@@ -100,4 +100,26 @@
             </div>
         </div>
     </div>
+    <div ng-show="!isAuthenticated()" class="align-center">
+        <div class="columns">
+            <div class="v-align-container">
+                <div class="v-align-inner">
+                    <div class="row align-center">
+                        <div class="medium-8 columns">
+                            <p class="centered">ShutterSnappy is a community for photographers to learn more about photography.
+                                <br>Join the friendly competition and improve your photography today</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-show="!isAuthenticated()" class="align-center footer">
+        <div class="columns">
+            <p class="centered no-margin">
+                <a ui-sref="about" ui-sref-active="active"><i class="fa fa-info-circle"></i> About</a>
+                <a ui-sref="signup" ui-sref-active="active"><i class="fa fa-user-plus"></i> Sign up</a>
+            </p>
+        </div>
+    </div>
 </div>

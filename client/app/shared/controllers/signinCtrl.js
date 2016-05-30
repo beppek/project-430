@@ -58,4 +58,23 @@ module.exports = angular.module("shutterSnappy")
 
             }
 
+            var bgImages = [
+                "camera1",
+                "aurora1",
+                "camera2",
+                "map1",
+                "camera3",
+                "map2",
+                "man1",
+                "stars1",
+                "forest1",
+                "mountains1",
+                "kids1",
+                "flower1",
+                "map3",
+                "mountains2"
+            ];
+
+            $scope.backgroundImg = bgImages[Math.floor(Math.random() * bgImages.length)];
+
         }]);
