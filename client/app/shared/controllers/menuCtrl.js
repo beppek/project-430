@@ -44,22 +44,16 @@ module.exports = angular.module("shutterSnappy")
                 switch ($state.current.name) {
                     case "home":
                         return "views/partials/toolbars/challengesTools.html";
-                        break;
                     case "challenges":
                         return "views/partials/toolbars/challengesTools.html";
-                        break;
                     case "challenge-title":
                         return "views/partials/toolbars/challengeTools.html";
-                        break;
                     case "image":
                         return "views/partials/toolbars/imageTools.html";
-                        break;
                     case "challenge-update":
                         return "views/partials/toolbars/challengeUpdateTools.html";
-                        break;
                     case "image-update":
                         return "views/partials/toolbars/imageUpdateTools.html";
-                        break;
                 }
 
             };
