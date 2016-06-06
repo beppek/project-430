@@ -41,7 +41,6 @@ require("../../client/app/shared/controllers/signinCtrl");
 require("../../client/app/shared/controllers/menuCtrl");
 require("../../client/app/shared/controllers/signoutCtrl");
 require("../../client/app/shared/controllers/notificationCtrl");
-require("../../client/app/shared/controllers/confirmCtrl");
 
 // LOAD COMPONENTS
 // Home
