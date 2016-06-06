@@ -6,8 +6,8 @@
 "use strict";
 
 module.exports = angular.module("shutterSnappy")
-    .controller("menuCtrl", ["$scope", "$state", "$auth", "$document", "$stateParams", "$rootScope", "userService", "challengeService", "callout", "socket", "imageService",
-        function($scope, $state, $auth, $document, $stateParams, $rootScope, userService, challengeService, callout, socket, imageService) {
+    .controller("menuCtrl", ["$scope", "$state", "$auth", "$document", "$stateParams", "$rootScope", "userService", "challengeService", "callout", "socket", "imageService", "confirm",
+        function($scope, $state, $auth, $document, $stateParams, $rootScope, userService, challengeService, callout, socket, imageService, confirm) {
 
             $scope.isAuthenticated = $auth.isAuthenticated;
 
@@ -92,31 +92,32 @@ module.exports = angular.module("shutterSnappy")
              * */
             $scope.deleteChallenge = function() {
 
-                // if (confirm("Are you sure you want to delete the challenge?")) {
+                confirm("challenge", function(isConfirmed) {
 
-                    challengeService.get($stateParams.title)
-                        .success(function(res) {
-                            $scope.challenge = res;
-                            var reqObj = {
-                                challengeId: res._id,
-                                reqUserId: userService.getId(),
-                                creatorId: res.createdBy.createdById
-                            };
+                    if (isConfirmed === true) {
+                        challengeService.get($stateParams.title)
+                            .success(function(res) {
+                                $scope.challenge = res;
+                                var reqObj = {
+                                    challengeId: res._id,
+                                    reqUserId: userService.getId(),
+                                    creatorId: res.createdBy.createdById
+                                };
 
-                            challengeService.deleteChallenge(reqObj)
-                                .success(function(res) {
-                                    socket.emit("challenge:deleted", {
-                                        challenge: $scope.challenge.lcTitle
-                                    });
-                                    $state.go("challenges");
-                                    callout("dark", "Gone!", res);
-                                })
-                                .error(function(err) {
-                                    callout("warning", "Something went wrong", err.message);
-                                })
-                        });
-
-                // }
+                                challengeService.deleteChallenge(reqObj)
+                                    .success(function(res) {
+                                        socket.emit("challenge:deleted", {
+                                            challenge: $scope.challenge.lcTitle
+                                        });
+                                        $state.go("challenges");
+                                        callout("dark", "Gone!", res);
+                                    })
+                                    .error(function(err) {
+                                        callout("warning", "Something went wrong", err.message);
+                                    })
+                            });
+                    }
+                });
 
             };
 
@@ -163,43 +164,43 @@ module.exports = angular.module("shutterSnappy")
              * */
             $scope.deleteImage = function() {
 
-                // if (confirm("Are you sure you want to delete this image?")) {
+                confirm("image", function(isConfirmed) {
+                    if (isConfirmed) {
+                        challengeService.get($stateParams.challengeTitle)
+                            .success(function(res) {
+                                $scope.challenge = res;
+                            });
 
-                    challengeService.get($stateParams.challengeTitle)
-                        .success(function(res) {
-                            $scope.challenge = res;
-                        });
+                        imageService.getImage($stateParams.imageId)
+                            .success(function(res) {
+                                var reqObj = {
+                                    challengeId: res.challenge,
+                                    imageId: res._id,
+                                    fileName: res.fileInfo.fileName,
+                                    reqUserId: userService.getId(),
+                                    creatorId: res.uploadedBy.userId
+                                };
 
-                    imageService.getImage($stateParams.imageId)
-                        .success(function(res) {
-                            var reqObj = {
-                                challengeId: res.challenge,
-                                imageId: res._id,
-                                fileName: res.fileInfo.fileName,
-                                reqUserId: userService.getId(),
-                                creatorId: res.uploadedBy.userId
-                            };
-
-                            imageService.deleteImg(reqObj)
-                                .success(function(res) {
-                                    socket.emit("image:deleted", {
-                                        challenge: $scope.challenge.title,
-                                        imageId: reqObj.imageId
+                                imageService.deleteImg(reqObj)
+                                    .success(function(res) {
+                                        socket.emit("image:deleted", {
+                                            challenge: $scope.challenge.title,
+                                            imageId: reqObj.imageId
+                                        });
+                                        $scope.toChallenge($scope.challenge);
+                                        callout("dark", "Gone!", res);
+                                    })
+                                    .error(function(err) {
+                                        callout("dark", "Something went wrong", err.message);
                                     });
-                                    $scope.toChallenge($scope.challenge);
-                                    callout("dark", "Gone!", res);
-                                })
-                                .error(function(err) {
-                                    callout("dark", "Something went wrong", err.message);
-                                });
 
-                        })
-                        .error(function(err) {
-                            callout("dark", err.message || err);
-                        });
+                            })
+                            .error(function(err) {
+                                callout("dark", err.message || err);
+                            });
+                    }
+                });
 
-                };
-
-            // };
+            };
 
         }]);

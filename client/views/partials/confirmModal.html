@@ -1,0 +1,7 @@
+<div ng-class="['confirm-wrapper', {'flipInX': confirm.show, 'fadeOut': !confirm.show, 'confirm-hidden': !confirm.hasBeenShown}]" ng-click="closeConfirmModal($event)">
+    <div ng-class="['confirm', {'flipInX': confirm.show, 'fadeOut': !confirm.show, 'confirm-hidden': !confirm.hasBeenShown}]" id="confirmBox">
+        <p>Are you sure you want to delete this {{confirm.type}}? Deletion is permanent.</p>
+        <input type="button" class="button alert" value="Delete" ng-click="delete()">
+        <input type="button" class="button secondary" value="Cancel" ng-click="cancelConfirm()">
+    </div>
+</div>

@@ -607,6 +607,38 @@ button {
     }
 }
 
+.confirm-wrapper {
+    background-color: rgba(25,25,25,0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+.confirm {
+    display: inline-block;
+    top: calc(50% - 100px);
+    position: relative;
+    background: $modalBG;
+    width: 250px;
+    height: 180px;
+    text-align: center;
+    left: calc(50% - 125px);
+}
+
+.confirm-hidden {
+    @extend .callout-hidden;
+}
+
+.confirm p {
+    padding: 10px;
+}
+
+.confirm input {
+    bottom: 15px;
+}
+
 //Vertical align container only for 100% screen height
 .v-align-container {
     height: calc(100vh - #{$paddingTop});

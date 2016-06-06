@@ -22,6 +22,7 @@ require("../../client/app/shared/services/challenges");
 require("../../client/app/shared/services/userService");
 require("../../client/app/shared/services/image");
 require("../../client/app/shared/services/sort");
+require("../../client/app/shared/services/confirm");
 
 //Factories
 require("../../client/app/shared/services/authToken");
@@ -40,6 +41,7 @@ require("../../client/app/shared/controllers/signinCtrl");
 require("../../client/app/shared/controllers/menuCtrl");
 require("../../client/app/shared/controllers/signoutCtrl");
 require("../../client/app/shared/controllers/notificationCtrl");
+require("../../client/app/shared/controllers/confirmCtrl");
 
 // LOAD COMPONENTS
 // Home
